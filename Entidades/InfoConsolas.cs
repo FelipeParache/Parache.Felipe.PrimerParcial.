@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    static class ConectividadOnline
+    static class InfoConsolas
     {
         private static Dictionary<string, bool> conectividadPorModelo;
 
-        static ConectividadOnline()
+        static InfoConsolas()
         {
-            ConectividadOnline.conectividadPorModelo = new Dictionary<string, bool>
+            InfoConsolas.conectividadPorModelo = new Dictionary<string, bool>
             {
                 // Modelos PlayStation
                 { "PS1", false },
@@ -31,7 +31,7 @@ namespace Entidades
                 // Modelos Nintendo
                 { "Nintendo NES", false },
                 { "Super Nintendo", false },
-                { "Wii", true },
+                { "Wii U", true },
                 { "Nintendo Switch", true }
             };
         }
@@ -40,7 +40,7 @@ namespace Entidades
         {
             bool conectividadOnline;
       
-            if (ConectividadOnline.conectividadPorModelo.TryGetValue(modelo, out conectividadOnline))
+            if (InfoConsolas.conectividadPorModelo.TryGetValue(modelo, out conectividadOnline))
             {
                 return conectividadOnline;
             }
