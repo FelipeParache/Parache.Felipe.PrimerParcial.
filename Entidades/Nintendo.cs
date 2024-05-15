@@ -29,20 +29,22 @@ namespace Entidades
 
         public Nintendo(string modelo, int almacenamiento, bool portable, List<EPerifericosNintendo> listaPerifericos) : this(modelo, almacenamiento, portable)
         {
-            this.portable = portable;
             this.listaPerifericos = new List<EPerifericosNintendo>();
             this.listaPerifericos = listaPerifericos;
-
-            if (this.portable)
-            {
-                this.duracionBateria = 5;
-            }
         }
 
-        public bool Portable
+        public string Portable
         {
-            get { return this.portable; }
-            set { this.portable = value; }
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                if (this.portable)
+                {
+                    sb.AppendLine($"Es portatil.");
+                    return sb.ToString();
+                }
+                return "";
+            }
         }
 
         public string DuracionBateria
@@ -64,11 +66,54 @@ namespace Entidades
 
                 foreach (EPerifericosNintendo periferico in this.listaPerifericos)
                 {
-                    sb.AppendLine($"\n{periferico}");
+                    sb.AppendLine($"\n+ {periferico}");
                 }
                 
                 return sb.ToString();
             }
+        }
+
+        protected override string MostrarInformacion()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(base.MostrarInformacion());
+
+            if (this.portable)
+            {
+                sb.AppendLine($"+ {this.Portable}");
+                sb.AppendLine($"+ {this.DuracionBateria}");
+            }
+
+            if (this.listaPerifericos != null)
+            {
+                sb.AppendLine($"{this.ListaPerifericos}");
+            }
+
+            return sb.ToString();
+        }
+
+        protected override string MostrarEslogan()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("There's No Play Like It");
+            return sb.ToString();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            Boolean retorno = false;
+
+            if (obj is Nintendo)
+            {
+                retorno = true;
+            }
+
+            return retorno;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }

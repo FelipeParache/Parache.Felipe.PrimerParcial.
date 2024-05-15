@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,16 +27,67 @@ namespace Entidades
             this.psPlus = psPlus;
         }
 
-        public bool PsPlus
+        public string PsPlus
         {
-            get { return psPlus; }
-            set { psPlus = value; }
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                if (this.psPlus)
+                {
+                    sb.AppendLine($"Incluye servicio de PlayStation Plus.");
+                    return sb.ToString();
+                }
+                return "";
+            }
         }
 
-        public int Controles
+        public string Controles
         {
-            get { return controles; }
-            set { controles = value; }
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine($"Incluye {this.controles} controles Dualshock.");
+                return sb.ToString();
+            }
+        }
+
+        protected override string MostrarInformacion()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(base.MostrarInformacion());
+
+            if (this.psPlus)
+            {
+                sb.AppendLine($"+ {this.PsPlus}");
+            }
+
+            sb.AppendLine($"{this.Controles}");
+
+            return sb.ToString();
+        }
+
+        protected override string MostrarEslogan()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Play Has No Limits");
+            return sb.ToString();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            Boolean retorno = false;
+
+            if (obj is PlayStation)
+            {
+                retorno = true;
+            }
+
+            return retorno;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }
