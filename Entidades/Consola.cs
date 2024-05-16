@@ -33,14 +33,10 @@ namespace Entidades
             set { this.modelo = value; }
         }
 
-        public string Almacenamiento
+        public int Almacenamiento
         {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"{this.almacenamiento} de almacenamiento.");
-                return sb.ToString();
-            }
+            get { return this.almacenamiento; }
+            set { this.almacenamiento = value; }
         }
 
         public string ConectividadOnline
@@ -91,7 +87,7 @@ namespace Entidades
             sb.AppendLine($"-- {this.MostrarEslogan()}--");
             sb.AppendLine($"* {this.Modelo}");
             sb.AppendLine($"- {this.ConectividadOnline}");
-            sb.AppendLine($"- {this.Almacenamiento}");
+            sb.AppendLine($"- {this.Almacenamiento} GB de almacenamiento");
             sb.AppendLine($"- {this.ListaVideojuegos}");
             return sb.ToString();
         }
@@ -100,7 +96,7 @@ namespace Entidades
 
         public static bool operator ==(Consola c1, Consola c2)
         {
-            return c1.Modelo == c2.Modelo && c1.Almacenamiento == c2.Almacenamiento;
+            return c1.Equals(c2);
         }
 
         public static bool operator !=(Consola c1, Consola c2)
@@ -108,16 +104,24 @@ namespace Entidades
             return !(c1 == c2);
         }
 
-        public override bool Equals(object? obj)
+        public static explicit operator string?(Consola consola)
         {
-            Boolean retorno = false;
-           
-            if (obj is Consola)
+            return consola.modelo;
+        }
+
+        public static implicit operator int(Consola consola)
+        {
+            return consola.almacenamiento;
+        }
+
+        public override bool Equals(object? obj)
+        {           
+            if (obj is Consola consola)
             {
-                retorno = true;
+                return this.Modelo == consola.Modelo && this.Almacenamiento == consola.Almacenamiento;
             }
 
-            return retorno;
+            return false;
         }
 
         public override string ToString()
