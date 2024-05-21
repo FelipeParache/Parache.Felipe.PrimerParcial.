@@ -8,22 +8,25 @@ namespace Entidades
 {
     public class Xbox : Consola
     {
-        private bool xboxLiveGold;
         private int almacenamientoNube;
+        private bool xboxLiveGold;
+        readonly EModelosXbox eModelosXbox;
+        readonly EVideojuegosXbox eVideojuegosXbox;
 
-        private Xbox() : base()
+        public Xbox(EModelosXbox eModelosXbox, int almacenamiento) : base(eModelosXbox, almacenamiento)
         {
-            base.LlenarListaVideojuegos(typeof(EVideojuegosXbox));
+            this.eModelosXbox = eModelosXbox;
         }
 
-        public Xbox(string modelo, int almacenamiento, int almacenamientoNube) : base(modelo, almacenamiento)
+        public Xbox(EModelosXbox eModelosXbox, int almacenamiento, int almacenamientoNube, bool conectividadOnline = true) : base(eModelosXbox, almacenamiento, conectividadOnline)
         {
             this.almacenamientoNube = almacenamientoNube;
         }
 
-        public Xbox(string modelo, int almacenamiento, int almacenamientoNube, bool xboxLive) : this(modelo, almacenamiento, almacenamientoNube)
+        public Xbox(EModelosXbox eModelosXbox, int almacenamiento, int almacenamientoNube, EVideojuegosXbox eVideojuegosXbox, bool xBoxLiveGold, bool conectividadOnline = true) : base(eModelosXbox, almacenamiento, conectividadOnline, eVideojuegosXbox)
         {
-            this.xboxLiveGold = xboxLive;
+            this.almacenamientoNube = almacenamientoNube;
+            this.xboxLiveGold = xBoxLiveGold;
         }
 
         public string XboxLiveGold
@@ -33,10 +36,13 @@ namespace Entidades
                 StringBuilder sb = new StringBuilder();
                 if (this.xboxLiveGold)
                 {
-                    sb.AppendLine($"Incluye servicio de Xbox Live Gold.");
-                    return sb.ToString();
+                    sb.AppendLine("Incluye servicio de Xbox Live Gold");
                 }
-                return "";
+                else
+                {
+                    sb.AppendLine("No incluye servicio de Xbox Live Gold");
+                }
+                return sb.ToString();
             }
         }
 
@@ -44,21 +50,23 @@ namespace Entidades
         {
             get
             {
-                return $"Almacenamiento en la nube: {this.almacenamientoNube}GB.";
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine($"Almacenamiento en la nube: {this.almacenamientoNube} GB");
+                return sb.ToString();
             }
         }
 
-        protected override string MostrarInformacion()
+        public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(base.MostrarInformacion());
 
             if (this.xboxLiveGold)
             {
-                sb.AppendLine($"+ {this.xboxLiveGold}");
+                sb.AppendLine($"- {this.XboxLiveGold}");
             }
 
-            sb.AppendLine($"{this.AlmacenamientoNube}");
+            sb.AppendLine($"- {this.AlmacenamientoNube}");
 
             return sb.ToString();
         }

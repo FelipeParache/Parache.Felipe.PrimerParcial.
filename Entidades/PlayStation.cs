@@ -11,19 +11,22 @@ namespace Entidades
     {
         private bool psPlus;
         private int controles;
+        readonly EModelosPlayStation eModelosPlayStation;
+        readonly EVideojuegosPlayStation eVideojuegosPlayStation;
 
-        private PlayStation() : base()
+        public PlayStation(EModelosPlayStation eModelosPlayStation, int almacenamiento) : base(eModelosPlayStation, almacenamiento)
         {
-            base.LlenarListaVideojuegos(typeof(EVideojuegosPlayStation));
+            this.eModelosPlayStation = eModelosPlayStation;
         }
 
-        public PlayStation(string modelo, int almacenamiento, int controles) : base(modelo, almacenamiento)
+        public PlayStation(EModelosPlayStation eModelosPlayStation, int almacenamiento, bool conectividadOnline, int controles) : base(eModelosPlayStation, almacenamiento, conectividadOnline)
         {
             this.controles = controles;
         }
 
-        public PlayStation(string modelo, int almacenamiento, int controles, bool psPlus) : this(modelo, almacenamiento, controles)
+        public PlayStation(EModelosPlayStation eModelosPlayStation, int almacenamiento, bool conectividadOnline, int controles, EVideojuegosPlayStation eVideoJuegosPlayStation, bool psPlus) : base(eModelosPlayStation, almacenamiento, conectividadOnline, eVideoJuegosPlayStation)
         {
+            this.controles = controles;
             this.psPlus = psPlus;
         }
 
@@ -34,10 +37,13 @@ namespace Entidades
                 StringBuilder sb = new StringBuilder();
                 if (this.psPlus)
                 {
-                    sb.AppendLine($"Incluye servicio de PlayStation Plus.");
-                    return sb.ToString();
+                    sb.AppendLine("Incluye servicio de PlayStation Plus");
                 }
-                return "";
+                else
+                {
+                    sb.AppendLine("No incluye servicio de PlayStation Plus");
+                }
+                return sb.ToString();
             }
         }
 
@@ -46,22 +52,29 @@ namespace Entidades
             get
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"Incluye {this.controles} controles Dualshock.");
+                if (this.controles == 1)
+                {
+                    sb.AppendLine($"Incluye {this.controles} control Dualshock");
+                }
+                else
+                {
+                    sb.AppendLine($"Incluye {this.controles} controles Dualshock");
+                }
                 return sb.ToString();
             }
         }
 
-        protected override string MostrarInformacion()
+        public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.MostrarInformacion());
+            sb.Append(base.MostrarInformacion());
 
             if (this.psPlus)
             {
-                sb.AppendLine($"+ {this.PsPlus}");
+                sb.Append($"- {this.PsPlus}");
             }
 
-            sb.AppendLine($"{this.Controles}");
+            sb.Append($"- {this.Controles}");
 
             return sb.ToString();
         }

@@ -10,41 +10,31 @@ namespace Entidades
     {
         private bool portable;
         private int duracionBateria;
-        private List<EPerifericosNintendo> listaPerifericos;
+        readonly private List<EPerifericosNintendo>? listaPerifericos;
+        readonly EModelosNintendo eModelosNintendo;
+        readonly EVideojuegosNintendo eVideojuegosNintendo;
 
-        private Nintendo() : base()
+        private Nintendo(EModelosNintendo eModelosNintendo, int almacenamiento) : base(eModelosNintendo, almacenamiento)
         {
-            base.LlenarListaVideojuegos(typeof(EVideojuegosNintendo));
+            this.eModelosNintendo = eModelosNintendo;
+            this.VerificarPortabilidad();
         }
 
-        public Nintendo(string modelo, int almacenamiento, bool portable) : base(modelo, almacenamiento)
+        public Nintendo(EModelosNintendo eModelosNintendo, int almacenamiento, EVideojuegosNintendo eVideojuegosNintendo) : this(eModelosNintendo, almacenamiento)
         {
-            this.portable = portable;
-
-            if (this.portable)
-            {
-                this.duracionBateria = 5;
-            }
+            this.eVideojuegosNintendo = eVideojuegosNintendo;
         }
 
-        public Nintendo(string modelo, int almacenamiento, bool portable, List<EPerifericosNintendo> listaPerifericos) : this(modelo, almacenamiento, portable)
+        public Nintendo(EModelosNintendo eModelosNintendo, int almacenamiento, EVideojuegosNintendo eVideojuegosNintendo, List<EPerifericosNintendo> listaPerifericos) : this(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
         {
             this.listaPerifericos = new List<EPerifericosNintendo>();
             this.listaPerifericos = listaPerifericos;
         }
 
-        public string Portable
+        public bool Portable
         {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                if (this.portable)
-                {
-                    sb.AppendLine($"Es portatil.");
-                    return sb.ToString();
-                }
-                return "";
-            }
+            get { return this.portable; }
+            set { this.portable = value; }
         }
 
         public string DuracionBateria
@@ -52,7 +42,7 @@ namespace Entidades
             get
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"Duración de bateria: {this.duracionBateria}hs.");
+                sb.AppendLine($"Duración de la bateria: {this.duracionBateria}hs.");
                 return sb.ToString();
             }
         }
@@ -73,20 +63,29 @@ namespace Entidades
             }
         }
 
-        protected override string MostrarInformacion()
+        public void VerificarPortabilidad()
+        {
+            if (this.eModelosNintendo == EModelosNintendo.WiiU || this.eModelosNintendo == EModelosNintendo.NintendoSwitch)
+            {
+                base.conectividadOnline = true;
+                this.Portable = true;
+                this.duracionBateria = 5;
+            }
+        }
+
+        public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(base.MostrarInformacion());
 
             if (this.portable)
             {
-                sb.AppendLine($"+ {this.Portable}");
-                sb.AppendLine($"+ {this.DuracionBateria}");
+                sb.AppendLine($"- {this.DuracionBateria}");
             }
 
             if (this.listaPerifericos != null)
             {
-                sb.AppendLine($"{this.ListaPerifericos}");
+                sb.AppendLine($"- {this.ListaPerifericos}");
             }
 
             return sb.ToString();
