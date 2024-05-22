@@ -64,7 +64,7 @@ namespace Entidades
             sb.AppendLine($"- {this.ConectividadOnline}");
             if (this.eVideojuego != null)
             {
-                sb.AppendLine($"- Videojuego elegido: {this.eListaVideojuegos}");
+                sb.AppendLine($"- Videojuego elegido: {this.eVideojuego}");
             }
             return sb.ToString();
         }
