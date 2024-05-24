@@ -15,7 +15,7 @@ namespace FrmGamingStore
 {
     public partial class FrmPlayStation : FrmConsola
     {
-        private PlayStation playStation;
+        private Consola playStation;
 
         public FrmPlayStation()
         {
@@ -31,13 +31,13 @@ namespace FrmGamingStore
 
             foreach (EVideojuegosPlayStation videojuego in arrayVideojuegos)
             {
-                this.cmbAlmacenamiento.Items.Add(videojuego);
+                this.cmbVideojuegos.Items.Add(videojuego);
             }
         }
 
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
-            playStation = new PlayStation((EModelosPlayStation)this.cmbModelos.SelectedItem, 1000, true, 4, (EVideojuegosPlayStation)this.cmbAlmacenamiento.SelectedItem, true);
+           // playStation = new PlayStation((EModelosPlayStation)this.cmbModelos.SelectedItem, 1000, true, 4, (EVideojuegosPlayStation)this.cmbVideojuegos.SelectedItem, true);
             MessageBox.Show(playStation.ToString());
             this.DialogResult = DialogResult.OK;
             this.Close();

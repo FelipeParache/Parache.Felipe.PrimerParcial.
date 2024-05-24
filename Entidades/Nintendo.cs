@@ -11,21 +11,21 @@ namespace Entidades
         private bool portable;
         private int duracionBateria;
         readonly private List<EPerifericosNintendo>? listaPerifericos;
-        readonly EModelosNintendo eModelosNintendo;
-        readonly EVideojuegosNintendo eVideojuegosNintendo;
+        readonly string? eModelosNintendo;
+        readonly string? eVideojuegosNintendo;
 
-        private Nintendo(EModelosNintendo eModelosNintendo, int almacenamiento) : base(eModelosNintendo, almacenamiento)
+        private Nintendo(string eModelosNintendo, int almacenamiento) : base(eModelosNintendo, almacenamiento)
         {
             this.eModelosNintendo = eModelosNintendo;
             this.VerificarPortabilidad();
         }
 
-        public Nintendo(EModelosNintendo eModelosNintendo, int almacenamiento, EVideojuegosNintendo eVideojuegosNintendo) : this(eModelosNintendo, almacenamiento)
+        public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo) : this(eModelosNintendo, almacenamiento)
         {
             this.eVideojuegosNintendo = eVideojuegosNintendo;
         }
 
-        public Nintendo(EModelosNintendo eModelosNintendo, int almacenamiento, EVideojuegosNintendo eVideojuegosNintendo, List<EPerifericosNintendo> listaPerifericos) : this(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
+        public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo, List<EPerifericosNintendo> listaPerifericos) : this(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
         {
             this.listaPerifericos = new List<EPerifericosNintendo>();
             this.listaPerifericos = listaPerifericos;
@@ -42,7 +42,7 @@ namespace Entidades
             get
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"Duración de la bateria: {this.duracionBateria}hs.");
+                sb.Append($"Duración de la bateria: {this.duracionBateria}hs.");
                 return sb.ToString();
             }
         }
@@ -52,11 +52,11 @@ namespace Entidades
             get
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("Los perifericos son:");
+                sb.Append("Los perifericos son:");
 
                 foreach (EPerifericosNintendo periferico in this.listaPerifericos)
                 {
-                    sb.AppendLine($"\n+ {periferico}");
+                    sb.Append($"\n+ {periferico}");
                 }
                 
                 return sb.ToString();
@@ -65,7 +65,7 @@ namespace Entidades
 
         public void VerificarPortabilidad()
         {
-            if (this.eModelosNintendo == EModelosNintendo.WiiU || this.eModelosNintendo == EModelosNintendo.NintendoSwitch)
+            if (this.eModelosNintendo == EModelosNintendo.WiiU.ToString() || this.eModelosNintendo == EModelosNintendo.NintendoSwitch.ToString())
             {
                 base.conectividadOnline = true;
                 this.Portable = true;
@@ -76,16 +76,16 @@ namespace Entidades
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.MostrarInformacion());
+            sb.Append(base.MostrarInformacion());
 
             if (this.portable)
             {
-                sb.AppendLine($"- {this.DuracionBateria}");
+                sb.Append($"- {this.DuracionBateria}");
             }
 
             if (this.listaPerifericos != null)
             {
-                sb.AppendLine($"- {this.ListaPerifericos}");
+                sb.Append($"- {this.ListaPerifericos}");
             }
 
             return sb.ToString();
@@ -94,7 +94,7 @@ namespace Entidades
         protected override string MostrarEslogan()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("There's No Play Like It");
+            sb.Append("There's No Play Like It");
             return sb.ToString();
         }
 

@@ -18,16 +18,19 @@ namespace Entidades
 
         public static bool operator ==(GamingStore gamingStore, Consola consola)
         {
-            bool retorno = false;
+            if (gamingStore is null || consola is null)
+            {
+                return false;
+            }
+
             foreach (Consola auxConsola in gamingStore.listaConsolas)
             {
-                if (auxConsola.Equals(consola))
+                if (auxConsola == consola)
                 {
-                    retorno = true;
-                    break;
+                    return true;
                 }
             }
-            return retorno;
+            return false;
         }
 
         public static bool operator !=(GamingStore gamingStore, Consola consola)
@@ -35,22 +38,22 @@ namespace Entidades
             return !(gamingStore == consola);
         }
 
-        public static List<Consola> operator +(GamingStore gamingStore, Consola consola)
+        public static GamingStore operator +(GamingStore gamingStore, Consola consola)
         {
             if (gamingStore != consola)
             {
                 gamingStore.listaConsolas.Add(consola);
             }
-            return gamingStore.listaConsolas;
+            return gamingStore;
         }
 
-        public static List<Consola> operator -(GamingStore gamingStore, Consola consola)
+        public static GamingStore operator -(GamingStore gamingStore, Consola consola)
         {
             if (gamingStore == consola)
             {
                 gamingStore.listaConsolas.Remove(consola);
             }
-            return gamingStore.listaConsolas;
+            return gamingStore;
         }
 
         public void OrdenarPorModelo(bool ascendente)

@@ -7,24 +7,24 @@ namespace Entidades
     {
         protected bool conectividadOnline;
         protected int almacenamiento;
-        public Enum? eModelo;
-        public Enum? eVideojuego;
+        public string? eModelo;
+        public string? eVideojuego;
 
-        public Consola(Enum? eModelo, int almacenamiento)
+        public Consola(string? eModelo, int almacenamiento)
         {
             this.eModelo = eModelo;
             this.almacenamiento = almacenamiento;
             this.conectividadOnline = false;
         }
 
-        public Consola(Enum? eModelo, int almacenamiento, bool conectividadOnline) : this(eModelo, almacenamiento)
-        {
-            this.conectividadOnline = conectividadOnline;
-        }
-
-        public Consola(Enum? eModelo, int almacenamiento, bool conectividadOnline, Enum? eVideojuego) : this(eModelo, almacenamiento, conectividadOnline)
+        public Consola(string? eModelo, int almacenamiento, string? eVideojuego) : this(eModelo, almacenamiento)
         {
             this.eVideojuego = eVideojuego;
+        }
+
+        public Consola(string? eModelo, int almacenamiento, string? eVideojuego, bool conectividadOnline) : this(eModelo, almacenamiento, eVideojuego)
+        {
+            this.conectividadOnline = conectividadOnline;
         }
 
         public string? ConectividadOnline
@@ -34,11 +34,11 @@ namespace Entidades
                 StringBuilder sb = new StringBuilder();
                 if (this.conectividadOnline)
                 {
-                    sb.AppendLine("Tiene conectividad online");
+                    sb.Append("Tiene conectividad online");
                 }
                 else
                 {
-                    sb.AppendLine("No tiene conectividad online");
+                    sb.Append("No tiene conectividad online");
                 }
                 return sb.ToString();
             }
@@ -46,7 +46,7 @@ namespace Entidades
 
         public string Modelo
         {
-            get { return this.eModelo.ToString(); }
+            get { return this.eModelo; }
         }
 
         public int Almacenamiento
@@ -58,13 +58,13 @@ namespace Entidades
         public virtual string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"-- {this.MostrarEslogan()} --");
-            sb.AppendLine($"* Modelo: {this.eModelo}");
-            sb.AppendLine($"- {this.Almacenamiento} GB de almacenamiento");
+            sb.AppendLine($"** {this.MostrarEslogan()} **");
+            sb.AppendLine($"- Modelo: {this.Modelo}");
+            sb.AppendLine($"- Almacenamiento: {this.Almacenamiento} GB");
             sb.AppendLine($"- {this.ConectividadOnline}");
             if (this.eVideojuego != null)
             {
-                sb.AppendLine($"- Videojuego elegido: {this.eVideojuego}");
+                sb.Append($"- Videojuego: {this.eVideojuego}");
             }
             return sb.ToString();
         }
@@ -81,21 +81,11 @@ namespace Entidades
             return !(c1 == c2);
         }
 
-        public static explicit operator string?(Consola consola)
-        {
-            return consola.Modelo;
-        }
-
-        public static implicit operator int(Consola consola)
-        {
-            return consola.almacenamiento;
-        }
-
         public override bool Equals(object? obj)
         {
             if (obj is Consola consola)
             {
-                return this.Modelo == consola.Modelo && this.Almacenamiento == consola.Almacenamiento;
+                return string.Equals(this.Modelo, consola.Modelo) && this.Almacenamiento == consola.Almacenamiento;
             }
 
             return false;
@@ -104,6 +94,16 @@ namespace Entidades
         public override string ToString()
         {
             return this.MostrarInformacion();
+        }
+
+        public static explicit operator string?(Consola consola)
+        {
+            return consola.Modelo;
+        }
+
+        public static implicit operator int(Consola consola)
+        {
+            return consola.almacenamiento;
         }
     }
 }

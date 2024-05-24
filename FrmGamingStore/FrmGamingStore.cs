@@ -4,7 +4,6 @@ namespace FrmGamingStore
 {
     public partial class FrmGamingStore : Form
     {
-        protected string consolas;
         GamingStore gamingStore;
 
         public FrmGamingStore()
@@ -12,7 +11,6 @@ namespace FrmGamingStore
             InitializeComponent();
             gamingStore = new GamingStore();
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.consolas = "";
         }
 
         private void btnPlayStation_Click(object sender, EventArgs e)
@@ -21,7 +19,6 @@ namespace FrmGamingStore
 
             if (frmPlayStation.ShowDialog() == DialogResult.OK)
             {
-                this.lstConsolas.Text = this.consolas;
             }
         }
 
@@ -31,7 +28,6 @@ namespace FrmGamingStore
 
             if (frmNintendo.ShowDialog() == DialogResult.OK)
             {
-                this.lstConsolas.Text = this.consolas;
             }
         }
 
@@ -41,7 +37,29 @@ namespace FrmGamingStore
 
             if (frmXbox.ShowDialog() == DialogResult.OK)
             {
-                this.lstConsolas.Text = this.consolas;
+                Consola xbox = frmXbox.ConsolaDelFormulario;
+                MessageBox.Show(xbox.ToString());
+
+                if (this.gamingStore != xbox)
+                {
+                    MessageBox.Show("La consola no está en la lista, agregando...");
+                    this.gamingStore += xbox;
+                }
+                else
+                {
+                    MessageBox.Show("La consola ya se encuentra en la lista, no será agregada.");
+                }
+                this.ActualizarVisor();
+            }
+        }
+
+        private void ActualizarVisor()
+        {
+            this.lstConsolas.Items.Clear();
+
+            foreach (Consola consola in this.gamingStore.listaConsolas)
+            {
+                lstConsolas.Items.Add(consola.ToString());
             }
         }
     }

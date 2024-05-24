@@ -11,20 +11,20 @@ namespace Entidades
     {
         private bool psPlus;
         private int controles;
-        readonly EModelosPlayStation eModelosPlayStation;
-        readonly EVideojuegosPlayStation eVideojuegosPlayStation;
+        readonly string? eModelosPlayStation;
+        readonly string? eVideojuegosPlayStation;
 
-        public PlayStation(EModelosPlayStation eModelosPlayStation, int almacenamiento) : base(eModelosPlayStation, almacenamiento)
+        public PlayStation(string? eModelosPlayStation, int almacenamiento) : base(eModelosPlayStation, almacenamiento)
         {
             this.eModelosPlayStation = eModelosPlayStation;
         }
 
-        public PlayStation(EModelosPlayStation eModelosPlayStation, int almacenamiento, bool conectividadOnline, int controles) : base(eModelosPlayStation, almacenamiento, conectividadOnline)
+        public PlayStation(string? eModelosPlayStation, int almacenamiento, string? eVideojuegosPlayStation, int controles) : base(eModelosPlayStation, almacenamiento, eVideojuegosPlayStation)
         {
             this.controles = controles;
         }
 
-        public PlayStation(EModelosPlayStation eModelosPlayStation, int almacenamiento, bool conectividadOnline, int controles, EVideojuegosPlayStation eVideoJuegosPlayStation, bool psPlus) : base(eModelosPlayStation, almacenamiento, conectividadOnline, eVideoJuegosPlayStation)
+        public PlayStation(string? eModelosPlayStation, int almacenamiento, string? eVideoJuegosPlayStation, int controles, bool conectividadOnline, bool psPlus) : base(eModelosPlayStation, almacenamiento, eVideoJuegosPlayStation, conectividadOnline)
         {
             this.controles = controles;
             this.psPlus = psPlus;
@@ -37,11 +37,11 @@ namespace Entidades
                 StringBuilder sb = new StringBuilder();
                 if (this.psPlus)
                 {
-                    sb.AppendLine("Incluye servicio de PlayStation Plus");
+                    sb.Append("Incluye servicio de PlayStation Plus");
                 }
                 else
                 {
-                    sb.AppendLine("No incluye servicio de PlayStation Plus");
+                    sb.Append("No incluye servicio de PlayStation Plus");
                 }
                 return sb.ToString();
             }
@@ -54,11 +54,11 @@ namespace Entidades
                 StringBuilder sb = new StringBuilder();
                 if (this.controles == 1)
                 {
-                    sb.AppendLine($"Incluye {this.controles} control Dualshock");
+                    sb.Append($"Incluye {this.controles} control Dualshock");
                 }
                 else
                 {
-                    sb.AppendLine($"Incluye {this.controles} controles Dualshock");
+                    sb.Append($"Incluye {this.controles} controles Dualshock");
                 }
                 return sb.ToString();
             }
@@ -82,7 +82,7 @@ namespace Entidades
         protected override string MostrarEslogan()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Play Has No Limits");
+            sb.Append("Play Has No Limits");
             return sb.ToString();
         }
 

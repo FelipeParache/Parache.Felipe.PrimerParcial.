@@ -30,13 +30,13 @@ namespace FrmGamingStore
 
             foreach (EVideojuegosNintendo videojuego in arrayVideojuegos)
             {
-                this.cmbAlmacenamiento.Items.Add(videojuego);
+                this.cmbVideojuegos.Items.Add(videojuego);
             }
         }
 
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
-            nintendo = new Nintendo((EModelosNintendo)this.cmbModelos.SelectedItem, 1000, (EVideojuegosNintendo)this.cmbAlmacenamiento.SelectedItem, new List<EPerifericosNintendo> { EPerifericosNintendo.GafasVR });
+            nintendo = new Nintendo(this.cmbModelos.SelectedItem.ToString(), 1000, this.cmbVideojuegos.SelectedItem.ToString(), new List<EPerifericosNintendo> { EPerifericosNintendo.GafasVR });
             MessageBox.Show(nintendo.ToString());
             this.DialogResult = DialogResult.OK;
             this.Close();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,21 @@ namespace FrmGamingStore
 {
     public partial class FrmConsola : Form
     {
+        protected Consola consola;
+
         public FrmConsola()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            this.cmbAlmacenamiento.Items.Add("500 GB");
+            this.cmbAlmacenamiento.Items.Add("1000 GB");
+            this.cmbAlmacenamiento.Items.Add("2000 GB");
+        }
+
+        public virtual Consola ConsolaDelFormulario
+        {
+            get { return consola; }
         }
 
         protected virtual void btnAceptar_Click(object sender, EventArgs e)

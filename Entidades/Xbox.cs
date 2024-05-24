@@ -10,20 +10,22 @@ namespace Entidades
     {
         private int almacenamientoNube;
         private bool xboxLiveGold;
-        readonly EModelosXbox eModelosXbox;
-        readonly EVideojuegosXbox eVideojuegosXbox;
+        readonly string? eModelosXbox;
+        readonly string? eVideojuegosXbox;
 
-        public Xbox(EModelosXbox eModelosXbox, int almacenamiento) : base(eModelosXbox, almacenamiento)
+        public Xbox(string? eModelosXbox, int almacenamiento) : base(eModelosXbox, almacenamiento)
         {
             this.eModelosXbox = eModelosXbox;
+            this.almacenamientoNube = 0;
+            this.xboxLiveGold = false;
         }
 
-        public Xbox(EModelosXbox eModelosXbox, int almacenamiento, int almacenamientoNube, bool conectividadOnline = true) : base(eModelosXbox, almacenamiento, conectividadOnline)
+        public Xbox(string? eModelosXbox, int almacenamiento, string? eVideojuegosXbox) : base(eModelosXbox, almacenamiento, eVideojuegosXbox)
         {
-            this.almacenamientoNube = almacenamientoNube;
+            this.eVideojuegosXbox = eVideojuegosXbox;
         }
 
-        public Xbox(EModelosXbox eModelosXbox, int almacenamiento, int almacenamientoNube, EVideojuegosXbox eVideojuegosXbox, bool xBoxLiveGold, bool conectividadOnline = true) : base(eModelosXbox, almacenamiento, conectividadOnline, eVideojuegosXbox)
+        public Xbox(string? eModelosXbox, int almacenamiento, string? eVideojuegosXbox, int almacenamientoNube, bool xBoxLiveGold, bool conectividadOnline = true) : base(eModelosXbox, almacenamiento, eVideojuegosXbox, conectividadOnline)
         {
             this.almacenamientoNube = almacenamientoNube;
             this.xboxLiveGold = xBoxLiveGold;
@@ -36,11 +38,11 @@ namespace Entidades
                 StringBuilder sb = new StringBuilder();
                 if (this.xboxLiveGold)
                 {
-                    sb.AppendLine("Incluye servicio de Xbox Live Gold");
+                    sb.Append("Incluye servicio de Xbox Live Gold");
                 }
                 else
                 {
-                    sb.AppendLine("No incluye servicio de Xbox Live Gold");
+                    sb.Append("No incluye servicio de Xbox Live Gold");
                 }
                 return sb.ToString();
             }
@@ -66,7 +68,10 @@ namespace Entidades
                 sb.AppendLine($"- {this.XboxLiveGold}");
             }
 
-            sb.AppendLine($"- {this.AlmacenamientoNube}");
+            if (this.almacenamientoNube > 0)
+            {
+                sb.Append($"- {this.AlmacenamientoNube}");
+            }
 
             return sb.ToString();
         }
@@ -74,7 +79,7 @@ namespace Entidades
         protected override string MostrarEslogan()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Power Your Dreams");
+            sb.Append("Power Your Dreams");
             return sb.ToString();
         }
 
