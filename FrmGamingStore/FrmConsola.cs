@@ -13,7 +13,9 @@ namespace FrmGamingStore
 {
     public partial class FrmConsola : Form
     {
-        protected Consola consola;
+        public Consola consola;
+        public string? modeloSeleccionado;
+        public int almacenamientoSeleccionado;
 
         public FrmConsola()
         {
@@ -40,6 +42,30 @@ namespace FrmGamingStore
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        public void VerificarSeleccionModelo()
+        {
+            try
+            {
+                this.modeloSeleccionado = this.cmbModelos.SelectedItem.ToString();
+            }
+            catch
+            {
+                throw new ModeloNoSeleccionadoException();
+            }
+        }
+
+        public void VerificarSeleccionAlmacenamiento()
+        {
+            try
+            {
+                this.almacenamientoSeleccionado = int.Parse(this.cmbAlmacenamiento.SelectedItem.ToString().Replace(" GB", ""));
+            }
+            catch
+            {
+                throw new AlmacenamientoNoSeleccionadoException();
+            }
         }
     }
 }

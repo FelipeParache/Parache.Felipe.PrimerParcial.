@@ -16,10 +16,8 @@ namespace FrmGamingStore
     public partial class FrmXbox : FrmConsola
     {
         private Consola xbox;
-        string? modeloSeleccionado;
-        string? videojuegoSeleccionado;
-        int almacenamientoSeleccionado;
-        int almacenamientoNubeSeleccionado;
+        private string? videojuegoSeleccionado;
+        private int almacenamientoNubeSeleccionado;
 
         public FrmXbox()
         {
@@ -52,27 +50,51 @@ namespace FrmGamingStore
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
             // Verificar selección de modelo
-            this.VerificarSeleccionModelo();
+            try
+            {
+                base.VerificarSeleccionModelo();
+            }
+            catch (ModeloNoSeleccionadoException)
+            {
+                MessageBox.Show("Por favor, seleccione un modelo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Verificar selección de almacenamiento
-            this.VerificarSeleccionAlmacenamiento();
+            try
+            {
+                base.VerificarSeleccionAlmacenamiento();
+            }
+            catch (AlmacenamientoNoSeleccionadoException)
+            {
+                MessageBox.Show("Por favor, seleccione una opción de almacenamiento.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Verificar selección de videojuego si se seleccionó almacenamiento nube
-            this.VerificarSeleccionVideojuegoDadoNube();
+            try
+            {
+                this.VerificarSeleccionVideojuegoDadoNube();
+            }
+            catch (VideojuegoNoSeleccionadoException)
+            {
+                MessageBox.Show("Por favor, seleccione un videojuego.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (this.cmbAlmacenamientoNube.SelectedIndex == -1 && this.cmbVideojuegos.SelectedIndex == -1)
             {
-                xbox = new Xbox(modeloSeleccionado, almacenamientoSeleccionado);
+                this.xbox = new Xbox(modeloSeleccionado, almacenamientoSeleccionado);
             }
             else if (this.cmbAlmacenamientoNube.SelectedIndex == -1)
             {
-                videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
-                xbox = new Xbox(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado);
+                this.videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
+                this.xbox = new Xbox(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado);
             }
             else
             {
-                videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
-                xbox = new Xbox(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado, almacenamientoNubeSeleccionado, VerificarSeleccionRadioButton());
+                this.videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
+                this.xbox = new Xbox(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado, almacenamientoNubeSeleccionado, VerificarSeleccionRadioButton());
             }
 
             // Cerrar el formulario con resultado OK
@@ -111,32 +133,6 @@ namespace FrmGamingStore
             return this.rbtnXboxLiveGoldSi.Checked;
         }
 
-        private void VerificarSeleccionModelo()
-        {
-            try
-            {
-                this.modeloSeleccionado = this.cmbModelos.SelectedItem.ToString();
-            }
-            catch
-            {
-                MessageBox.Show("Por favor, seleccione un modelo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        }
-
-        private void VerificarSeleccionAlmacenamiento()
-        {
-            try
-            {
-                this.almacenamientoSeleccionado = int.Parse(this.cmbAlmacenamiento.SelectedItem.ToString().Replace(" GB", ""));
-            }
-            catch
-            {
-                MessageBox.Show("Por favor, seleccione una opción de almacenamiento.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        }
-
         private void VerificarSeleccionVideojuegoDadoNube()
         {
             if (this.cmbAlmacenamientoNube.SelectedItem != null && this.cmbAlmacenamientoNube.SelectedItem.ToString() != "No agregar")
@@ -144,8 +140,7 @@ namespace FrmGamingStore
                 this.almacenamientoNubeSeleccionado = int.Parse(this.cmbAlmacenamientoNube.SelectedItem.ToString().Replace(" GB", ""));
                 if (this.cmbVideojuegos.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Por favor, seleccione un videojuego.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    throw new VideojuegoNoSeleccionadoException();
                 }
             }
         }

@@ -19,6 +19,19 @@ namespace FrmGamingStore
 
             if (frmPlayStation.ShowDialog() == DialogResult.OK)
             {
+                Consola playStation = frmPlayStation.ConsolaDelFormulario;
+                MessageBox.Show(playStation.ToString());
+
+                if (this.gamingStore != playStation)
+                {
+                    MessageBox.Show("La consola no está en la lista, agregando...");
+                    this.gamingStore += playStation;
+                }
+                else
+                {
+                    MessageBox.Show("La consola ya se encuentra en la lista, no será agregada.");
+                }
+                this.ActualizarVisor();
             }
         }
 

@@ -85,7 +85,7 @@ namespace Entidades
         {
             if (obj is Consola consola)
             {
-                return string.Equals(this.Modelo, consola.Modelo) && this.Almacenamiento == consola.Almacenamiento;
+                return this.Modelo == consola.Modelo && this.Almacenamiento == consola.Almacenamiento;
             }
 
             return false;

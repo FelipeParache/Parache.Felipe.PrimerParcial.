@@ -52,13 +52,17 @@ namespace Entidades
             get
             {
                 StringBuilder sb = new StringBuilder();
-                if (this.controles == 1)
+                if (this.controles < 1)
                 {
-                    sb.Append($"Incluye {this.controles} control Dualshock");
+                    sb.AppendLine("No incluye control Dualshock");
                 }
-                else
+                else if (this.controles == 1)
                 {
-                    sb.Append($"Incluye {this.controles} controles Dualshock");
+                    sb.AppendLine($"Incluye {this.controles} control Dualshock");
+                }
+                else if (this.controles > 1)
+                {
+                    sb.AppendLine($"Incluye {this.controles} controles Dualshock");
                 }
                 return sb.ToString();
             }
@@ -67,14 +71,14 @@ namespace Entidades
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(base.MostrarInformacion());
+            sb.AppendLine(base.MostrarInformacion());
 
             if (this.psPlus)
             {
-                sb.Append($"- {this.PsPlus}");
+                sb.AppendLine($"- {this.PsPlus}");
             }
 
-            sb.Append($"- {this.Controles}");
+            sb.AppendLine($"- {this.Controles}");
 
             return sb.ToString();
         }
