@@ -10,25 +10,21 @@ namespace Entidades
     {
         private bool portable;
         private int duracionBateria;
-        readonly private List<EPerifericosNintendo>? listaPerifericos;
-        readonly string? eModelosNintendo;
-        readonly string? eVideojuegosNintendo;
+        private string? ePerifericos;
 
-        private Nintendo(string eModelosNintendo, int almacenamiento) : base(eModelosNintendo, almacenamiento)
+        public Nintendo(string? eModelosNintendo, int almacenamiento) : base(eModelosNintendo, almacenamiento)
         {
-            this.eModelosNintendo = eModelosNintendo;
             this.VerificarPortabilidad();
         }
 
-        public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo) : this(eModelosNintendo, almacenamiento)
+        public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo) : base(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
         {
-            this.eVideojuegosNintendo = eVideojuegosNintendo;
+            this.VerificarPortabilidad();
         }
 
-        public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo, List<EPerifericosNintendo> listaPerifericos) : this(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
+        public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo, string? ePerifericos) : this(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
         {
-            this.listaPerifericos = new List<EPerifericosNintendo>();
-            this.listaPerifericos = listaPerifericos;
+            this.ePerifericos = ePerifericos;
         }
 
         public bool Portable
@@ -42,30 +38,24 @@ namespace Entidades
             get
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append($"Duración de la bateria: {this.duracionBateria}hs.");
+                sb.AppendLine($"Duración de la bateria: {this.duracionBateria}hs.");
                 return sb.ToString();
             }
         }
 
-        public string ListaPerifericos
+        public string Periferico
         {
             get
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Los perifericos son:");
-
-                foreach (EPerifericosNintendo periferico in this.listaPerifericos)
-                {
-                    sb.Append($"\n+ {periferico}");
-                }
-                
+                sb.AppendLine($"Incluye periférico: {this.ePerifericos}");
                 return sb.ToString();
             }
         }
 
         public void VerificarPortabilidad()
         {
-            if (this.eModelosNintendo == EModelosNintendo.WiiU.ToString() || this.eModelosNintendo == EModelosNintendo.NintendoSwitch.ToString())
+            if (base.eModelo == EModelosNintendo.WiiU.ToString() || base.eModelo == EModelosNintendo.NintendoSwitch.ToString())
             {
                 base.conectividadOnline = true;
                 this.Portable = true;
@@ -76,16 +66,16 @@ namespace Entidades
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(base.MostrarInformacion());
+            sb.AppendLine(base.MostrarInformacion());
 
             if (this.portable)
             {
                 sb.Append($"- {this.DuracionBateria}");
             }
 
-            if (this.listaPerifericos != null)
+            if (this.ePerifericos != null)
             {
-                sb.Append($"- {this.ListaPerifericos}");
+                sb.Append($"- {this.Periferico}");
             }
 
             return sb.ToString();
@@ -98,7 +88,7 @@ namespace Entidades
             return sb.ToString();
         }
 
-        public override bool Equals(object? obj)
+        /*public override bool Equals(object? obj)
         {
             Boolean retorno = false;
 
@@ -108,7 +98,7 @@ namespace Entidades
             }
 
             return retorno;
-        }
+        }*/
 
         public override string ToString()
         {

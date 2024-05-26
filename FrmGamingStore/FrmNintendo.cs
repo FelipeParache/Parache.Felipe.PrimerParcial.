@@ -15,6 +15,8 @@ namespace FrmGamingStore
     public partial class FrmNintendo : FrmConsola
     {
         private Nintendo nintendo;
+        private string? videojuegoSeleccionado;
+        private string? perifericoSeleccionado;
 
         public FrmNintendo()
         {
@@ -22,6 +24,7 @@ namespace FrmGamingStore
 
             Array arrayModelos = Enum.GetValues(typeof(EModelosNintendo));
             Array arrayVideojuegos = Enum.GetValues(typeof(EVideojuegosNintendo));
+            Array arrayPerifericos = Enum.GetValues(typeof(EPerifericosNintendo));
 
             foreach (EModelosNintendo modelo in arrayModelos)
             {
@@ -32,14 +35,78 @@ namespace FrmGamingStore
             {
                 this.cmbVideojuegos.Items.Add(videojuego);
             }
+
+            foreach (EPerifericosNintendo periferico in arrayPerifericos)
+            {
+                this.cmbPerifericos.Items.Add(periferico);
+            }
+        }
+
+        public override Consola ConsolaDelFormulario
+        {
+            get { return nintendo; }
         }
 
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
-            nintendo = new Nintendo(this.cmbModelos.SelectedItem.ToString(), 1000, this.cmbVideojuegos.SelectedItem.ToString(), new List<EPerifericosNintendo> { EPerifericosNintendo.GafasVR });
-            MessageBox.Show(nintendo.ToString());
+            try
+            {
+                // Verificar selección de modelo
+                base.VerificarSeleccionModelo();
+                // Verificar selección de almacenamiento
+                base.VerificarSeleccionAlmacenamiento();
+                // Verificar selección de videojuego si se seleccionó alguna opcion de perifericos
+                this.VerificarSeleccionVideojuego();
+            }
+            catch (ModeloNoSeleccionadoException)
+            {
+                MessageBox.Show("Por favor, seleccione un modelo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            catch (AlmacenamientoNoSeleccionadoException)
+            {
+                MessageBox.Show("Por favor, seleccione una opción de almacenamiento.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            catch (VideojuegoNoSeleccionadoException)
+            {
+                MessageBox.Show("Por favor, seleccione un videojuego.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (this.cmbPerifericos.SelectedIndex == -1 && this.cmbVideojuegos.SelectedIndex == -1)
+            {
+                MessageBox.Show("SOY OPCION 1");
+                nintendo = new Nintendo(modeloSeleccionado, almacenamientoSeleccionado);
+            }
+            else if (this.cmbPerifericos.SelectedIndex == -1 && this.cmbVideojuegos.SelectedIndex != -1)
+            {
+                MessageBox.Show("SOY OPCION 2");
+                videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
+                nintendo = new Nintendo(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado);
+            }
+            else
+            {
+                MessageBox.Show("SOY OPCION 3");
+                videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
+                perifericoSeleccionado = this.cmbPerifericos.SelectedItem.ToString();
+                nintendo = new Nintendo(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado, perifericoSeleccionado);
+            }
+
+            // Cerrar el formulario con resultado OK
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        protected override void VerificarSeleccionVideojuego()
+        {
+            if (this.cmbPerifericos.SelectedItem != null)
+            {
+                if (this.cmbVideojuegos.SelectedIndex == -1)
+                {
+                    throw new VideojuegoNoSeleccionadoException();
+                }
+            }
         }
     }
 }

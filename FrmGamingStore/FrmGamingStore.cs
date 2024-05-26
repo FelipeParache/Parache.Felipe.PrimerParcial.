@@ -41,6 +41,19 @@ namespace FrmGamingStore
 
             if (frmNintendo.ShowDialog() == DialogResult.OK)
             {
+                Consola nintendo = frmNintendo.ConsolaDelFormulario;
+                MessageBox.Show(nintendo.ToString());
+
+                if (this.gamingStore != nintendo)
+                {
+                    MessageBox.Show("La consola no está en la lista, agregando...");
+                    this.gamingStore += nintendo;
+                }
+                else
+                {
+                    MessageBox.Show("La consola ya se encuentra en la lista, no será agregada.");
+                }
+                this.ActualizarVisor();
             }
         }
 

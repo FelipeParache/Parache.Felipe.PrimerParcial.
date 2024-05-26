@@ -49,32 +49,24 @@ namespace FrmGamingStore
 
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
-            // Verificar selección de modelo
             try
             {
+                // Verificar selección de modelo
                 base.VerificarSeleccionModelo();
+                // Verificar selección de almacenamiento
+                base.VerificarSeleccionAlmacenamiento();
+                // Verificar selección de videojuego si se seleccionó alguna opcion de almacenamietno nube
+                this.VerificarSeleccionVideojuego();
             }
             catch (ModeloNoSeleccionadoException)
             {
                 MessageBox.Show("Por favor, seleccione un modelo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Verificar selección de almacenamiento
-            try
-            {
-                base.VerificarSeleccionAlmacenamiento();
-            }
             catch (AlmacenamientoNoSeleccionadoException)
             {
                 MessageBox.Show("Por favor, seleccione una opción de almacenamiento.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
-
-            // Verificar selección de videojuego si se seleccionó almacenamiento nube
-            try
-            {
-                this.VerificarSeleccionVideojuegoDadoNube();
             }
             catch (VideojuegoNoSeleccionadoException)
             {
@@ -133,7 +125,7 @@ namespace FrmGamingStore
             return this.rbtnXboxLiveGoldSi.Checked;
         }
 
-        private void VerificarSeleccionVideojuegoDadoNube()
+        protected override void VerificarSeleccionVideojuego()
         {
             if (this.cmbAlmacenamientoNube.SelectedItem != null && this.cmbAlmacenamientoNube.SelectedItem.ToString() != "No agregar")
             {

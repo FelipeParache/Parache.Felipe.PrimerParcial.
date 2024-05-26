@@ -18,11 +18,6 @@ namespace Entidades
 
         public static bool operator ==(GamingStore gamingStore, Consola consola)
         {
-            if (gamingStore is null || consola is null)
-            {
-                return false;
-            }
-
             foreach (Consola auxConsola in gamingStore.listaConsolas)
             {
                 if (auxConsola == consola)

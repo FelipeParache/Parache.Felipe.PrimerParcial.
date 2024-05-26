@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace FrmGamingStore
 {
-    public partial class FrmConsola : Form
+    public abstract partial class FrmConsola : Form
     {
         public Consola consola;
         public string? modeloSeleccionado;
@@ -43,6 +43,8 @@ namespace FrmGamingStore
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        protected abstract void VerificarSeleccionVideojuego();
 
         public void VerificarSeleccionModelo()
         {

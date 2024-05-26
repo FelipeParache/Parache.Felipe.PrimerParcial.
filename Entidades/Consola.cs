@@ -14,7 +14,6 @@ namespace Entidades
         {
             this.eModelo = eModelo;
             this.almacenamiento = almacenamiento;
-            this.conectividadOnline = false;
         }
 
         public Consola(string? eModelo, int almacenamiento, string? eVideojuego) : this(eModelo, almacenamiento)

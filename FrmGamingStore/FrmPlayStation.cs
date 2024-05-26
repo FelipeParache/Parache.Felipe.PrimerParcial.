@@ -23,11 +23,6 @@ namespace FrmGamingStore
         {
             InitializeComponent();
 
-            this.cmbControles.Items.Add(1);
-            this.cmbControles.Items.Add(2);
-            this.cmbControles.Items.Add(3);
-            this.cmbControles.Items.Add(4);
-
             Array arrayModelos = Enum.GetValues(typeof(EModelosPlayStation));
             Array arrayVideojuegos = Enum.GetValues(typeof(EVideojuegosPlayStation));
 
@@ -40,6 +35,11 @@ namespace FrmGamingStore
             {
                 this.cmbVideojuegos.Items.Add(videojuego);
             }
+
+            for (int i = 1; i < 5; i++)
+            {
+                this.cmbControles.Items.Add(i);
+            }
         }
 
         public override Consola ConsolaDelFormulario
@@ -49,35 +49,26 @@ namespace FrmGamingStore
 
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
-            // Verificar selección de modelo
             try
             {
+                // Verificar selección de modelo
                 base.VerificarSeleccionModelo();
+                // Verificar selección de almacenamiento
+                base.VerificarSeleccionAlmacenamiento();
+                // Verificar selección de videojuego si se seleccionó alguna opcion de controles
+                this.VerificarSeleccionVideojuego();
+                // Verificar selección de control
+                this.VerificarSeleccionControl();
             }
             catch (ModeloNoSeleccionadoException)
             {
                 MessageBox.Show("Por favor, seleccione un modelo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Verificar selección de almacenamiento
-            try
-            {
-                base.VerificarSeleccionAlmacenamiento();
-            }
             catch (AlmacenamientoNoSeleccionadoException)
             {
                 MessageBox.Show("Por favor, seleccione una opción de almacenamiento.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
-
-            // Verificar selección de control
-            this.VerificarSeleccionControl();
-
-            // Verificar selección de videojuego si se seleccionó almacenamiento nube
-            try
-            {
-                this.VerificarSeleccionVideojuegoDadoControles();
             }
             catch (VideojuegoNoSeleccionadoException)
             {
@@ -121,7 +112,7 @@ namespace FrmGamingStore
             }
         }
 
-        private void VerificarSeleccionVideojuegoDadoControles()
+        protected override void VerificarSeleccionVideojuego()
         {
             if (this.cmbControles.SelectedItem != null)
             {

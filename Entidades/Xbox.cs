@@ -10,19 +10,15 @@ namespace Entidades
     {
         private int almacenamientoNube;
         private bool xboxLiveGold;
-        readonly string? eModelosXbox;
-        readonly string? eVideojuegosXbox;
 
         public Xbox(string? eModelosXbox, int almacenamiento) : base(eModelosXbox, almacenamiento)
         {
-            this.eModelosXbox = eModelosXbox;
-            this.almacenamientoNube = 0;
-            this.xboxLiveGold = false;
+
         }
 
         public Xbox(string? eModelosXbox, int almacenamiento, string? eVideojuegosXbox) : base(eModelosXbox, almacenamiento, eVideojuegosXbox)
         {
-            this.eVideojuegosXbox = eVideojuegosXbox;
+
         }
 
         public Xbox(string? eModelosXbox, int almacenamiento, string? eVideojuegosXbox, int almacenamientoNube, bool xBoxLiveGold, bool conectividadOnline = true) : base(eModelosXbox, almacenamiento, eVideojuegosXbox, conectividadOnline)
@@ -83,7 +79,7 @@ namespace Entidades
             return sb.ToString();
         }
 
-        public override bool Equals(object? obj)
+        /*public override bool Equals(object? obj)
         {
             Boolean retorno = false;
 
@@ -93,7 +89,7 @@ namespace Entidades
             }
 
             return retorno;
-        }
+        }*/
 
         public override string ToString()
         {

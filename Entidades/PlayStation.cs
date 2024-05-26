@@ -11,12 +11,10 @@ namespace Entidades
     {
         private bool psPlus;
         private int controles;
-        readonly string? eModelosPlayStation;
-        readonly string? eVideojuegosPlayStation;
 
         public PlayStation(string? eModelosPlayStation, int almacenamiento) : base(eModelosPlayStation, almacenamiento)
         {
-            this.eModelosPlayStation = eModelosPlayStation;
+
         }
 
         public PlayStation(string? eModelosPlayStation, int almacenamiento, string? eVideojuegosPlayStation, int controles) : base(eModelosPlayStation, almacenamiento, eVideojuegosPlayStation)
@@ -90,7 +88,7 @@ namespace Entidades
             return sb.ToString();
         }
 
-        public override bool Equals(object? obj)
+        /*public override bool Equals(object? obj)
         {
             Boolean retorno = false;
 
@@ -100,7 +98,7 @@ namespace Entidades
             }
 
             return retorno;
-        }
+        }*/
 
         public override string ToString()
         {
