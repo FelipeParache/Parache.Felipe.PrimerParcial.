@@ -54,6 +54,11 @@ namespace Entidades
             set { this.almacenamiento = value; }
         }
 
+        public string MostrarInformacionResumida()
+        {
+            return $"- Consola {this.Modelo}, {this.Almacenamiento} GB de almacenamiento.";
+        }
+
         public virtual string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
@@ -95,7 +100,7 @@ namespace Entidades
             return this.MostrarInformacion();
         }
 
-        public static explicit operator string?(Consola consola)
+        /*public static explicit operator string?(Consola consola)
         {
             return consola.Modelo;
         }
@@ -103,6 +108,6 @@ namespace Entidades
         public static implicit operator int(Consola consola)
         {
             return consola.almacenamiento;
-        }
+        }*/
     }
 }

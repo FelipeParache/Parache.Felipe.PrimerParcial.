@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Colecciones;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -51,19 +52,19 @@ namespace Entidades
             return gamingStore;
         }
 
-        public void OrdenarPorModelo(bool ascendente)
+        public void OrdenarPorAñoModelo(bool ascendente)
         {
             for (int i = 0; i < this.listaConsolas.Count - 1; i++)
             {
                 for (int j = 0; j < this.listaConsolas.Count - i - 1; j++)
                 {
+
+                    int añoConsolaA = AñosModelos.ObtenerAñoDeFabricacion(listaConsolas[j].Modelo);
+                    int añoConsolaB = AñosModelos.ObtenerAñoDeFabricacion(listaConsolas[j + 1].Modelo);
+
                     if (ascendente)
                     {
-                        // CompareTo() es un metodo que compara dos objetos del mismo tipo (string modelo)
-                        // El metodo devuelve un entero que indica la relacion de orden entre las dos cadenas
-                        // Si se verifica que el resultado es mayor que 0
-                        // El modelo de consola en la posicion "j" es ALFABETICAMENTE POSTERIOR al modelo de la consola en la posicion "j + 1"
-                        if (listaConsolas[j].Modelo.CompareTo(listaConsolas[j + 1].Modelo) > 0)
+                        if (añoConsolaA > añoConsolaB)
                         {
                             Consola auxConsola = listaConsolas[j];
                             listaConsolas[j] = listaConsolas[j + 1];
@@ -72,7 +73,7 @@ namespace Entidades
                     }
                     else
                     {
-                        if (listaConsolas[j].Modelo.CompareTo(listaConsolas[j + 1].Modelo) < 0)
+                        if (añoConsolaA < añoConsolaB)
                         {
                             Consola auxConsola = listaConsolas[j];
                             listaConsolas[j] = listaConsolas[j + 1];
@@ -83,19 +84,22 @@ namespace Entidades
             }
         }
 
-        public void OrdenarPorAlmaceamiento(bool ascendente)
+        public void OrdenarPorClase(bool ascendente)
         {
             for (int i = 0; i < this.listaConsolas.Count - 1; i++)
             {
                 for (int j = 0; j < this.listaConsolas.Count - i - 1; j++)
                 {
+                    string claseConsolaA = listaConsolas[j].GetType().ToString();
+                    string claseConsolaB = listaConsolas[j + 1].GetType().ToString();
+
                     if (ascendente)
                     {
-                        // CompareTo() es un metodo que compara dos objetos del mismo tipo (int almacenamiento)
-                        // El metodo devuelve un entero que indica la relacion de orden entre las dos cadenas
-                        // Si se verifica que el resultado es mayor que 0
-                        // El modelo de consola en la posicion "j" es ALFABETICAMENTE POSTERIOR al modelo de la consola en la posicion "j + 1"
-                        if (listaConsolas[j].Almacenamiento > listaConsolas[j + 1].Almacenamiento)
+                        // Utilizo el metodo Compare para determinar el orden alfabetico entre las dos cadenas
+                        // Si el resultado es menor a 0 significa que A es anterior que B alfabeticamente
+                        // Si el resultado es igual a 0 significa que A es igual a B
+                        // Si el resultado es mayor a 0 significa que A es posterior a B
+                        if (string.Compare(claseConsolaA, claseConsolaB) > 0)
                         {
                             Consola auxConsola = listaConsolas[j];
                             listaConsolas[j] = listaConsolas[j + 1];
@@ -104,7 +108,7 @@ namespace Entidades
                     }
                     else
                     {
-                        if (listaConsolas[j].Almacenamiento < listaConsolas[j + 1].Almacenamiento)
+                        if (string.Compare(claseConsolaA, claseConsolaB) < 0)
                         {
                             Consola auxConsola = listaConsolas[j];
                             listaConsolas[j] = listaConsolas[j + 1];
@@ -114,5 +118,6 @@ namespace Entidades
                 }
             }
         }
+
     }
 }

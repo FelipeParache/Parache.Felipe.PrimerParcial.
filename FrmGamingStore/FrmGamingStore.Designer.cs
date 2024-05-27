@@ -37,11 +37,23 @@ namespace FrmGamingStore
             btnXbox = new Button();
             lblMarca = new Label();
             lstConsolas = new ListBox();
+            btnModificar = new Button();
+            btnEliminar = new Button();
+            btnVerEnDetalle = new Button();
+            grpOrdenarPorAño = new GroupBox();
+            rbtnDescendenteAño = new RadioButton();
+            rbtnAscendenteAño = new RadioButton();
+            grpOrdenarPorMarca = new GroupBox();
+            rbtnAscendenteMarca = new RadioButton();
+            rbtnDescendenteMarca = new RadioButton();
+            grpOrdenarPorAño.SuspendLayout();
+            grpOrdenarPorMarca.SuspendLayout();
             SuspendLayout();
             // 
             // btnPlayStation
             // 
-            btnPlayStation.Location = new Point(12, 87);
+            btnPlayStation.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPlayStation.Location = new Point(12, 50);
             btnPlayStation.Name = "btnPlayStation";
             btnPlayStation.Size = new Size(135, 54);
             btnPlayStation.TabIndex = 0;
@@ -51,7 +63,8 @@ namespace FrmGamingStore
             // 
             // btnNintendo
             // 
-            btnNintendo.Location = new Point(153, 87);
+            btnNintendo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnNintendo.Location = new Point(188, 50);
             btnNintendo.Name = "btnNintendo";
             btnNintendo.Size = new Size(135, 54);
             btnNintendo.TabIndex = 1;
@@ -61,7 +74,8 @@ namespace FrmGamingStore
             // 
             // btnXbox
             // 
-            btnXbox.Location = new Point(294, 87);
+            btnXbox.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnXbox.Location = new Point(363, 50);
             btnXbox.Name = "btnXbox";
             btnXbox.Size = new Size(135, 54);
             btnXbox.TabIndex = 2;
@@ -72,33 +86,150 @@ namespace FrmGamingStore
             // lblMarca
             // 
             lblMarca.AutoSize = true;
-            lblMarca.Location = new Point(116, 43);
+            lblMarca.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblMarca.Location = new Point(132, 9);
             lblMarca.Name = "lblMarca";
-            lblMarca.Size = new Size(195, 20);
+            lblMarca.Size = new Size(253, 25);
             lblMarca.TabIndex = 3;
-            lblMarca.Text = "Elija la marca de su consola:";
+            lblMarca.Text = "Elija la marca de su consola";
             // 
             // lstConsolas
             // 
             lstConsolas.FormattingEnabled = true;
             lstConsolas.ItemHeight = 20;
-            lstConsolas.Location = new Point(12, 175);
+            lstConsolas.Location = new Point(12, 153);
             lstConsolas.Name = "lstConsolas";
-            lstConsolas.Size = new Size(417, 304);
+            lstConsolas.Size = new Size(486, 324);
             lstConsolas.TabIndex = 4;
             // 
-            // FrmTest
+            // btnModificar
+            // 
+            btnModificar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnModificar.Location = new Point(12, 483);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(135, 54);
+            btnModificar.TabIndex = 5;
+            btnModificar.Text = "Modificar";
+            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEliminar.Location = new Point(363, 483);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(135, 54);
+            btnEliminar.TabIndex = 6;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnVerEnDetalle
+            // 
+            btnVerEnDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnVerEnDetalle.Location = new Point(188, 483);
+            btnVerEnDetalle.Name = "btnVerEnDetalle";
+            btnVerEnDetalle.Size = new Size(135, 54);
+            btnVerEnDetalle.TabIndex = 7;
+            btnVerEnDetalle.Text = "Ver en detalle";
+            btnVerEnDetalle.UseVisualStyleBackColor = true;
+            btnVerEnDetalle.Click += btnVerEnDetalle_Click;
+            // 
+            // grpOrdenarPorAño
+            // 
+            grpOrdenarPorAño.Controls.Add(rbtnDescendenteAño);
+            grpOrdenarPorAño.Controls.Add(rbtnAscendenteAño);
+            grpOrdenarPorAño.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            grpOrdenarPorAño.Location = new Point(12, 582);
+            grpOrdenarPorAño.Name = "grpOrdenarPorAño";
+            grpOrdenarPorAño.Size = new Size(240, 117);
+            grpOrdenarPorAño.TabIndex = 10;
+            grpOrdenarPorAño.TabStop = false;
+            grpOrdenarPorAño.Text = "Ordenar por año de fabricación";
+            // 
+            // rbtnDescendenteAño
+            // 
+            rbtnDescendenteAño.AutoSize = true;
+            rbtnDescendenteAño.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            rbtnDescendenteAño.Location = new Point(6, 70);
+            rbtnDescendenteAño.Name = "rbtnDescendenteAño";
+            rbtnDescendenteAño.Size = new Size(130, 27);
+            rbtnDescendenteAño.TabIndex = 1;
+            rbtnDescendenteAño.TabStop = true;
+            rbtnDescendenteAño.Text = "Descendente";
+            rbtnDescendenteAño.UseVisualStyleBackColor = true;
+            // 
+            // rbtnAscendenteAño
+            // 
+            rbtnAscendenteAño.AutoSize = true;
+            rbtnAscendenteAño.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            rbtnAscendenteAño.Location = new Point(6, 37);
+            rbtnAscendenteAño.Name = "rbtnAscendenteAño";
+            rbtnAscendenteAño.Size = new Size(120, 27);
+            rbtnAscendenteAño.TabIndex = 0;
+            rbtnAscendenteAño.TabStop = true;
+            rbtnAscendenteAño.Text = "Ascendente";
+            rbtnAscendenteAño.UseVisualStyleBackColor = true;
+            rbtnAscendenteAño.CheckedChanged += rbtnAscendenteAño_CheckedChanged;
+            // 
+            // grpOrdenarPorMarca
+            // 
+            grpOrdenarPorMarca.Controls.Add(rbtnDescendenteMarca);
+            grpOrdenarPorMarca.Controls.Add(rbtnAscendenteMarca);
+            grpOrdenarPorMarca.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            grpOrdenarPorMarca.Location = new Point(258, 582);
+            grpOrdenarPorMarca.Name = "grpOrdenarPorMarca";
+            grpOrdenarPorMarca.Size = new Size(240, 117);
+            grpOrdenarPorMarca.TabIndex = 11;
+            grpOrdenarPorMarca.TabStop = false;
+            grpOrdenarPorMarca.Text = "Ordenar por marca";
+            // 
+            // rbtnAscendenteMarca
+            // 
+            rbtnAscendenteMarca.AutoSize = true;
+            rbtnAscendenteMarca.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            rbtnAscendenteMarca.Location = new Point(7, 37);
+            rbtnAscendenteMarca.Name = "rbtnAscendenteMarca";
+            rbtnAscendenteMarca.Size = new Size(120, 27);
+            rbtnAscendenteMarca.TabIndex = 1;
+            rbtnAscendenteMarca.TabStop = true;
+            rbtnAscendenteMarca.Text = "Ascendente";
+            rbtnAscendenteMarca.UseVisualStyleBackColor = true;
+            rbtnAscendenteMarca.CheckedChanged += rbtnAscendenteMarca_CheckedChanged;
+            // 
+            // rbtnDescendenteMarca
+            // 
+            rbtnDescendenteMarca.AutoSize = true;
+            rbtnDescendenteMarca.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            rbtnDescendenteMarca.Location = new Point(6, 70);
+            rbtnDescendenteMarca.Name = "rbtnDescendenteMarca";
+            rbtnDescendenteMarca.Size = new Size(130, 27);
+            rbtnDescendenteMarca.TabIndex = 2;
+            rbtnDescendenteMarca.TabStop = true;
+            rbtnDescendenteMarca.Text = "Descendente";
+            rbtnDescendenteMarca.UseVisualStyleBackColor = true;
+            // 
+            // FrmGamingStore
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(441, 487);
+            ClientSize = new Size(510, 711);
+            Controls.Add(grpOrdenarPorMarca);
+            Controls.Add(grpOrdenarPorAño);
+            Controls.Add(btnVerEnDetalle);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnModificar);
             Controls.Add(lstConsolas);
             Controls.Add(lblMarca);
             Controls.Add(btnXbox);
             Controls.Add(btnNintendo);
             Controls.Add(btnPlayStation);
-            Name = "FrmTest";
+            Name = "FrmGamingStore";
             Text = "Gaming Store";
+            grpOrdenarPorAño.ResumeLayout(false);
+            grpOrdenarPorAño.PerformLayout();
+            grpOrdenarPorMarca.ResumeLayout(false);
+            grpOrdenarPorMarca.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -110,5 +241,14 @@ namespace FrmGamingStore
         private Button btnXbox;
         private Label lblMarca;
         private ListBox lstConsolas;
+        private Button btnModificar;
+        private Button btnEliminar;
+        private Button btnVerEnDetalle;
+        private GroupBox grpOrdenarPorAño;
+        private RadioButton rbtnAscendenteAño;
+        private GroupBox grpOrdenarPorMarca;
+        private RadioButton rbtnDescendenteAño;
+        private RadioButton rbtnDescendenteMarca;
+        private RadioButton rbtnAscendenteMarca;
     }
 }

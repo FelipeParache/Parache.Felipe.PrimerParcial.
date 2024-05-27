@@ -42,6 +42,15 @@ namespace FrmGamingStore
             }
         }
 
+        public FrmXbox(Consola xbox) : this()
+        {
+            string auxAlmacenamiento = $"{xbox.Almacenamiento} GB";
+            cmbModelos.Text = xbox.Modelo.ToString();
+            cmbAlmacenamiento.Text = auxAlmacenamiento;
+            cmbModelos.Enabled = false;
+            cmbAlmacenamiento.Enabled = false;
+        }
+
         public override Consola ConsolaDelFormulario
         {
             get { return xbox; }

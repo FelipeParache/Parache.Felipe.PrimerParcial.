@@ -42,6 +42,15 @@ namespace FrmGamingStore
             }
         }
 
+        public FrmNintendo(Consola nintendo) : this()
+        {
+            string auxAlmacenamiento = $"{nintendo.Almacenamiento} GB";
+            cmbModelos.Text = nintendo.Modelo.ToString();
+            cmbAlmacenamiento.Text = auxAlmacenamiento;
+            cmbModelos.Enabled = false;
+            cmbAlmacenamiento.Enabled = false;
+        }
+
         public override Consola ConsolaDelFormulario
         {
             get { return nintendo; }
@@ -76,18 +85,15 @@ namespace FrmGamingStore
 
             if (this.cmbPerifericos.SelectedIndex == -1 && this.cmbVideojuegos.SelectedIndex == -1)
             {
-                MessageBox.Show("SOY OPCION 1");
                 nintendo = new Nintendo(modeloSeleccionado, almacenamientoSeleccionado);
             }
             else if (this.cmbPerifericos.SelectedIndex == -1 && this.cmbVideojuegos.SelectedIndex != -1)
             {
-                MessageBox.Show("SOY OPCION 2");
                 videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
                 nintendo = new Nintendo(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado);
             }
             else
             {
-                MessageBox.Show("SOY OPCION 3");
                 videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
                 perifericoSeleccionado = this.cmbPerifericos.SelectedItem.ToString();
                 nintendo = new Nintendo(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado, perifericoSeleccionado);

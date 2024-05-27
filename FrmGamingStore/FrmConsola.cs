@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace FrmGamingStore
 {
-    public abstract partial class FrmConsola : Form
+    public partial class FrmConsola : Form
     {
         public Consola consola;
         public string? modeloSeleccionado;
@@ -44,7 +44,7 @@ namespace FrmGamingStore
             this.Close();
         }
 
-        protected abstract void VerificarSeleccionVideojuego();
+        protected virtual void VerificarSeleccionVideojuego() { }
 
         public void VerificarSeleccionModelo()
         {

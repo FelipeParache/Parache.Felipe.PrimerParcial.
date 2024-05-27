@@ -42,6 +42,15 @@ namespace FrmGamingStore
             }
         }
 
+        public FrmPlayStation(Consola playStation) : this()
+        {
+            string auxAlmacenamiento = $"{playStation.Almacenamiento} GB";
+            cmbModelos.Text = playStation.Modelo.ToString();
+            cmbAlmacenamiento.Text = auxAlmacenamiento;
+            cmbModelos.Enabled = false;
+            cmbAlmacenamiento.Enabled = false;
+        }
+
         public override Consola ConsolaDelFormulario
         {
             get { return playStation; }
@@ -78,18 +87,15 @@ namespace FrmGamingStore
 
             if (this.cmbControles.SelectedIndex == -1 && this.cmbVideojuegos.SelectedIndex == -1)
             {
-                MessageBox.Show("SOY OPCION 1");
                 playStation = new PlayStation(modeloSeleccionado, almacenamientoSeleccionado);
             }
             else if (!VerificarSeleccionRadioButton())
             {
-                MessageBox.Show("SOY OPCION 2");
                 videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
                 playStation = new PlayStation(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado, controlSeleccionado);
             }
             else
             {
-                MessageBox.Show("SOY OPCION 3");
                 videojuegoSeleccionado = this.cmbVideojuegos.SelectedItem.ToString();
                 playStation = new PlayStation(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado, controlSeleccionado, true, VerificarSeleccionRadioButton());
             }

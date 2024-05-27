@@ -79,17 +79,10 @@ namespace Entidades
             return sb.ToString();
         }
 
-        /*public override bool Equals(object? obj)
+        public override bool Equals(object? obj)
         {
-            Boolean retorno = false;
-
-            if (obj is Xbox)
-            {
-                retorno = true;
-            }
-
-            return retorno;
-        }*/
+            return base.Equals(obj);
+        }
 
         public override string ToString()
         {

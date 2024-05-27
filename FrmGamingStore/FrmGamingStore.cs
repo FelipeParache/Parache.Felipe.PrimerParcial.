@@ -20,7 +20,6 @@ namespace FrmGamingStore
             if (frmPlayStation.ShowDialog() == DialogResult.OK)
             {
                 Consola playStation = frmPlayStation.ConsolaDelFormulario;
-                MessageBox.Show(playStation.ToString());
 
                 if (this.gamingStore != playStation)
                 {
@@ -42,7 +41,6 @@ namespace FrmGamingStore
             if (frmNintendo.ShowDialog() == DialogResult.OK)
             {
                 Consola nintendo = frmNintendo.ConsolaDelFormulario;
-                MessageBox.Show(nintendo.ToString());
 
                 if (this.gamingStore != nintendo)
                 {
@@ -64,7 +62,6 @@ namespace FrmGamingStore
             if (frmXbox.ShowDialog() == DialogResult.OK)
             {
                 Consola xbox = frmXbox.ConsolaDelFormulario;
-                MessageBox.Show(xbox.ToString());
 
                 if (this.gamingStore != xbox)
                 {
@@ -85,8 +82,102 @@ namespace FrmGamingStore
 
             foreach (Consola consola in this.gamingStore.listaConsolas)
             {
-                lstConsolas.Items.Add(consola.ToString());
+                this.lstConsolas.Items.Add(consola.MostrarInformacionResumida());
             }
+
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            // Obtengo el indice del producto seleccionado en lstConsolas
+            int indiceSeleccionado = lstConsolas.SelectedIndex;
+            if (indiceSeleccionado >= 0 && indiceSeleccionado < gamingStore.listaConsolas.Count)
+            {
+                // Obtengo el producto seleccionado y creo una instancia del heredero de FrmConsola correspondiente 
+                Consola consolaSeleccionada = gamingStore.listaConsolas[indiceSeleccionado];
+
+                FrmConsola? frmConsola = null;
+
+                if (Enum.IsDefined(typeof(EModelosPlayStation), consolaSeleccionada.Modelo))
+                {
+                    frmConsola = new FrmPlayStation(consolaSeleccionada);
+                }
+                else if (Enum.IsDefined(typeof(EModelosNintendo), consolaSeleccionada.Modelo))
+                {
+                    frmConsola = new FrmNintendo(consolaSeleccionada);
+                }
+                else if (Enum.IsDefined(typeof(EModelosXbox), consolaSeleccionada.Modelo))
+                {
+                    frmConsola = new FrmXbox(consolaSeleccionada);
+                }
+
+                DialogResult resultado = frmConsola.ShowDialog();
+                if (resultado == DialogResult.OK)
+                {
+                    this.gamingStore.listaConsolas[indiceSeleccionado] = frmConsola.ConsolaDelFormulario;
+                    this.ActualizarVisor();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una consola de la lista para modificar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnVerEnDetalle_Click(object sender, EventArgs e)
+        {
+            int indiceSeleccionado = lstConsolas.SelectedIndex;
+            if (indiceSeleccionado >= 0 && indiceSeleccionado < gamingStore.listaConsolas.Count)
+            {
+                Consola consolaSeleccionada = gamingStore.listaConsolas[indiceSeleccionado];
+                MessageBox.Show($"{consolaSeleccionada}");
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una consola de la lista para ver en detalle.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int indiceSeleccionado = lstConsolas.SelectedIndex;
+            if (indiceSeleccionado >= 0 && indiceSeleccionado < gamingStore.listaConsolas.Count)
+            {
+                this.gamingStore.listaConsolas.RemoveAt(indiceSeleccionado);
+                this.ActualizarVisor();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una consola de la lista para eliminar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void rbtnAscendenteAño_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.rbtnAscendenteAño.Checked)
+            {
+                this.gamingStore.OrdenarPorAñoModelo(true);
+            }
+            else
+            {
+                this.gamingStore.OrdenarPorAñoModelo(false);
+            }
+
+            this.ActualizarVisor();
+        }
+
+        private void rbtnAscendenteMarca_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.rbtnAscendenteMarca.Checked)
+            {
+                this.gamingStore.OrdenarPorClase(true);
+            }
+            else
+            {
+                this.gamingStore.OrdenarPorClase(false);
+            }
+
+            this.ActualizarVisor();
         }
     }
 }
