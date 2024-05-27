@@ -5,12 +5,27 @@ namespace FrmGamingStore
     public partial class FrmGamingStore : Form
     {
         GamingStore gamingStore;
+        Usuario? usuario;
 
         public FrmGamingStore()
         {
             InitializeComponent();
             gamingStore = new GamingStore();
             this.StartPosition = FormStartPosition.CenterScreen;
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.ShowDialog();
+        }
+
+        public FrmGamingStore(Usuario usuario) : this()
+        {
+            this.usuario = usuario;
+        }
+
+        private void FrmGamingStore_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show("¡Bienvenido a GamingStore!");
+            this.lblUsuarioFecha.Text = $"{DateTime.Now.ToString().Substring(0, 9)} Usuario: {usuario}";
+
         }
 
         private void btnPlayStation_Click(object sender, EventArgs e)
@@ -84,7 +99,6 @@ namespace FrmGamingStore
             {
                 this.lstConsolas.Items.Add(consola.MostrarInformacionResumida());
             }
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -130,7 +144,7 @@ namespace FrmGamingStore
             if (indiceSeleccionado >= 0 && indiceSeleccionado < gamingStore.listaConsolas.Count)
             {
                 Consola consolaSeleccionada = gamingStore.listaConsolas[indiceSeleccionado];
-                MessageBox.Show($"{consolaSeleccionada}");
+                MessageBox.Show($"{consolaSeleccionada.ToString()}");
             }
             else
             {
@@ -178,6 +192,14 @@ namespace FrmGamingStore
             }
 
             this.ActualizarVisor();
+        }
+
+        private void FrmGamingStore_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Seguro que quieres salir?", "Saliendo de la aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

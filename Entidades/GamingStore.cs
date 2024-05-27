@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,6 +51,18 @@ namespace Entidades
                 gamingStore.listaConsolas.Remove(consola);
             }
             return gamingStore;
+        }
+
+        /// <summary>
+        /// Muestra la informacion de todas las consolas
+        /// </summary>
+        public void MostrarInfoVivero()
+        {
+            string[] infoConsolas = { };
+            foreach (Consola consola in this.listaConsolas)
+            {
+                Console.WriteLine(consola.ToString());
+            }
         }
 
         public void OrdenarPorAñoModelo(bool ascendente)

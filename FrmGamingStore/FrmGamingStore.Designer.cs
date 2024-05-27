@@ -44,8 +44,9 @@ namespace FrmGamingStore
             rbtnDescendenteAño = new RadioButton();
             rbtnAscendenteAño = new RadioButton();
             grpOrdenarPorMarca = new GroupBox();
-            rbtnAscendenteMarca = new RadioButton();
             rbtnDescendenteMarca = new RadioButton();
+            rbtnAscendenteMarca = new RadioButton();
+            lblUsuarioFecha = new Label();
             grpOrdenarPorAño.SuspendLayout();
             grpOrdenarPorMarca.SuspendLayout();
             SuspendLayout();
@@ -53,7 +54,7 @@ namespace FrmGamingStore
             // btnPlayStation
             // 
             btnPlayStation.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPlayStation.Location = new Point(12, 50);
+            btnPlayStation.Location = new Point(12, 93);
             btnPlayStation.Name = "btnPlayStation";
             btnPlayStation.Size = new Size(135, 54);
             btnPlayStation.TabIndex = 0;
@@ -64,7 +65,7 @@ namespace FrmGamingStore
             // btnNintendo
             // 
             btnNintendo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnNintendo.Location = new Point(188, 50);
+            btnNintendo.Location = new Point(188, 93);
             btnNintendo.Name = "btnNintendo";
             btnNintendo.Size = new Size(135, 54);
             btnNintendo.TabIndex = 1;
@@ -75,7 +76,7 @@ namespace FrmGamingStore
             // btnXbox
             // 
             btnXbox.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnXbox.Location = new Point(363, 50);
+            btnXbox.Location = new Point(363, 93);
             btnXbox.Name = "btnXbox";
             btnXbox.Size = new Size(135, 54);
             btnXbox.TabIndex = 2;
@@ -87,7 +88,7 @@ namespace FrmGamingStore
             // 
             lblMarca.AutoSize = true;
             lblMarca.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblMarca.Location = new Point(132, 9);
+            lblMarca.Location = new Point(132, 54);
             lblMarca.Name = "lblMarca";
             lblMarca.Size = new Size(253, 25);
             lblMarca.TabIndex = 3;
@@ -184,6 +185,18 @@ namespace FrmGamingStore
             grpOrdenarPorMarca.TabStop = false;
             grpOrdenarPorMarca.Text = "Ordenar por marca";
             // 
+            // rbtnDescendenteMarca
+            // 
+            rbtnDescendenteMarca.AutoSize = true;
+            rbtnDescendenteMarca.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            rbtnDescendenteMarca.Location = new Point(6, 70);
+            rbtnDescendenteMarca.Name = "rbtnDescendenteMarca";
+            rbtnDescendenteMarca.Size = new Size(130, 27);
+            rbtnDescendenteMarca.TabIndex = 2;
+            rbtnDescendenteMarca.TabStop = true;
+            rbtnDescendenteMarca.Text = "Descendente";
+            rbtnDescendenteMarca.UseVisualStyleBackColor = true;
+            // 
             // rbtnAscendenteMarca
             // 
             rbtnAscendenteMarca.AutoSize = true;
@@ -197,23 +210,23 @@ namespace FrmGamingStore
             rbtnAscendenteMarca.UseVisualStyleBackColor = true;
             rbtnAscendenteMarca.CheckedChanged += rbtnAscendenteMarca_CheckedChanged;
             // 
-            // rbtnDescendenteMarca
+            // lblUsuarioFecha
             // 
-            rbtnDescendenteMarca.AutoSize = true;
-            rbtnDescendenteMarca.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            rbtnDescendenteMarca.Location = new Point(6, 70);
-            rbtnDescendenteMarca.Name = "rbtnDescendenteMarca";
-            rbtnDescendenteMarca.Size = new Size(130, 27);
-            rbtnDescendenteMarca.TabIndex = 2;
-            rbtnDescendenteMarca.TabStop = true;
-            rbtnDescendenteMarca.Text = "Descendente";
-            rbtnDescendenteMarca.UseVisualStyleBackColor = true;
+            lblUsuarioFecha.AutoSize = true;
+            lblUsuarioFecha.Font = new Font("Franklin Gothic Medium", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblUsuarioFecha.ForeColor = SystemColors.ControlDark;
+            lblUsuarioFecha.Location = new Point(12, 9);
+            lblUsuarioFecha.Name = "lblUsuarioFecha";
+            lblUsuarioFecha.Size = new Size(113, 20);
+            lblUsuarioFecha.TabIndex = 12;
+            lblUsuarioFecha.Text = "lblUsuarioFecha";
             // 
             // FrmGamingStore
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(510, 711);
+            Controls.Add(lblUsuarioFecha);
             Controls.Add(grpOrdenarPorMarca);
             Controls.Add(grpOrdenarPorAño);
             Controls.Add(btnVerEnDetalle);
@@ -226,6 +239,8 @@ namespace FrmGamingStore
             Controls.Add(btnPlayStation);
             Name = "FrmGamingStore";
             Text = "Gaming Store";
+            FormClosing += FrmGamingStore_FormClosing;
+            Load += FrmGamingStore_Load;
             grpOrdenarPorAño.ResumeLayout(false);
             grpOrdenarPorAño.PerformLayout();
             grpOrdenarPorMarca.ResumeLayout(false);
@@ -250,5 +265,6 @@ namespace FrmGamingStore
         private RadioButton rbtnDescendenteAño;
         private RadioButton rbtnDescendenteMarca;
         private RadioButton rbtnAscendenteMarca;
+        private Label lblUsuarioFecha;
     }
 }
