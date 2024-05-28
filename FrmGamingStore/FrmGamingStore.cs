@@ -4,16 +4,14 @@ namespace FrmGamingStore
 {
     public partial class FrmGamingStore : Form
     {
-        GamingStore gamingStore;
-        Usuario? usuario;
+        private GamingStore gamingStore;
+        private Usuario? usuario;
 
         public FrmGamingStore()
         {
             InitializeComponent();
-            gamingStore = new GamingStore();
+            this.gamingStore = new GamingStore();
             this.StartPosition = FormStartPosition.CenterScreen;
-            FrmLogin frmLogin = new FrmLogin();
-            frmLogin.ShowDialog();
         }
 
         public FrmGamingStore(Usuario usuario) : this()
@@ -88,16 +86,6 @@ namespace FrmGamingStore
                     MessageBox.Show("La consola ya se encuentra en la lista, no será agregada.");
                 }
                 this.ActualizarVisor();
-            }
-        }
-
-        private void ActualizarVisor()
-        {
-            this.lstConsolas.Items.Clear();
-
-            foreach (Consola consola in this.gamingStore.listaConsolas)
-            {
-                this.lstConsolas.Items.Add(consola.MostrarInformacionResumida());
             }
         }
 
@@ -200,6 +188,74 @@ namespace FrmGamingStore
             {
                 e.Cancel = true;
             }
+        }
+
+        private void ActualizarVisor()
+        {
+            this.lstConsolas.Items.Clear();
+            foreach (Consola consola in this.gamingStore.listaConsolas)
+            {
+                this.lstConsolas.Items.Add(consola.MostrarInformacionResumida());
+            }
+        }
+
+        private void AbrirArchivoConsolas()
+        {
+            ofdConsolas.Title = "Elige un archivo de consolas para abrir";
+            ofdConsolas.InitialDirectory = @"C:\Users\soyfe\source\repos\Parache.Felipe.PrimerParcial\Colecciones\Archivos\";
+            ofdConsolas.FileName = "CONSOLAS_DATA.json";
+            ofdConsolas.Filter = "JSON-File | *.json";
+
+            if (ofdConsolas.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(ofdConsolas.FileName))
+                {
+                    List<Consola>? consolas = ManejadorArchivos.DeserializarConsolasJSON(ofdConsolas.FileName);
+                    if (consolas is not null)
+                    {
+                        if (this.gamingStore != null)
+                        {
+                            this.gamingStore.listaConsolas = consolas;
+                            this.ActualizarVisor();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error: gamingStore no está inicializado.");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void GuardarArchivoConsolas()
+        {
+            try
+            {
+                sfdConsolas.Filter = "Archivo JSON (*.json) | *.json";
+                if (sfdConsolas.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = sfdConsolas.FileName;
+                    ManejadorArchivos.SerializarConsolasJSON(rutaArchivo, this.gamingStore.listaConsolas);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar el archivo: {ex.Message}");
+            }
+        }
+
+        private void btnAbrir_Click(object sender, EventArgs e)
+        {
+            foreach (Consola consola in this.gamingStore.listaConsolas)
+            {
+                MessageBox.Show($"{consola}");
+            }
+            this.AbrirArchivoConsolas();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            this.GuardarArchivoConsolas();
         }
     }
 }

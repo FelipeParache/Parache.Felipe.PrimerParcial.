@@ -1,57 +1,32 @@
 ﻿using System;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Entidades
 {
     public abstract class Consola
     {
-        protected bool conectividadOnline;
-        protected int almacenamiento;
-        public string? eModelo;
-        public string? eVideojuego;
+        public bool ConectividadOnline { get; set; }
+        public int Almacenamiento { get; set; }
+        public string? Modelo { get; set; }
+        public string? Videojuego { get; set; }
+
+        public Consola() { }
 
         public Consola(string? eModelo, int almacenamiento)
         {
-            this.eModelo = eModelo;
-            this.almacenamiento = almacenamiento;
+            this.Modelo = eModelo;
+            this.Almacenamiento = almacenamiento;
         }
 
         public Consola(string? eModelo, int almacenamiento, string? eVideojuego) : this(eModelo, almacenamiento)
         {
-            this.eVideojuego = eVideojuego;
+            this.Videojuego = eVideojuego;
         }
 
         public Consola(string? eModelo, int almacenamiento, string? eVideojuego, bool conectividadOnline) : this(eModelo, almacenamiento, eVideojuego)
         {
-            this.conectividadOnline = conectividadOnline;
-        }
-
-        public string? ConectividadOnline
-        {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                if (this.conectividadOnline)
-                {
-                    sb.Append("Tiene conectividad online");
-                }
-                else
-                {
-                    sb.Append("No tiene conectividad online");
-                }
-                return sb.ToString();
-            }
-        }
-
-        public string Modelo
-        {
-            get { return this.eModelo; }
-        }
-
-        public int Almacenamiento
-        {
-            get { return this.almacenamiento; }
-            set { this.almacenamiento = value; }
+            this.ConectividadOnline = conectividadOnline;
         }
 
         public string MostrarInformacionResumida()
@@ -65,15 +40,27 @@ namespace Entidades
             sb.AppendLine($"** {this.MostrarEslogan()} **");
             sb.AppendLine($"- Modelo: {this.Modelo}");
             sb.AppendLine($"- Almacenamiento: {this.Almacenamiento} GB");
-            sb.AppendLine($"- {this.ConectividadOnline}");
-            if (this.eVideojuego != null)
+            if (this.ConectividadOnline)
             {
-                sb.Append($"- Videojuego: {this.eVideojuego}");
+                sb.Append("Tiene conectividad online");
+            }
+            else
+            {
+                sb.Append("No tiene conectividad online");
+            }
+            if (this.Videojuego == null)
+            {
+                sb.Append("No incluye videojuego");
+            }
+            else
+            {
+                sb.Append($"Videojuego: {this.Videojuego}");
             }
             return sb.ToString();
         }
 
-        protected abstract string MostrarEslogan();
+        public abstract string MostrarEslogan();
+        public abstract string Serializar();
 
         public static bool operator ==(Consola c1, Consola c2)
         {

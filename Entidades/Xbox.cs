@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entidades
 {
     public class Xbox : Consola
     {
-        private int almacenamientoNube;
-        private bool xboxLiveGold;
+        public int AlmacenamientoNube { get; set; }
+        public bool XboxLiveGold { get; set; }
+
+        public Xbox() { }
 
         public Xbox(string? eModelosXbox, int almacenamiento) : base(eModelosXbox, almacenamiento)
         {
@@ -23,60 +27,55 @@ namespace Entidades
 
         public Xbox(string? eModelosXbox, int almacenamiento, string? eVideojuegosXbox, int almacenamientoNube, bool xBoxLiveGold, bool conectividadOnline = true) : base(eModelosXbox, almacenamiento, eVideojuegosXbox, conectividadOnline)
         {
-            this.almacenamientoNube = almacenamientoNube;
-            this.xboxLiveGold = xBoxLiveGold;
+            this.AlmacenamientoNube = almacenamientoNube;
+            this.XboxLiveGold = xBoxLiveGold;
         }
 
-        public string XboxLiveGold
+        [JsonConstructor]
+        public Xbox(bool XboxLiveGold, int AlmacenamientoNube, bool ConectividadOnline, string Modelo, int Almacenamiento, string Videojuego)
         {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                if (this.xboxLiveGold)
-                {
-                    sb.Append("Incluye servicio de Xbox Live Gold");
-                }
-                else
-                {
-                    sb.Append("No incluye servicio de Xbox Live Gold");
-                }
-                return sb.ToString();
-            }
-        }
-
-        public string AlmacenamientoNube
-        {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"Almacenamiento en la nube: {this.almacenamientoNube} GB");
-                return sb.ToString();
-            }
+            this.XboxLiveGold = XboxLiveGold;
+            this.AlmacenamientoNube = AlmacenamientoNube;
+            this.ConectividadOnline = ConectividadOnline;
+            this.Modelo = Modelo;
+            this.Almacenamiento = Almacenamiento;
+            this.Videojuego = Videojuego;
         }
 
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(base.MostrarInformacion());
-
-            if (this.xboxLiveGold)
+            
+            if (this.XboxLiveGold)
             {
-                sb.AppendLine($"- {this.XboxLiveGold}");
+                sb.Append("Incluye servicio de Xbox Live Gold");
+            }
+            else
+            {
+                sb.Append("No incluye servicio de Xbox Live Gold");
             }
 
-            if (this.almacenamientoNube > 0)
+            if (this.AlmacenamientoNube > 0)
             {
-                sb.Append($"- {this.AlmacenamientoNube}");
+                sb.AppendLine($"Almacenamiento en la nube: {this.AlmacenamientoNube} GB");
             }
 
             return sb.ToString();
         }
 
-        protected override string MostrarEslogan()
+        public override string MostrarEslogan()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Power Your Dreams");
             return sb.ToString();
+        }
+
+        public override string Serializar()
+        {
+            JsonSerializerOptions opciones = new JsonSerializerOptions();
+            opciones.WriteIndented = true;
+            return JsonSerializer.Serialize(this, opciones);
         }
 
         public override bool Equals(object? obj)

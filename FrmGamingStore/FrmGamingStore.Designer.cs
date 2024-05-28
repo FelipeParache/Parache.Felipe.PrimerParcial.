@@ -47,6 +47,10 @@ namespace FrmGamingStore
             rbtnDescendenteMarca = new RadioButton();
             rbtnAscendenteMarca = new RadioButton();
             lblUsuarioFecha = new Label();
+            ofdConsolas = new OpenFileDialog();
+            sfdConsolas = new SaveFileDialog();
+            btnGuardar = new Button();
+            btnAbrir = new Button();
             grpOrdenarPorAño.SuspendLayout();
             grpOrdenarPorMarca.SuspendLayout();
             SuspendLayout();
@@ -54,7 +58,7 @@ namespace FrmGamingStore
             // btnPlayStation
             // 
             btnPlayStation.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPlayStation.Location = new Point(12, 93);
+            btnPlayStation.Location = new Point(12, 112);
             btnPlayStation.Name = "btnPlayStation";
             btnPlayStation.Size = new Size(135, 54);
             btnPlayStation.TabIndex = 0;
@@ -65,7 +69,7 @@ namespace FrmGamingStore
             // btnNintendo
             // 
             btnNintendo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnNintendo.Location = new Point(188, 93);
+            btnNintendo.Location = new Point(188, 112);
             btnNintendo.Name = "btnNintendo";
             btnNintendo.Size = new Size(135, 54);
             btnNintendo.TabIndex = 1;
@@ -76,7 +80,7 @@ namespace FrmGamingStore
             // btnXbox
             // 
             btnXbox.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnXbox.Location = new Point(363, 93);
+            btnXbox.Location = new Point(363, 112);
             btnXbox.Name = "btnXbox";
             btnXbox.Size = new Size(135, 54);
             btnXbox.TabIndex = 2;
@@ -88,7 +92,7 @@ namespace FrmGamingStore
             // 
             lblMarca.AutoSize = true;
             lblMarca.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblMarca.Location = new Point(132, 54);
+            lblMarca.Location = new Point(132, 64);
             lblMarca.Name = "lblMarca";
             lblMarca.Size = new Size(253, 25);
             lblMarca.TabIndex = 3;
@@ -98,7 +102,7 @@ namespace FrmGamingStore
             // 
             lstConsolas.FormattingEnabled = true;
             lstConsolas.ItemHeight = 20;
-            lstConsolas.Location = new Point(12, 153);
+            lstConsolas.Location = new Point(12, 183);
             lstConsolas.Name = "lstConsolas";
             lstConsolas.Size = new Size(486, 324);
             lstConsolas.TabIndex = 4;
@@ -106,7 +110,7 @@ namespace FrmGamingStore
             // btnModificar
             // 
             btnModificar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.Location = new Point(12, 483);
+            btnModificar.Location = new Point(12, 513);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(135, 54);
             btnModificar.TabIndex = 5;
@@ -117,7 +121,7 @@ namespace FrmGamingStore
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminar.Location = new Point(363, 483);
+            btnEliminar.Location = new Point(363, 513);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(135, 54);
             btnEliminar.TabIndex = 6;
@@ -128,7 +132,7 @@ namespace FrmGamingStore
             // btnVerEnDetalle
             // 
             btnVerEnDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnVerEnDetalle.Location = new Point(188, 483);
+            btnVerEnDetalle.Location = new Point(188, 513);
             btnVerEnDetalle.Name = "btnVerEnDetalle";
             btnVerEnDetalle.Size = new Size(135, 54);
             btnVerEnDetalle.TabIndex = 7;
@@ -221,11 +225,33 @@ namespace FrmGamingStore
             lblUsuarioFecha.TabIndex = 12;
             lblUsuarioFecha.Text = "lblUsuarioFecha";
             // 
+            // btnGuardar
+            // 
+            btnGuardar.Location = new Point(404, 9);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(94, 29);
+            btnGuardar.TabIndex = 13;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
+            // 
+            // btnAbrir
+            // 
+            btnAbrir.Location = new Point(304, 9);
+            btnAbrir.Name = "btnAbrir";
+            btnAbrir.Size = new Size(94, 29);
+            btnAbrir.TabIndex = 14;
+            btnAbrir.Text = "Abrir";
+            btnAbrir.UseVisualStyleBackColor = true;
+            btnAbrir.Click += btnAbrir_Click;
+            // 
             // FrmGamingStore
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(510, 711);
+            Controls.Add(btnAbrir);
+            Controls.Add(btnGuardar);
             Controls.Add(lblUsuarioFecha);
             Controls.Add(grpOrdenarPorMarca);
             Controls.Add(grpOrdenarPorAño);
@@ -266,5 +292,9 @@ namespace FrmGamingStore
         private RadioButton rbtnDescendenteMarca;
         private RadioButton rbtnAscendenteMarca;
         private Label lblUsuarioFecha;
+        private OpenFileDialog ofdConsolas;
+        private SaveFileDialog sfdConsolas;
+        private Button btnGuardar;
+        private Button btnAbrir;
     }
 }

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+
 
 namespace Entidades
 {
@@ -108,10 +110,6 @@ namespace Entidades
 
                     if (ascendente)
                     {
-                        // Utilizo el metodo Compare para determinar el orden alfabetico entre las dos cadenas
-                        // Si el resultado es menor a 0 significa que A es anterior que B alfabeticamente
-                        // Si el resultado es igual a 0 significa que A es igual a B
-                        // Si el resultado es mayor a 0 significa que A es posterior a B
                         if (string.Compare(claseConsolaA, claseConsolaB) > 0)
                         {
                             Consola auxConsola = listaConsolas[j];

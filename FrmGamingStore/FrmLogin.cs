@@ -20,20 +20,19 @@ namespace FrmGamingStore
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void LoguearUsuario(List<Usuario> usuarios, Usuario? usuario)
+        private bool LoguearUsuario(List<Usuario> usuarios, Usuario? usuario)
         {
             if (usuario is not null)
             {
-                string rutaUsuario = @"C:\Users\soyfe\source\repos\Parache.Felipe.PrimerParcial\Colecciones\Archivos\RegistroUsuarios.txt";
+                string rutaUsuario = @"C:\Users\soyfe\source\repos\Parache.Felipe.PrimerParcial\Colecciones\Archivos\usuarios.log";
 
                 usuario.CrearLogUsuario(rutaUsuario);
-                FrmGamingStore gamingStore = new FrmGamingStore(usuario);
-                gamingStore.Show();
-                this.Hide();
+                return true;
             }
             else
             {
                 MessageBox.Show($"Correo o clave incorrecta\nIntenta nuevamente", $"Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
@@ -49,7 +48,12 @@ namespace FrmGamingStore
             if (usuarios is not null)
             {
                 Usuario? usuario = Usuario.BuscarUsuario(usuarios, correo, clave);
-                this.LoguearUsuario(usuarios, usuario);
+                if(this.LoguearUsuario(usuarios, usuario))
+                {
+                    FrmGamingStore frmGamingStore = new FrmGamingStore(usuario);
+                    frmGamingStore.ShowDialog();
+                    this.Close();
+                }
             }
             else
             {

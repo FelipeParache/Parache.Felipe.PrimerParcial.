@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entidades
 {
     public class Nintendo : Consola
     {
-        private bool portable;
-        private int duracionBateria;
-        private string? ePerifericos;
+        public bool Portable { get; set; }
+        public int DuracionBateria { get; set; }
+        public string? Periferico { get; set; }
+
+        public Nintendo() { }
 
         public Nintendo(string? eModelosNintendo, int almacenamiento) : base(eModelosNintendo, almacenamiento)
         {
@@ -24,42 +28,28 @@ namespace Entidades
 
         public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo, string? ePerifericos) : this(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
         {
-            this.ePerifericos = ePerifericos;
+            this.Periferico = ePerifericos;
         }
 
-        public bool Portable
+        [JsonConstructor]
+        public Nintendo(bool Portable, int DuracionBateria, string Periferico, bool ConectividadOnline, string Modelo, int Almacenamiento, string Videojuego)
         {
-            get { return this.portable; }
-            set { this.portable = value; }
-        }
-
-        public string DuracionBateria
-        {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"Duración de la bateria: {this.duracionBateria}hs.");
-                return sb.ToString();
-            }
-        }
-
-        public string Periferico
-        {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"Incluye periférico: {this.ePerifericos}");
-                return sb.ToString();
-            }
+            this.Portable = Portable;
+            this.DuracionBateria = DuracionBateria;
+            this.Periferico = Periferico;
+            this.ConectividadOnline = ConectividadOnline;
+            this.Modelo = Modelo;
+            this.Almacenamiento = Almacenamiento;
+            this.Videojuego = Videojuego;
         }
 
         public void VerificarPortabilidad()
         {
-            if (base.eModelo == EModelosNintendo.WiiU.ToString() || base.eModelo == EModelosNintendo.NintendoSwitch.ToString())
+            if (base.Modelo == EModelosNintendo.WiiU.ToString() || base.Modelo == EModelosNintendo.NintendoSwitch.ToString())
             {
-                base.conectividadOnline = true;
+                base.ConectividadOnline = true;
                 this.Portable = true;
-                this.duracionBateria = 5;
+                this.DuracionBateria = 5;
             }
         }
 
@@ -68,24 +58,31 @@ namespace Entidades
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(base.MostrarInformacion());
 
-            if (this.portable)
+            if (this.Portable)
             {
-                sb.Append($"- {this.DuracionBateria}");
+                sb.AppendLine($"Duracion de la bateria: {this.DuracionBateria}hs.");
             }
 
-            if (this.ePerifericos != null)
+            if (this.Periferico != null)
             {
-                sb.Append($"- {this.Periferico}");
+                sb.AppendLine($"Incluye periferico: {this.Periferico}");
             }
 
             return sb.ToString();
         }
 
-        protected override string MostrarEslogan()
+        public override string MostrarEslogan()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("There's No Play Like It");
             return sb.ToString();
+        }
+
+        public override string Serializar()
+        {
+            JsonSerializerOptions opciones = new JsonSerializerOptions();
+            opciones.WriteIndented = true;
+            return JsonSerializer.Serialize(this, opciones);
         }
 
         public override bool Equals(object? obj)

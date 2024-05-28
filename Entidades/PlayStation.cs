@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entidades
 {
     public class PlayStation : Consola
     {
-        private bool psPlus;
-        private int controles;
+        public bool PsPlus { get; set; }
+        public int Controles { get; set; }
+
+        public PlayStation() { }
 
         public PlayStation(string? eModelosPlayStation, int almacenamiento) : base(eModelosPlayStation, almacenamiento)
         {
@@ -19,51 +23,24 @@ namespace Entidades
 
         public PlayStation(string? eModelosPlayStation, int almacenamiento, string? eVideojuegosPlayStation, int controles) : base(eModelosPlayStation, almacenamiento, eVideojuegosPlayStation)
         {
-            this.controles = controles;
+            this.Controles = controles;
         }
 
         public PlayStation(string? eModelosPlayStation, int almacenamiento, string? eVideoJuegosPlayStation, int controles, bool conectividadOnline, bool psPlus) : base(eModelosPlayStation, almacenamiento, eVideoJuegosPlayStation, conectividadOnline)
         {
-            this.controles = controles;
-            this.psPlus = psPlus;
+            this.Controles = controles;
+            this.PsPlus = psPlus;
         }
 
-        public string PsPlus
+        [JsonConstructor]
+        public PlayStation(bool PsPlus, int Controles, bool ConectividadOnline, string Modelo, int Almacenamiento, string Videojuego)
         {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                if (this.psPlus)
-                {
-                    sb.Append("Incluye servicio de PlayStation Plus");
-                }
-                else
-                {
-                    sb.Append("No incluye servicio de PlayStation Plus");
-                }
-                return sb.ToString();
-            }
-        }
-
-        public string Controles
-        {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                if (this.controles < 1)
-                {
-                    sb.AppendLine("No incluye control Dualshock");
-                }
-                else if (this.controles == 1)
-                {
-                    sb.AppendLine($"Incluye {this.controles} control Dualshock");
-                }
-                else if (this.controles > 1)
-                {
-                    sb.AppendLine($"Incluye {this.controles} controles Dualshock");
-                }
-                return sb.ToString();
-            }
+            this.PsPlus = PsPlus;
+            this.Controles = Controles;
+            this.ConectividadOnline = ConectividadOnline;
+            this.Modelo = Modelo;
+            this.Almacenamiento = Almacenamiento;
+            this.Videojuego = Videojuego;
         }
 
         public override string MostrarInformacion()
@@ -71,21 +48,43 @@ namespace Entidades
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(base.MostrarInformacion());
 
-            if (this.psPlus)
+            if (this.PsPlus)
             {
-                sb.AppendLine($"- {this.PsPlus}");
+                sb.Append("Incluye servicio de PlayStation Plus");
+            }
+            else
+            {
+                sb.Append("No incluye servicio de PlayStation Plus");
             }
 
-            sb.AppendLine($"- {this.Controles}");
+            if (this.Controles < 1)
+            {
+                sb.AppendLine("No incluye control Dualshock");
+            }
+            else if (this.Controles == 1)
+            {
+                sb.AppendLine($"Incluye {this.Controles} control Dualshock");
+            }
+            else if (this.Controles > 1)
+            {
+                sb.AppendLine($"Incluye {this.Controles} controles Dualshock");
+            }
 
             return sb.ToString();
         }
 
-        protected override string MostrarEslogan()
+        public override string MostrarEslogan()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Play Has No Limits");
             return sb.ToString();
+        }
+
+        public override string Serializar()
+        {
+            JsonSerializerOptions opciones = new JsonSerializerOptions();
+            opciones.WriteIndented = true;
+            return JsonSerializer.Serialize(this, opciones);
         }
 
         public override bool Equals(object? obj)
