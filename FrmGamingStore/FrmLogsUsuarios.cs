@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace FrmGamingStore
 {
+    /// <summary>
+    /// Formulario para mostrar los logs de usuarios.
+    /// </summary>
     public partial class FrmLogsUsuarios : Form
     {
         public FrmLogsUsuarios()

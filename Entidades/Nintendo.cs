@@ -8,29 +8,47 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Representa una consola Nintendo.
+    /// </summary>
     public class Nintendo : Consola
     {
         public bool Portable { get; set; }
         public int DuracionBateria { get; set; }
         public string? Periferico { get; set; }
 
+        /// <summary>
+        /// Constructor por defecto.
+        /// </summary>
         public Nintendo() { }
 
+        /// <summary>
+        /// Constructor que inicializa el modelo y el almacenamiento de la consola.
+        /// </summary>
         public Nintendo(string? eModelosNintendo, int almacenamiento) : base(eModelosNintendo, almacenamiento)
         {
             this.VerificarPortabilidad();
         }
 
+        /// <summary>
+        /// Constructor que inicializa el modelo, el almacenamiento de la consola y el videojuego.
+        /// </summary>
         public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo) : base(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
         {
             this.VerificarPortabilidad();
         }
 
+        /// <summary>
+        /// Constructor que inicializa el modelo, el almacenamiento de la consola, el videojuego y el periferico.
+        /// </summary>
         public Nintendo(string? eModelosNintendo, int almacenamiento, string? eVideojuegosNintendo, string? ePerifericos) : this(eModelosNintendo, almacenamiento, eVideojuegosNintendo)
         {
             this.Periferico = ePerifericos;
         }
 
+        /// <summary>
+        /// Constructor que inicializa todos los parametros para la deserializacion JSON.
+        /// </summary>
         [JsonConstructor]
         public Nintendo(bool Portable, int DuracionBateria, string Periferico, bool ConectividadOnline, string Modelo, int Almacenamiento, string Videojuego)
         {
@@ -43,6 +61,9 @@ namespace Entidades
             this.Videojuego = Videojuego;
         }
 
+        /// <summary>
+        /// Verifica y establece si la consola es portátil.
+        /// </summary>
         public void VerificarPortabilidad()
         {
             if (base.Modelo == EModelosNintendo.WiiU.ToString() || base.Modelo == EModelosNintendo.NintendoSwitch.ToString())
@@ -56,21 +77,25 @@ namespace Entidades
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.MostrarInformacion());
+            sb.Append(base.MostrarInformacion());
 
             if (this.Portable)
             {
-                sb.AppendLine($"Duracion de la bateria: {this.DuracionBateria}hs.");
+                sb.AppendLine($"- Duracion de la bateria: {this.DuracionBateria}hs.");
             }
 
             if (this.Periferico != null)
             {
-                sb.AppendLine($"Incluye periferico: {this.Periferico}");
+                sb.AppendLine($"- Incluye periferico: {this.Periferico}");
             }
 
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Muestra el eslogan de la consola Nintendo.
+        /// </summary>
+        /// <returns>El eslogan de la consola Nintendo.</returns>
         public override string MostrarEslogan()
         {
             StringBuilder sb = new StringBuilder();
@@ -78,6 +103,10 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Serializa la instancia actual de la consola Nintendo a formato JSON.
+        /// </summary>
+        /// <returns>Una cadena en formato JSON que representa la instancia actual.</returns>
         public override string Serializar()
         {
             JsonSerializerOptions opciones = new JsonSerializerOptions();

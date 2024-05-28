@@ -12,9 +12,12 @@ using Entidades;
 
 namespace FrmGamingStore
 {
+    /// <summary>
+    /// Formulario para agregar una consola Nintendo.
+    /// </summary>
     public partial class FrmNintendo : FrmConsola
     {
-        private Nintendo nintendo;
+        private Nintendo? nintendo;
         private string? videojuegoSeleccionado;
         private string? perifericoSeleccionado;
 
@@ -42,6 +45,10 @@ namespace FrmGamingStore
             }
         }
 
+        /// <summary>
+        /// Constructor sobrecargado.
+        /// </summary>
+        /// <param name="nintendo">Consola Nintendo a modificar.</param>
         public FrmNintendo(Consola nintendo) : this()
         {
             string auxAlmacenamiento = $"{nintendo.Almacenamiento} GB";
@@ -56,15 +63,16 @@ namespace FrmGamingStore
             get { return nintendo; }
         }
 
+        /// <summary>
+        /// Maneja el evento click del botón Aceptar para agregar una consola Nintendo.
+        /// Verifica la selección del modelo, almacenamiento y la presencia de periféricos y videojuegos opcionales.
+        /// </summary>
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                // Verificar selección de modelo
                 base.VerificarSeleccionModelo();
-                // Verificar selección de almacenamiento
                 base.VerificarSeleccionAlmacenamiento();
-                // Verificar selección de videojuego si se seleccionó alguna opcion de perifericos
                 this.VerificarSeleccionVideojuego();
             }
             catch (ModeloNoSeleccionadoException)
@@ -83,6 +91,7 @@ namespace FrmGamingStore
                 return;
             }
 
+            // Crea una nueva instancia de Nintendo con las selecciones realizadas
             if (this.cmbPerifericos.SelectedIndex == -1 && this.cmbVideojuegos.SelectedIndex == -1)
             {
                 nintendo = new Nintendo(modeloSeleccionado, almacenamientoSeleccionado);
@@ -99,11 +108,13 @@ namespace FrmGamingStore
                 nintendo = new Nintendo(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado, perifericoSeleccionado);
             }
 
-            // Cerrar el formulario con resultado OK
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
+        /// <summary>
+        /// Verifica si se ha seleccionado un videojuego cuando se elige un periférico.
+        /// </summary>
         protected override void VerificarSeleccionVideojuego()
         {
             if (this.cmbPerifericos.SelectedItem != null)

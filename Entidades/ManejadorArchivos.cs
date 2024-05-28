@@ -11,17 +11,15 @@ using System.Xml.Serialization;
 namespace Entidades
 {
     /// <summary>
-    /// Clase estatica con metodos que se utilizarán para leer archivos, serializar y deserializar datos
+    /// Clase estática con métodos que se utilizarán para leer archivos, serializar y deserializar datos.
     /// </summary>
     public static class ManejadorArchivos
     {
         /// <summary>
-        /// Deserealiza la lista de usuarios hallada en el archivo tipo json recibido por parametro
+        /// Deserializa la lista de usuarios hallada en el archivo tipo JSON recibido por parámetro.
         /// </summary>
-        /// <param name="ruta">string con la ruta del archivo</param>
-        /// <returns>Lista de usuarios en el archivo (si se encuentran) - 
-        /// null en caso contrario</returns>
-        
+        /// <param name="ruta">Ruta del archivo JSON.</param>
+        /// <returns>Lista de usuarios en el archivo, o null si ocurre un error.</returns>
         public static List<Usuario> DeserializarUsuarios(string ruta)
         {
             List<Usuario>? usuarios = new List<Usuario>();
@@ -46,12 +44,11 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Seraliza, en el archivo que se encuentra en la ruta recibida por parametro,
-        /// la lista de consolas recibida por parametro en formato XML
+        /// Serializa en el archivo que se encuentra en la ruta recibida por parámetro,
+        /// la lista de consolas recibida por parámetro en formato JSON.
         /// </summary>
-        /// <param name="ruta">string con la ruta del archivo</param>
-        /// <param name="consolas">Lista de consolas, a serealizar</param>
-
+        /// <param name="ruta">Ruta del archivo JSON.</param>
+        /// <param name="consolas">Lista de consolas a serializar.</param>
         public static void SerializarConsolasJSON(string ruta, List<Consola> consolas)
         {
             try
@@ -75,10 +72,10 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Deserealiza la lista de consolas hallada en el archivo tipo xml recibido por parametro
+        /// Deserializa la lista de consolas hallada en el archivo tipo JSON recibido por parámetro.
         /// </summary>
-        /// <returns>Lista de consolas en el archivo (si se encuentran), null en caso contrario</returns>
-
+        /// <param name="ruta">Ruta del archivo JSON.</param>
+        /// <returns>Lista de consolas en el archivo, o null si ocurre un error.</returns>
         public static List<Consola>? DeserializarConsolasJSON(string ruta)
         {
             try
@@ -141,11 +138,10 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Lee los logs con el registro de los usuarios hallados en el archivo de tipo txt recibido por parametro 
+        /// Lee los logs con el registro de los usuarios hallados en el archivo de tipo TXT recibido por parámetro.
         /// </summary>
-        /// <param name="ruta">string con la ruta del archivo</param>
-        /// <returns>string[] con las lineas de texto halladas</returns>
-
+        /// <param name="ruta">Ruta del archivo TXT.</param>
+        /// <returns>Array de strings con las líneas de texto halladas.</returns>
         public static string[] LeerArchivoLogs(string ruta)
         {
             string[] lineas = {};

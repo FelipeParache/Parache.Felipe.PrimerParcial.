@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace FrmGamingStore
 {
+    /// <summary>
+    /// Formulario para gestionar la información de una consola.
+    /// </summary>
     public partial class FrmConsola : Form
     {
         public Consola consola;
@@ -32,12 +35,18 @@ namespace FrmGamingStore
             get { return consola; }
         }
 
+        /// <summary>
+        /// Maneja el evento de click en el botón Aceptar.
+        /// </summary>
         protected virtual void btnAceptar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
+        /// <summary>
+        /// Maneja el evento de click en el botón Cancelar.
+        /// </summary>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -46,6 +55,10 @@ namespace FrmGamingStore
 
         protected virtual void VerificarSeleccionVideojuego() { }
 
+        /// <summary>
+        /// Verifica si se ha seleccionado un modelo de consola.
+        /// </summary>
+        /// <exception cref="ModeloNoSeleccionadoException">Se lanza si no se ha seleccionado un modelo.</exception>
         public void VerificarSeleccionModelo()
         {
             try
@@ -58,6 +71,10 @@ namespace FrmGamingStore
             }
         }
 
+        /// <summary>
+        /// Verifica si se ha seleccionado una capacidad de almacenamiento.
+        /// </summary>
+        /// <exception cref="AlmacenamientoNoSeleccionadoException">Se lanza si no se ha seleccionado una capacidad de almacenamiento.</exception>
         public void VerificarSeleccionAlmacenamiento()
         {
             try

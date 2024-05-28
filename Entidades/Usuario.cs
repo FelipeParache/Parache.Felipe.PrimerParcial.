@@ -18,6 +18,9 @@ namespace Entidades
         public string Clave { get; set; }
         public string Perfil { get; set; }
 
+        /// <summary>
+        /// Constructor por defecto.
+        /// </summary>
         public Usuario()
         {
             Apellido = string.Empty;
@@ -28,12 +31,18 @@ namespace Entidades
             Perfil = string.Empty;
         }
 
+        /// <summary>
+        /// Constructor que inicializa el correo y la clave.
+        /// </summary>
         public Usuario(string correo, string clave) : this()
         {
             Correo = correo;
             Clave = clave;
         }
 
+        /// <summary>
+        /// Constructor que inicializa el apellido, nombre, legajo, correo, clave y perfil.
+        /// </summary>
         public Usuario(string apellido, string nombre, int legajo, string correo, string clave, string perfil) : this(correo, clave)
         {
             Apellido = apellido;
@@ -43,15 +52,18 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Compara dos objetos de tipo Usuario segun sus atributos correo y clave
+        /// Compara dos objetos de tipo Usuario según sus atributos correo y clave.
         /// </summary>
-        /// <returns>true si son iguales, false si son diferentes</returns>
-
+        /// <returns>true si son iguales, false si son diferentes.</returns>
         public static bool operator ==(Usuario uA, Usuario uB)
         {
             return (uA.Correo == uB.Correo && uA.Clave == uB.Clave);
         }
 
+        /// <summary>
+        /// Compara dos objetos de tipo Usuario para determinar si son diferentes.
+        /// </summary>
+        /// <returns>true si son diferentes, false si son iguales.</returns>
         public static bool operator !=(Usuario uA, Usuario uB)
         {
             return !(uA == uB);
@@ -63,13 +75,12 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Busca si el correo y la clave recibidas por parametro coinciden con las de algun usuario en la lista recibida por parametro
+        /// Busca si el correo y la clave recibidos por parámetro coinciden con los de algún usuario en la lista recibida por parámetro.
         /// </summary>
-        /// <param name="usuarios">Lista de usuarios a recorrer</param>
-        /// <param name="correo">string con el correo a buscar</param>
-        /// <param name="clave">string con la clave a buscar</param>
-        /// <returns>null si no se encontró el usuario, el usuario hallado si se encontró</returns>
-
+        /// <param name="usuarios">Lista de usuarios a recorrer.</param>
+        /// <param name="correo">Correo electrónico a buscar.</param>
+        /// <param name="clave">Clave a buscar.</param>
+        /// <returns>null si no se encontró el usuario, el usuario hallado si se encontró.</returns>
         public static Usuario? BuscarUsuario(List<Usuario> usuarios, string correo, string clave)
         { 
             Usuario usuario = new Usuario(correo, clave);
@@ -85,10 +96,9 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Crea un log en el archivo ubicado en la ruta recibida por parametro, escribiendo nombre apellido y horario de ingreso de este usuario
+        /// Crea un log en el archivo ubicado en la ruta recibida por parámetro, escribiendo nombre, apellido y horario de ingreso de este usuario.
         /// </summary>
-        /// <param name="ruta">Ruta del archivo donde se va a escribir</param>
-
+        /// <param name="ruta">Ruta del archivo donde se va a escribir.</param>
         public void CrearLogUsuario(string ruta)
         {
             string fechaHora = DateTime.Now.ToString();

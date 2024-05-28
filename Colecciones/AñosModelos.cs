@@ -7,12 +7,21 @@ using System.Threading.Tasks;
 
 namespace Colecciones
 {
+    /// <summary>
+    /// Clase estática que proporciona información sobre los años de fabricación de los modelos de consolas.
+    /// </summary>
     public static class AñosModelos
     {
+        /// <summary>
+        /// Diccionario que asocia el modelo de consola con su año de fabricación.
+        /// </summary>
         private static readonly Dictionary<string, int> diccionarioAñosModelos;
 
         static AñosModelos()
         {
+            /// <summary>
+            /// Constructor estático que inicializa el diccionario con los modelos y sus respectivos años de fabricación.
+            /// </summary>
             diccionarioAñosModelos = new Dictionary<string, int>
             {
                 {EModelosNintendo.NintendoNes.ToString(), 1985 },
@@ -31,11 +40,19 @@ namespace Colecciones
             };
         }
 
+        /// <summary>
+        /// Obtiene el diccionario que contiene los modelos de consolas y sus años de fabricación.
+        /// </summary>
         public static Dictionary<string, int> DiccionarioAñosModelos
         {
             get { return diccionarioAñosModelos; }
         }
 
+        /// <summary>
+        /// Obtiene el año de fabricación de un modelo de consola dado su nombre.
+        /// </summary>
+        /// <param name="modelo">El nombre del modelo de la consola.</param>
+        /// <returns>El año de fabricación del modelo, o 0 si el modelo no se encuentra en el diccionario.</returns>
         public static int ObtenerAñoDeFabricacion(string modelo)
         {
             if (diccionarioAñosModelos.ContainsKey(modelo))

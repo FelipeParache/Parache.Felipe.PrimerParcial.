@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace FrmGamingStore
 {
+    /// <summary>
+    /// Formulario para el inicio de sesión de usuarios.
+    /// </summary>
     public partial class FrmLogin : Form
     {
         public FrmLogin()
@@ -20,7 +23,12 @@ namespace FrmGamingStore
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private bool LoguearUsuario(List<Usuario> usuarios, Usuario? usuario)
+        /// <summary>
+        /// Método para realizar el inicio de sesión del usuario.
+        /// </summary>
+        /// <param name="usuario">Usuario que intenta iniciar sesión.</param>
+        /// <returns>true si el inicio de sesión es exitoso, false si no lo es.</returns>
+        private bool LoguearUsuario(Usuario? usuario)
         {
             if (usuario is not null)
             {
@@ -36,6 +44,9 @@ namespace FrmGamingStore
             }
         }
 
+        /// <summary>
+        /// Maneja el evento de click en el botón "Ingresar".
+        /// </summary>
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             string correo = txtCorreo.Text;
@@ -44,11 +55,11 @@ namespace FrmGamingStore
             string ruta = @"C:\Users\soyfe\source\repos\Parache.Felipe.PrimerParcial\Colecciones\Archivos\MOCK_DATA.json";
 
             List<Usuario> usuarios = ManejadorArchivos.DeserializarUsuarios(ruta);
-           
+            
             if (usuarios is not null)
             {
                 Usuario? usuario = Usuario.BuscarUsuario(usuarios, correo, clave);
-                if(this.LoguearUsuario(usuarios, usuario))
+                if(this.LoguearUsuario(usuario))
                 {
                     FrmGamingStore frmGamingStore = new FrmGamingStore(usuario);
                     frmGamingStore.ShowDialog();
@@ -61,6 +72,9 @@ namespace FrmGamingStore
             }
         }
 
+        /// <summary>
+        /// Maneja el evento de clic en el botón "Ver Logs Usuarios".
+        /// </summary>
         private void btnLogs_Click(object sender, EventArgs e)
         {
             FrmLogsUsuarios frmLogsUsuarios = new FrmLogsUsuarios();

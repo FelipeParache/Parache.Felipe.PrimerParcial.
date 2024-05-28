@@ -13,6 +13,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FrmGamingStore
 {
+    /// <summary>
+    /// Formulario para agregar una consola Xbox.
+    /// </summary>
     public partial class FrmXbox : FrmConsola
     {
         private Consola xbox;
@@ -42,6 +45,10 @@ namespace FrmGamingStore
             }
         }
 
+        /// <summary>
+        /// Constructor sobrecargado.
+        /// </summary>
+        /// <param name="xbox">Consola Xbox a modificar.</param>
         public FrmXbox(Consola xbox) : this()
         {
             string auxAlmacenamiento = $"{xbox.Almacenamiento} GB";
@@ -56,15 +63,16 @@ namespace FrmGamingStore
             get { return xbox; }
         }
 
+        /// <summary>
+        /// Maneja el evento click del botón Aceptar para agregar una consola Xbox.
+        /// Verifica la selección del modelo, almacenamiento y la presencia de un videojuego, almacenamiento nube y xbox live gold opcionales.
+        /// </summary>
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                // Verificar selección de modelo
                 base.VerificarSeleccionModelo();
-                // Verificar selección de almacenamiento
                 base.VerificarSeleccionAlmacenamiento();
-                // Verificar selección de videojuego si se seleccionó alguna opcion de almacenamietno nube
                 this.VerificarSeleccionVideojuego();
             }
             catch (ModeloNoSeleccionadoException)
@@ -83,6 +91,7 @@ namespace FrmGamingStore
                 return;
             }
 
+            // Crea una nueva instancia de Xbox con las selecciones realizadas
             if (this.cmbAlmacenamientoNube.SelectedIndex == -1 && this.cmbVideojuegos.SelectedIndex == -1)
             {
                 this.xbox = new Xbox(modeloSeleccionado, almacenamientoSeleccionado);
@@ -98,7 +107,6 @@ namespace FrmGamingStore
                 this.xbox = new Xbox(modeloSeleccionado, almacenamientoSeleccionado, videojuegoSeleccionado, almacenamientoNubeSeleccionado, VerificarSeleccionRadioButton());
             }
 
-            // Cerrar el formulario con resultado OK
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -134,6 +142,9 @@ namespace FrmGamingStore
             return this.rbtnXboxLiveGoldSi.Checked;
         }
 
+        /// <summary>
+        /// Verifica si se ha seleccionado un videojuego cuando se elige un almacenamiento nube.
+        /// </summary>
         protected override void VerificarSeleccionVideojuego()
         {
             if (this.cmbAlmacenamientoNube.SelectedItem != null && this.cmbAlmacenamientoNube.SelectedItem.ToString() != "No agregar")

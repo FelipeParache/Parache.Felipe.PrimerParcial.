@@ -8,29 +8,47 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Representa una consola Xbox.
+    /// </summary>
     public class Xbox : Consola
     {
         public int AlmacenamientoNube { get; set; }
         public bool XboxLiveGold { get; set; }
 
+        /// <summary>
+        /// Constructor por defecto.
+        /// </summary>
         public Xbox() { }
 
+        /// <summary>
+        /// Constructor que inicializa el modelo y el almacenamiento de la consola.
+        /// </summary>
         public Xbox(string? eModelosXbox, int almacenamiento) : base(eModelosXbox, almacenamiento)
         {
 
         }
 
+        /// <summary>
+        /// Constructor que inicializa el modelo, el almacenamiento de la consola y el videojuego.
+        /// </summary>
         public Xbox(string? eModelosXbox, int almacenamiento, string? eVideojuegosXbox) : base(eModelosXbox, almacenamiento, eVideojuegosXbox)
         {
 
         }
 
+        /// <summary>
+        /// Constructor que inicializa el modelo, el almacenamiento de la consola, el videojuego, el almacenamiento nube, xbox live gold y la conectividad online por defecto true.
+        /// </summary>
         public Xbox(string? eModelosXbox, int almacenamiento, string? eVideojuegosXbox, int almacenamientoNube, bool xBoxLiveGold, bool conectividadOnline = true) : base(eModelosXbox, almacenamiento, eVideojuegosXbox, conectividadOnline)
         {
             this.AlmacenamientoNube = almacenamientoNube;
             this.XboxLiveGold = xBoxLiveGold;
         }
 
+        /// <summary>
+        /// Constructor que inicializa todos los parametros para la deserializacion JSON.
+        /// </summary>
         [JsonConstructor]
         public Xbox(bool XboxLiveGold, int AlmacenamientoNube, bool ConectividadOnline, string Modelo, int Almacenamiento, string Videojuego)
         {
@@ -45,25 +63,29 @@ namespace Entidades
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.MostrarInformacion());
+            sb.Append(base.MostrarInformacion());
             
             if (this.XboxLiveGold)
             {
-                sb.Append("Incluye servicio de Xbox Live Gold");
+                sb.AppendLine("- Incluye servicio de Xbox Live Gold");
             }
             else
             {
-                sb.Append("No incluye servicio de Xbox Live Gold");
+                sb.AppendLine("- No incluye servicio de Xbox Live Gold");
             }
 
             if (this.AlmacenamientoNube > 0)
             {
-                sb.AppendLine($"Almacenamiento en la nube: {this.AlmacenamientoNube} GB");
+                sb.AppendLine($"- Almacenamiento en la nube: {this.AlmacenamientoNube} GB");
             }
 
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Muestra el eslogan de la consola Xbox.
+        /// </summary>
+        /// <returns>El eslogan de la consola Xbox.</returns>
         public override string MostrarEslogan()
         {
             StringBuilder sb = new StringBuilder();
@@ -71,6 +93,10 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Serializa la instancia actual de la consola Xbox a formato JSON.
+        /// </summary>
+        /// <returns>Una cadena en formato JSON que representa la instancia actual.</returns>
         public override string Serializar()
         {
             JsonSerializerOptions opciones = new JsonSerializerOptions();

@@ -11,15 +11,27 @@ using System.Xml.Serialization;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase que representa una tienda de videojuegos.
+    /// </summary>
     public class GamingStore
     {
         public List<Consola> listaConsolas;
 
+        /// <summary>
+        /// Constructor por defecto que inicializa la lista de consolas.
+        /// </summary>
         public GamingStore()
         {
             this.listaConsolas = new List<Consola>();
         }
 
+        /// <summary>
+        /// Sobrecarga del operador de igualdad para comparar si una consola está en la tienda.
+        /// </summary>
+        /// <param name="gamingStore">La tienda de videojuegos.</param>
+        /// <param name="consola">La consola a comparar.</param>
+        /// <returns>True si la consola está en la tienda, de lo contrario, false.</returns>
         public static bool operator ==(GamingStore gamingStore, Consola consola)
         {
             foreach (Consola auxConsola in gamingStore.listaConsolas)
@@ -32,11 +44,23 @@ namespace Entidades
             return false;
         }
 
+        /// <summary>
+        /// Sobrecarga del operador de desigualdad para comparar si una consola no está en la tienda.
+        /// </summary>
+        /// <param name="gamingStore">La tienda de videojuegos.</param>
+        /// <param name="consola">La consola a comparar.</param>
+        /// <returns>True si la consola no está en la tienda, de lo contrario, false.</returns>
         public static bool operator !=(GamingStore gamingStore, Consola consola)
         {
             return !(gamingStore == consola);
         }
 
+        /// <summary>
+        /// Sobrecarga del operador de adición para agregar una consola a la tienda.
+        /// </summary>
+        /// <param name="gamingStore">La tienda de videojuegos.</param>
+        /// <param name="consola">La consola a agregar.</param>
+        /// <returns>La tienda de videojuegos con la consola agregada.</returns>
         public static GamingStore operator +(GamingStore gamingStore, Consola consola)
         {
             if (gamingStore != consola)
@@ -46,27 +70,25 @@ namespace Entidades
             return gamingStore;
         }
 
-        public static GamingStore operator -(GamingStore gamingStore, Consola consola)
+        /// <summary>
+        /// Sobrecarga del operador de sustracción para eliminar una consola de la tienda.
+        /// </summary>
+        /// <param name="gamingStore">La tienda de videojuegos.</param>
+        /// <param name="consola">La consola a eliminar.</param>
+        /// <returns>La tienda de videojuegos con la consola eliminada.</returns>
+        public static GamingStore operator -(GamingStore gamingStore, int indiceConsola)
         {
-            if (gamingStore == consola)
+            if (indiceConsola >= 0 && indiceConsola < gamingStore.listaConsolas.Count)
             {
-                gamingStore.listaConsolas.Remove(consola);
+                gamingStore.listaConsolas.RemoveAt(indiceConsola);
             }
             return gamingStore;
         }
 
         /// <summary>
-        /// Muestra la informacion de todas las consolas
+        /// Ordena la lista de consolas por año de modelo.
         /// </summary>
-        public void MostrarInfoVivero()
-        {
-            string[] infoConsolas = { };
-            foreach (Consola consola in this.listaConsolas)
-            {
-                Console.WriteLine(consola.ToString());
-            }
-        }
-
+        /// <param name="ascendente">Indica si el orden debe ser ascendente.</param>
         public void OrdenarPorAñoModelo(bool ascendente)
         {
             for (int i = 0; i < this.listaConsolas.Count - 1; i++)
@@ -99,6 +121,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Ordena la lista de consolas por su clase.
+        /// </summary>
+        /// <param name="ascendente">Indica si el orden debe ser ascendente.</param>
         public void OrdenarPorClase(bool ascendente)
         {
             for (int i = 0; i < this.listaConsolas.Count - 1; i++)

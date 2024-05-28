@@ -1,0 +1,16 @@
+[{
+  "Portable": false,
+  "DuracionBateria": 0,
+  "Periferico": null,
+  "ConectividadOnline": false,
+  "Almacenamiento": 1000,
+  "Modelo": "SuperNintendo",
+  "Videojuego": null
+},{
+  "AlmacenamientoNube": 1000,
+  "XboxLiveGold": false,
+  "ConectividadOnline": true,
+  "Almacenamiento": 1000,
+  "Modelo": "Xbox360",
+  "Videojuego": "Halo"
+}]
