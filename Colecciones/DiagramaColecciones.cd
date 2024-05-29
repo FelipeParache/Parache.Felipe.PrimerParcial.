@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Colecciones.AñosModelos" Collapsed="true">
+    <Position X="5.25" Y="2" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAABAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>AñosModelos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Entidades.EModelosNintendo" Collapsed="true">
+    <Position X="3" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>EModelosNintendo.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EModelosPlayStation" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EModelosPlayStation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EModelosXbox" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>EModelosXbox.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EPerifericosNintendo" Collapsed="true">
+    <Position X="3" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAIAAAQAAAAAAACAAAAAAA=</HashCode>
+      <FileName>EPerifericosNintendo.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EVideojuegosNintendo" Collapsed="true">
+    <Position X="3" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAACAAAAAABAAAAAAAAAAAAAACAAAAAAACA=</HashCode>
+      <FileName>EVideojuegosNintendo.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EVideojuegosPlayStation" Collapsed="true">
+    <Position X="5.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAgAAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAIA=</HashCode>
+      <FileName>EVideojuegosPlayStation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EVideojuegosXbox" Collapsed="true">
+    <Position X="7.5" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQACAAAAAAAAAAAAAAQAAIQAAAAAAAAAAAAA=</HashCode>
+      <FileName>EVideojuegosXbox.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

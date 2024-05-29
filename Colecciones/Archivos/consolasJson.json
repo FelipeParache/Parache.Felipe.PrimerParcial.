@@ -1,16 +1,59 @@
 [{
   "Portable": false,
   "DuracionBateria": 0,
-  "Periferico": null,
+  "Periferico": "GafasVR",
   "ConectividadOnline": false,
   "Almacenamiento": 1000,
   "Modelo": "SuperNintendo",
-  "Videojuego": null
+  "Videojuego": "TheLegendsOfZelda"
 },{
-  "AlmacenamientoNube": 1000,
-  "XboxLiveGold": false,
+  "Portable": true,
+  "DuracionBateria": 5,
+  "Periferico": "Pistola",
   "ConectividadOnline": true,
   "Almacenamiento": 1000,
+  "Modelo": "WiiU",
+  "Videojuego": "MarioKart"
+},{
+  "PsPlus": false,
+  "Controles": 0,
+  "ConectividadOnline": false,
+  "Almacenamiento": 500,
+  "Modelo": "PS1",
+  "Videojuego": null
+},{
+  "PsPlus": false,
+  "Controles": 0,
+  "ConectividadOnline": false,
+  "Almacenamiento": 1000,
+  "Modelo": "PS3",
+  "Videojuego": "Uncharted"
+},{
+  "PsPlus": false,
+  "Controles": 0,
+  "ConectividadOnline": false,
+  "Almacenamiento": 1000,
+  "Modelo": "PS4",
+  "Videojuego": "GodOfWar"
+},{
+  "PsPlus": true,
+  "Controles": 2,
+  "ConectividadOnline": true,
+  "Almacenamiento": 2000,
+  "Modelo": "PS5",
+  "Videojuego": "Uncharted"
+},{
+  "AlmacenamientoNube": 0,
+  "XboxLiveGold": false,
+  "ConectividadOnline": false,
+  "Almacenamiento": 500,
+  "Modelo": "Xbox",
+  "Videojuego": "Forza"
+},{
+  "AlmacenamientoNube": 0,
+  "XboxLiveGold": false,
+  "ConectividadOnline": false,
+  "Almacenamiento": 1000,
   "Modelo": "Xbox360",
-  "Videojuego": "Halo"
+  "Videojuego": "Forza"
 }]

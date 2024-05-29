@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FrmGamingStore.FrmConsola" Collapsed="true">
+    <Position X="5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAgGCAAAIgABADAAAACAABAggICwAABAAAAIAA=</HashCode>
+      <FileName>FrmConsola.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrmGamingStore.FrmGamingStore" Collapsed="true">
+    <Position X="3" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACIgACACACiChIgiiBAgEC2ADAEBQEMBCAIAAACEA=</HashCode>
+      <FileName>FrmGamingStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrmGamingStore.FrmLogin" Collapsed="true">
+    <Position X="5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAIAAQCAAAQQABACEAAACAAAAAQAAACAAAAAAAAA=</HashCode>
+      <FileName>FrmLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrmGamingStore.FrmLogsUsuarios" Collapsed="true">
+    <Position X="7" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACBAAAQAAACAAAACAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FrmLogsUsuarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrmGamingStore.FrmNintendo" Collapsed="true">
+    <Position X="5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAJAAAACAAAAgAAACAIAACAACQAAAAAAABAAACAAA=</HashCode>
+      <FileName>FrmNintendo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrmGamingStore.FrmPlayStation" Collapsed="true">
+    <Position X="7" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACIIJAAAACAAAAgAAACAQAACAAAAAAAkAAAFQBAAAAA=</HashCode>
+      <FileName>FrmPlayStation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrmGamingStore.FrmXbox" Collapsed="true">
+    <Position X="3" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAJAAAECAAAAkAABCAAAADAAAAAAAAQAABIQAAAAQ=</HashCode>
+      <FileName>FrmXbox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

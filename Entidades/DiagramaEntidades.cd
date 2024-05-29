@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Entidades.Consola" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAQAAAAAAAACAEgAAAAAAAAggAEEAAAAgAAAAAAiA=</HashCode>
+      <FileName>Consola.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.GamingStore" Collapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAACAAAAAQAEAAAAIAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <FileName>GamingStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.ManejadorArchivos" Collapsed="true">
+    <Position X="5.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>ManejadorArchivos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Nintendo" Collapsed="true">
+    <Position X="3.25" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAIAAAAAAAAACAEgAAQABAAAhAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Nintendo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.PlayStation" Collapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAACAEgAAAAQAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlayStation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Usuario" Collapsed="true">
+    <Position X="1" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAEgYAAhAAAAIAAAAAAAAAAAAAAEiA=</HashCode>
+      <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Xbox" Collapsed="true">
+    <Position X="1" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EEAAAAAAAAAAACAEgAAAAEAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xbox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
