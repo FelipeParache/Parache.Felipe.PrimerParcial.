@@ -1,6 +1,7 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using FrmGamingStore.Properties;
 
 namespace FrmGamingStore
 {
@@ -91,12 +92,14 @@ namespace FrmGamingStore
             // lblMarca
             // 
             lblMarca.AutoSize = true;
-            lblMarca.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblMarca.Location = new Point(132, 64);
+            lblMarca.BackColor = Color.Transparent;
+            lblMarca.Font = new Font("Franklin Gothic Medium", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblMarca.ForeColor = Color.White;
+            lblMarca.Location = new Point(83, 59);
             lblMarca.Name = "lblMarca";
-            lblMarca.Size = new Size(253, 25);
+            lblMarca.Size = new Size(348, 36);
             lblMarca.TabIndex = 3;
-            lblMarca.Text = "Elija la marca de su consola";
+            lblMarca.Text = "SELECCIONE UNA CONSOLA";
             // 
             // lstConsolas
             // 
@@ -142,6 +145,7 @@ namespace FrmGamingStore
             // 
             // grpOrdenarPorAño
             // 
+            grpOrdenarPorAño.BackColor = Color.Transparent;
             grpOrdenarPorAño.Controls.Add(rbtnDescendenteAño);
             grpOrdenarPorAño.Controls.Add(rbtnAscendenteAño);
             grpOrdenarPorAño.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
@@ -179,9 +183,12 @@ namespace FrmGamingStore
             // 
             // grpOrdenarPorMarca
             // 
+            grpOrdenarPorMarca.BackColor = Color.Transparent;
+            grpOrdenarPorMarca.BackgroundImageLayout = ImageLayout.None;
             grpOrdenarPorMarca.Controls.Add(rbtnDescendenteMarca);
             grpOrdenarPorMarca.Controls.Add(rbtnAscendenteMarca);
             grpOrdenarPorMarca.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            grpOrdenarPorMarca.ForeColor = Color.Black;
             grpOrdenarPorMarca.Location = new Point(258, 582);
             grpOrdenarPorMarca.Name = "grpOrdenarPorMarca";
             grpOrdenarPorMarca.Size = new Size(240, 117);
@@ -217,8 +224,9 @@ namespace FrmGamingStore
             // lblUsuarioFecha
             // 
             lblUsuarioFecha.AutoSize = true;
+            lblUsuarioFecha.BackColor = Color.Transparent;
             lblUsuarioFecha.Font = new Font("Franklin Gothic Medium", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUsuarioFecha.ForeColor = SystemColors.ControlDark;
+            lblUsuarioFecha.ForeColor = Color.White;
             lblUsuarioFecha.Location = new Point(12, 9);
             lblUsuarioFecha.Name = "lblUsuarioFecha";
             lblUsuarioFecha.Size = new Size(113, 20);
@@ -249,6 +257,7 @@ namespace FrmGamingStore
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Resources.frmGamingStoreBackgroundImage;
             ClientSize = new Size(510, 711);
             Controls.Add(btnAbrir);
             Controls.Add(btnGuardar);

@@ -45,7 +45,9 @@ namespace FrmGamingStore
             // lblModelo
             // 
             lblModelo.AutoSize = true;
+            lblModelo.BackColor = Color.Transparent;
             lblModelo.Font = new Font("Franklin Gothic Medium", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblModelo.ForeColor = Color.White;
             lblModelo.Location = new Point(64, 75);
             lblModelo.Name = "lblModelo";
             lblModelo.Size = new Size(91, 29);
@@ -64,7 +66,9 @@ namespace FrmGamingStore
             // lblAlmacenamiento
             // 
             lblAlmacenamiento.AutoSize = true;
+            lblAlmacenamiento.BackColor = Color.Transparent;
             lblAlmacenamiento.Font = new Font("Franklin Gothic Medium", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAlmacenamiento.ForeColor = Color.White;
             lblAlmacenamiento.Location = new Point(64, 160);
             lblAlmacenamiento.Name = "lblAlmacenamiento";
             lblAlmacenamiento.Size = new Size(187, 29);
@@ -103,7 +107,9 @@ namespace FrmGamingStore
             // lblVideojuegos
             // 
             lblVideojuegos.AutoSize = true;
+            lblVideojuegos.BackColor = Color.Transparent;
             lblVideojuegos.Font = new Font("Franklin Gothic Medium", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblVideojuegos.ForeColor = Color.White;
             lblVideojuegos.Location = new Point(64, 241);
             lblVideojuegos.Name = "lblVideojuegos";
             lblVideojuegos.Size = new Size(127, 29);

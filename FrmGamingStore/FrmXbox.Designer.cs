@@ -1,6 +1,7 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using FrmGamingStore.Properties;
 
 namespace FrmGamingStore
 {
@@ -42,7 +43,9 @@ namespace FrmGamingStore
             // lblAlmacenamientoNube
             // 
             lblAlmacenamientoNube.AutoSize = true;
+            lblAlmacenamientoNube.BackColor = Color.Transparent;
             lblAlmacenamientoNube.Font = new Font("Franklin Gothic Medium", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAlmacenamientoNube.ForeColor = Color.White;
             lblAlmacenamientoNube.Location = new Point(64, 325);
             lblAlmacenamientoNube.Name = "lblAlmacenamientoNube";
             lblAlmacenamientoNube.Size = new Size(187, 58);
@@ -62,7 +65,9 @@ namespace FrmGamingStore
             // lblXboxLiveGold
             // 
             lblXboxLiveGold.AutoSize = true;
+            lblXboxLiveGold.BackColor = Color.Transparent;
             lblXboxLiveGold.Font = new Font("Franklin Gothic Medium", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblXboxLiveGold.ForeColor = Color.White;
             lblXboxLiveGold.Location = new Point(64, 429);
             lblXboxLiveGold.Name = "lblXboxLiveGold";
             lblXboxLiveGold.Size = new Size(181, 58);
@@ -73,31 +78,36 @@ namespace FrmGamingStore
             // rbtnXboxLiveGoldSi
             // 
             rbtnXboxLiveGoldSi.AutoSize = true;
+            rbtnXboxLiveGoldSi.BackColor = Color.Transparent;
+            rbtnXboxLiveGoldSi.ForeColor = Color.White;
             rbtnXboxLiveGoldSi.Location = new Point(295, 433);
             rbtnXboxLiveGoldSi.Name = "rbtnXboxLiveGoldSi";
             rbtnXboxLiveGoldSi.Size = new Size(42, 24);
             rbtnXboxLiveGoldSi.TabIndex = 11;
             rbtnXboxLiveGoldSi.TabStop = true;
             rbtnXboxLiveGoldSi.Text = "Si";
-            rbtnXboxLiveGoldSi.UseVisualStyleBackColor = true;
+            rbtnXboxLiveGoldSi.UseVisualStyleBackColor = false;
             rbtnXboxLiveGoldSi.Visible = false;
             // 
             // rbtnXboxLiveGoldNo
             // 
             rbtnXboxLiveGoldNo.AutoSize = true;
+            rbtnXboxLiveGoldNo.BackColor = Color.Transparent;
+            rbtnXboxLiveGoldNo.ForeColor = Color.White;
             rbtnXboxLiveGoldNo.Location = new Point(295, 463);
             rbtnXboxLiveGoldNo.Name = "rbtnXboxLiveGoldNo";
             rbtnXboxLiveGoldNo.Size = new Size(50, 24);
             rbtnXboxLiveGoldNo.TabIndex = 12;
             rbtnXboxLiveGoldNo.TabStop = true;
             rbtnXboxLiveGoldNo.Text = "No";
-            rbtnXboxLiveGoldNo.UseVisualStyleBackColor = true;
+            rbtnXboxLiveGoldNo.UseVisualStyleBackColor = false;
             rbtnXboxLiveGoldNo.Visible = false;
             // 
             // FrmXbox
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Resources.frmXboxBackgroundImage1;
             ClientSize = new Size(536, 630);
             Controls.Add(rbtnXboxLiveGoldNo);
             Controls.Add(rbtnXboxLiveGoldSi);

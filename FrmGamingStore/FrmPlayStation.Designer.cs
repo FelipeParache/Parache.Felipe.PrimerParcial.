@@ -1,6 +1,7 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using FrmGamingStore.Properties;
 
 namespace FrmGamingStore
 {
@@ -42,7 +43,9 @@ namespace FrmGamingStore
             // lblControles
             // 
             lblControles.AutoSize = true;
+            lblControles.BackColor = Color.Transparent;
             lblControles.Font = new Font("Franklin Gothic Medium", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblControles.ForeColor = Color.White;
             lblControles.Location = new Point(64, 327);
             lblControles.Name = "lblControles";
             lblControles.Size = new Size(111, 29);
@@ -61,7 +64,9 @@ namespace FrmGamingStore
             // lblPsPlus
             // 
             lblPsPlus.AutoSize = true;
+            lblPsPlus.BackColor = Color.Transparent;
             lblPsPlus.Font = new Font("Franklin Gothic Medium", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPsPlus.ForeColor = Color.White;
             lblPsPlus.Location = new Point(64, 406);
             lblPsPlus.Name = "lblPsPlus";
             lblPsPlus.Size = new Size(184, 58);
@@ -71,29 +76,34 @@ namespace FrmGamingStore
             // rbtnPsPlusSi
             // 
             rbtnPsPlusSi.AutoSize = true;
+            rbtnPsPlusSi.BackColor = Color.Transparent;
+            rbtnPsPlusSi.ForeColor = Color.White;
             rbtnPsPlusSi.Location = new Point(295, 410);
             rbtnPsPlusSi.Name = "rbtnPsPlusSi";
             rbtnPsPlusSi.Size = new Size(42, 24);
             rbtnPsPlusSi.TabIndex = 11;
             rbtnPsPlusSi.TabStop = true;
             rbtnPsPlusSi.Text = "Si";
-            rbtnPsPlusSi.UseVisualStyleBackColor = true;
+            rbtnPsPlusSi.UseVisualStyleBackColor = false;
             // 
             // rbtnPsPlusNo
             // 
             rbtnPsPlusNo.AutoSize = true;
+            rbtnPsPlusNo.BackColor = Color.Transparent;
+            rbtnPsPlusNo.ForeColor = Color.White;
             rbtnPsPlusNo.Location = new Point(295, 440);
             rbtnPsPlusNo.Name = "rbtnPsPlusNo";
             rbtnPsPlusNo.Size = new Size(50, 24);
             rbtnPsPlusNo.TabIndex = 12;
             rbtnPsPlusNo.TabStop = true;
             rbtnPsPlusNo.Text = "No";
-            rbtnPsPlusNo.UseVisualStyleBackColor = true;
+            rbtnPsPlusNo.UseVisualStyleBackColor = false;
             // 
             // FrmPlayStation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Resources.frmPlayStationBackgroundImage;
             ClientSize = new Size(536, 630);
             Controls.Add(rbtnPsPlusNo);
             Controls.Add(rbtnPsPlusSi);

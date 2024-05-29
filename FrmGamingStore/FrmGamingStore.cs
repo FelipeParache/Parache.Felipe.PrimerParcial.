@@ -28,9 +28,7 @@ namespace FrmGamingStore
 
         private void FrmGamingStore_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("¡Bienvenido a GamingStore!");
             this.lblUsuarioFecha.Text = $"{DateTime.Now.ToString().Substring(0, 9)} Usuario: {usuario}";
-
         }
 
         /// <summary>
@@ -46,12 +44,11 @@ namespace FrmGamingStore
 
                 if (this.gamingStore != playStation)
                 {
-                    MessageBox.Show("La consola no está en la lista, agregando...");
                     this.gamingStore += playStation;
                 }
                 else
                 {
-                    MessageBox.Show("La consola ya se encuentra en la lista, no será agregada.");
+                    MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 this.ActualizarVisor();
             }
@@ -70,12 +67,11 @@ namespace FrmGamingStore
 
                 if (this.gamingStore != nintendo)
                 {
-                    MessageBox.Show("La consola no está en la lista, agregando...");
                     this.gamingStore += nintendo;
                 }
                 else
                 {
-                    MessageBox.Show("La consola ya se encuentra en la lista, no será agregada.");
+                    MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 this.ActualizarVisor();
             }
@@ -94,12 +90,11 @@ namespace FrmGamingStore
 
                 if (this.gamingStore != xbox)
                 {
-                    MessageBox.Show("La consola no está en la lista, agregando...");
                     this.gamingStore += xbox;
                 }
                 else
                 {
-                    MessageBox.Show("La consola ya se encuentra en la lista, no será agregada.");
+                    MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 this.ActualizarVisor();
             }

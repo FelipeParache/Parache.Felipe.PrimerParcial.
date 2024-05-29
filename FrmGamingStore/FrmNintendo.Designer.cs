@@ -1,6 +1,7 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using FrmGamingStore.Properties;
 
 namespace FrmGamingStore
 {
@@ -39,7 +40,9 @@ namespace FrmGamingStore
             // lblPerifericos
             // 
             lblPerifericos.AutoSize = true;
+            lblPerifericos.BackColor = Color.Transparent;
             lblPerifericos.Font = new Font("Franklin Gothic Medium", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPerifericos.ForeColor = Color.White;
             lblPerifericos.Location = new Point(64, 325);
             lblPerifericos.Name = "lblPerifericos";
             lblPerifericos.Size = new Size(139, 58);
@@ -59,6 +62,7 @@ namespace FrmGamingStore
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Resources.frmNintendoBackgroundImage;
             ClientSize = new Size(536, 630);
             Controls.Add(cmbPerifericos);
             Controls.Add(lblPerifericos);

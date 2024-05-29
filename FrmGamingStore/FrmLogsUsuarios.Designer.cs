@@ -1,4 +1,6 @@
-﻿namespace FrmGamingStore
+﻿using FrmGamingStore.Properties;
+
+namespace FrmGamingStore
 {
     partial class FrmLogsUsuarios
     {
@@ -45,10 +47,12 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTitulo.Location = new Point(139, 9);
+            lblTitulo.BackColor = Color.Transparent;
+            lblTitulo.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitulo.ForeColor = Color.White;
+            lblTitulo.Location = new Point(89, 19);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(438, 25);
+            lblTitulo.Size = new Size(532, 29);
             lblTitulo.TabIndex = 1;
             lblTitulo.Text = "Nombre - Apellido - Fecha y hora de ingreso";
             lblTitulo.TextAlign = ContentAlignment.TopCenter;
@@ -57,6 +61,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Resources.frmGamingStoreBackgroundImage;
             ClientSize = new Size(726, 543);
             Controls.Add(lblTitulo);
             Controls.Add(lstUsuarios);
