@@ -14,7 +14,6 @@ Es posible guardar la selección de las consolas en el lugar que se desee de la 
 
 ## Diagrama de clases
 Diagramas de clases que incluyen todas las clases utilizadas en esta solución. Tambien incluyen los enumerados creados. 
-Version reducida de los diagramas de clases del proyecto Formularios y del proyecto Gaming Store.
 
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/imgDiagramaEntidades.png">
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/imgDiagramaColecciones.png">
