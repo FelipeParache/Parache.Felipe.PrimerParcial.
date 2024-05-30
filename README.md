@@ -12,7 +12,7 @@ Dentro podrá elegir qué consola agregar presionando uno de los botones "PlaySt
 Además, si el usuario agrega varias consolas, podrá ordenarlas por año de fabricación y por marca, seleccionando el radio button correspondiente.
 Es posible guardar la selección de las consolas en el lugar que se desee de la computadora, como también abrir un archivo que contenga una seleccion creada anteriormente. 
 
-## Diagrama de clases
+## Diagramas de clases
 Diagramas de clases que incluyen todas las clases utilizadas en esta solución. Tambien incluyen los enumerados creados. 
 
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/imgDiagramaEntidades.png">
