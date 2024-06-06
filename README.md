@@ -27,4 +27,4 @@ Es posible guardar la selección de las consolas en el lugar que se desee de la 
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClaseNintendo.png">
 
 ### Diagramas de los enumerados
-<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/diagramasColecciones.png">
+<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramasColecciones.png">
