@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Entidades.Consola" Collapsed="true">
-    <Position X="3.25" Y="0.5" Width="1.75" />
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Entidades.Consola">
+    <Position X="11.75" Y="0.75" Width="5.75" />
     <TypeIdentifier>
       <HashCode>EAAAQAAAAAAAACAEgAAAAAAAAggAEEAAAAgAAAAAAiA=</HashCode>
       <FileName>Consola.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.GamingStore" Collapsed="true">
-    <Position X="3.25" Y="2.5" Width="1.75" />
+  <Class Name="Entidades.GamingStore">
+    <Position X="33" Y="8.25" Width="4.75" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAACAAAAAQAEAAAAIAAAAAAAAAAAAAAAAAiA=</HashCode>
       <FileName>GamingStore.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.ManejadorArchivos" Collapsed="true">
-    <Position X="5.5" Y="2.5" Width="1.75" />
+  <Class Name="Entidades.ManejadorArchivos">
+    <Position X="38" Y="8.25" Width="5.5" />
     <TypeIdentifier>
       <HashCode>ABAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>ManejadorArchivos.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.Nintendo" Collapsed="true">
-    <Position X="3.25" Y="1.5" Width="1.75" />
+  <Class Name="Entidades.Nintendo">
+    <Position X="10.25" Y="6" Width="8.75" />
     <TypeIdentifier>
       <HashCode>EAAIAAAAAAAAACAEgAAQABAAAhAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Nintendo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.PlayStation" Collapsed="true">
-    <Position X="5.5" Y="1.5" Width="1.75" />
+  <Class Name="Entidades.PlayStation">
+    <Position X="19.25" Y="6" Width="8.75" />
     <TypeIdentifier>
       <HashCode>EAACAAAAAAAAACAEgAAAAQAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PlayStation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.Usuario" Collapsed="true">
-    <Position X="1" Y="2.5" Width="1.75" />
+  <Class Name="Entidades.Usuario">
+    <Position X="35" Y="4" Width="5.75" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAAEgYAAhAAAAIAAAAAAAAAAAAAAEiA=</HashCode>
       <FileName>Usuario.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.Xbox" Collapsed="true">
-    <Position X="1" Y="1.5" Width="1.75" />
+  <Class Name="Entidades.Xbox">
+    <Position X="0.5" Y="6" Width="9.5" />
     <TypeIdentifier>
       <HashCode>EEAAAAAAAAAAACAEgAAAAEAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Xbox.cs</FileName>
