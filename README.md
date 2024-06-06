@@ -14,17 +14,17 @@ Es posible guardar la selección de las consolas en el lugar que se desee de la 
 
 ## Diagramas de clases
 
-### Diagrama de la clase Consola
+### Clase Consola (Padre)
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClaseConsola.png">
 
-### Diagrama de la clase PlayStation
+### Clase PlayStation (Hija)
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClasePlayStation.png">
 
-### Diagrama de la clase Xbox
+### Clase Xbox (Hija)
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClaseXbox.png">
 
-### Diagrama de la clase Nintendo
+### Clase Nintendo (Hija)
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClaseNintendo.png">
 
-### Diagramas de los enumerados
+### Diagramas de los enumerados y clase AñosModelos
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramasColecciones.png">
