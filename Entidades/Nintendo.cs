@@ -74,6 +74,23 @@ namespace Entidades
             }
         }
 
+        public override string MostrarInformacionResumida()
+        {
+            string portable = "";
+            string periferico = "";
+
+            if (this.Portable)
+            {
+                portable = " - Es portable";
+            }
+            if (this.Periferico != null)
+            {
+                periferico = $" - Incluye {this.Periferico}";
+            }
+
+            return $"{base.MostrarInformacionResumida()}{periferico}{portable}";
+        }
+
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
