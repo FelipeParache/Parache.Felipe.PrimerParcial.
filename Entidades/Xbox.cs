@@ -60,6 +60,23 @@ namespace Entidades
             this.Videojuego = Videojuego;
         }
 
+        public override string MostrarInformacionResumida()
+        {
+            string almacenamientoNube = "";
+            string xboxLiveGold = "";
+
+            if (this.XboxLiveGold)
+            {
+                xboxLiveGold = " - Incluye XboxLiveGold";
+            }
+            if (this.AlmacenamientoNube != 0)
+            {
+                almacenamientoNube = $" - {this.AlmacenamientoNube} GB Nube";
+            }
+
+            return $"{base.MostrarInformacionResumida()}{xboxLiveGold}{almacenamientoNube}";
+        }
+
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();
