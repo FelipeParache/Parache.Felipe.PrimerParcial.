@@ -26,5 +26,5 @@ Es posible guardar la selección de las consolas en el lugar que se desee de la 
 ### Clase Nintendo (Hija)
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClaseNintendo.png">
 
-### Diagramas de los enumerados y clase AñosModelos
+### Enumerados y clase estática AñosModelos
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramasColecciones.png">
