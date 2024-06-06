@@ -15,16 +15,16 @@ Es posible guardar la selección de las consolas en el lugar que se desee de la 
 ## Diagramas de clases
 
 ### Diagrama de la clase Consola
-<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/diagramaClaseConsola.png">
+<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClaseConsola.png">
 
 ### Diagrama de la clase PlayStation
-<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/diagramaClasePlayStation.png">
+<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClasePlayStation.png">
 
 ### Diagrama de la clase Xbox
-<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/diagramaClaseXbox.png">
+<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClaseXbox.png">
 
 ### Diagrama de la clase Nintendo
-<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/diagramaClaseNintendo.png">
+<img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/FrmGamingStore/Imagenes/diagramaClaseNintendo.png">
 
 ### Diagramas de los enumerados
 <img width="728" alt="image" src="https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/master/FrmGamingStore/Imagenes/diagramasColecciones.png">
