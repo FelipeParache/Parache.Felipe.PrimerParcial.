@@ -61,6 +61,27 @@ namespace Entidades
             this.Videojuego = Videojuego;
         }
 
+        public override string MostrarInformacionResumida()
+        {
+            string psPlus = "";
+            string cantidadControles = "";
+
+            if (this.PsPlus)
+            {
+                psPlus = " - Incluye PsPlus";
+            }
+            if (this.Controles > 0 && this.Controles != 1)
+            {
+                cantidadControles = $" - {this.Controles} controles";
+            }
+            else if (this.Controles == 1)
+            {
+                cantidadControles = $" - {this.Controles} control";
+            }
+
+            return $"{base.MostrarInformacionResumida()}{psPlus}{cantidadControles}";
+        }
+
         public override string MostrarInformacion()
         {
             StringBuilder sb = new StringBuilder();

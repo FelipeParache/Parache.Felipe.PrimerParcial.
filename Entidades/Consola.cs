@@ -48,9 +48,9 @@ namespace Entidades
         /// Muestra información resumida de la consola.
         /// </summary>
         /// <returns>Una cadena con el modelo y el almacenamiento de la consola.</returns>
-        public string MostrarInformacionResumida()
+        public virtual string MostrarInformacionResumida()
         {
-            return $"- Consola {this.Modelo}, {this.Almacenamiento} GB de almacenamiento.";
+            return $"- Consola {this.Modelo} - {this.Almacenamiento} GB";
         }
 
         /// <summary>

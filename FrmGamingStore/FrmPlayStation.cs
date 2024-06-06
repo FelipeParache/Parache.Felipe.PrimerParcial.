@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
+using Excepciones;
 
 namespace FrmGamingStore
 {
@@ -75,6 +76,7 @@ namespace FrmGamingStore
                 base.VerificarSeleccionAlmacenamiento();
                 this.VerificarSeleccionVideojuego();
                 this.VerificarSeleccionControl();
+                this.VerificarSeleccionPsPlus();
             }
             catch (ModeloNoSeleccionadoException)
             {
@@ -89,6 +91,11 @@ namespace FrmGamingStore
             catch (VideojuegoNoSeleccionadoException)
             {
                 MessageBox.Show("Por favor, seleccione un videojuego.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            catch (ControlNoSeleccionadoException)
+            {
+                MessageBox.Show("Por favor, seleccione cuántos controles quiere.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -122,6 +129,14 @@ namespace FrmGamingStore
             if (this.cmbControles.SelectedItem != null)
             {
                 this.controlSeleccionado = (int)this.cmbControles.SelectedItem;
+            }
+        }
+
+        private void VerificarSeleccionPsPlus()
+        {
+            if (this.VerificarSeleccionRadioButton() && this.cmbControles.SelectedItem == null)
+            {
+                throw new ControlNoSeleccionadoException();
             }
         }
 
