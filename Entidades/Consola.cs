@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -93,6 +94,15 @@ namespace Entidades
         public static bool operator !=(Consola c1, Consola c2)
         {
             return !(c1 == c2);
+        }
+
+        /// <summary>
+        /// Conversión de un objeto tipo Consola en un string, mostrando su información
+        /// </summary>
+        /// <param name="consola"></param>
+        public static implicit operator string(Consola consola)
+        {
+            return consola.ToString();
         }
 
         /// <summary>
