@@ -123,7 +123,11 @@ namespace Entidades
 
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            if (obj is Xbox xbox)
+            {
+                return base.Equals(obj) && this.AlmacenamientoNube == xbox.AlmacenamientoNube && this.XboxLiveGold == xbox.XboxLiveGold;
+            }
+            return false;
         }
 
         public override string ToString()

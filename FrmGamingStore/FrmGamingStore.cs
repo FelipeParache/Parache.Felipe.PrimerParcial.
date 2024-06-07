@@ -128,8 +128,15 @@ namespace FrmGamingStore
                 DialogResult resultado = frmConsola.ShowDialog();
                 if (resultado == DialogResult.OK)
                 {
-                    this.gamingStore.listaConsolas[indiceSeleccionado] = frmConsola.ConsolaDelFormulario;
-                    this.ActualizarVisor();
+                    if (this.gamingStore != frmConsola.ConsolaDelFormulario)
+                    {
+                        this.gamingStore.listaConsolas[indiceSeleccionado] = frmConsola.ConsolaDelFormulario;
+                        this.ActualizarVisor();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else

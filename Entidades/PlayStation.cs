@@ -136,7 +136,11 @@ namespace Entidades
 
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            if (obj is PlayStation playStation)
+            {
+                return base.Equals(obj) && this.PsPlus == playStation.PsPlus && this.Controles == playStation.Controles;
+            }
+            return false;
         }
 
         public override string ToString()

@@ -133,7 +133,11 @@ namespace Entidades
 
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            if (obj is Nintendo nintendo)
+            {
+                return base.Equals(obj) && this.Portable == nintendo.Portable && this.Periferico == nintendo.Periferico;
+            }
+            return false;
         }
 
         public override string ToString()
