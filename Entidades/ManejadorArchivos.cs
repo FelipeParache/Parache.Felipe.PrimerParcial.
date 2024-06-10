@@ -13,7 +13,7 @@ namespace Entidades
     /// <summary>
     /// Clase estática con métodos que se utilizarán para leer archivos, serializar y deserializar datos.
     /// </summary>
-    public static class ManejadorArchivos
+    public static class ManejadorArchivos 
     {
         /// <summary>
         /// Deserializa la lista de usuarios hallada en el archivo tipo JSON recibido por parámetro.
