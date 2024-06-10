@@ -91,6 +91,16 @@ namespace Entidades
         /// <param name="ascendente">Indica si el orden debe ser ascendente.</param>
         public void OrdenarPorAñoModelo(bool ascendente)
         {
+            int orden;
+            if (ascendente)
+            {
+                orden = 1;
+            }
+            else
+            {
+                orden = -1;
+            }
+
             for (int i = 0; i < this.listaConsolas.Count - 1; i++)
             {
                 for (int j = 0; j < this.listaConsolas.Count - i - 1; j++)
@@ -99,23 +109,11 @@ namespace Entidades
                     int añoConsolaA = AñosModelos.ObtenerAñoDeFabricacion(listaConsolas[j].Modelo);
                     int añoConsolaB = AñosModelos.ObtenerAñoDeFabricacion(listaConsolas[j + 1].Modelo);
 
-                    if (ascendente)
+                    if (orden * añoConsolaA > orden * añoConsolaB)
                     {
-                        if (añoConsolaA > añoConsolaB)
-                        {
-                            Consola auxConsola = listaConsolas[j];
-                            listaConsolas[j] = listaConsolas[j + 1];
-                            listaConsolas[j + 1] = auxConsola;
-                        }
-                    }
-                    else
-                    {
-                        if (añoConsolaA < añoConsolaB)
-                        {
-                            Consola auxConsola = listaConsolas[j];
-                            listaConsolas[j] = listaConsolas[j + 1];
-                            listaConsolas[j + 1] = auxConsola;
-                        }
+                        Consola auxConsola = listaConsolas[j];
+                        listaConsolas[j] = listaConsolas[j + 1];
+                        listaConsolas[j + 1] = auxConsola;
                     }
                 }
             }
@@ -127,6 +125,16 @@ namespace Entidades
         /// <param name="ascendente">Indica si el orden debe ser ascendente.</param>
         public void OrdenarPorClase(bool ascendente)
         {
+            int orden;
+            if (ascendente)
+            {
+                orden = 1;
+            }
+            else
+            {
+                orden = -1;
+            }
+
             for (int i = 0; i < this.listaConsolas.Count - 1; i++)
             {
                 for (int j = 0; j < this.listaConsolas.Count - i - 1; j++)
@@ -134,27 +142,14 @@ namespace Entidades
                     string claseConsolaA = listaConsolas[j].GetType().ToString();
                     string claseConsolaB = listaConsolas[j + 1].GetType().ToString();
 
-                    if (ascendente)
+                    if (orden * string.Compare(claseConsolaA, claseConsolaB) > 0)
                     {
-                        if (string.Compare(claseConsolaA, claseConsolaB) > 0)
-                        {
-                            Consola auxConsola = listaConsolas[j];
-                            listaConsolas[j] = listaConsolas[j + 1];
-                            listaConsolas[j + 1] = auxConsola;
-                        }
-                    }
-                    else
-                    {
-                        if (string.Compare(claseConsolaA, claseConsolaB) < 0)
-                        {
-                            Consola auxConsola = listaConsolas[j];
-                            listaConsolas[j] = listaConsolas[j + 1];
-                            listaConsolas[j + 1] = auxConsola;
-                        }
+                        Consola auxConsola = listaConsolas[j];
+                        listaConsolas[j] = listaConsolas[j + 1];
+                        listaConsolas[j + 1] = auxConsola;
                     }
                 }
             }
         }
-
     }
 }
