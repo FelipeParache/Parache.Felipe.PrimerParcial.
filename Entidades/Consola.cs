@@ -84,7 +84,7 @@ namespace Entidades
         }
 
         public abstract string MostrarEslogan();
-        public abstract string Serializar();
+        public abstract string Serializar(string ruta);
 
         public static bool operator ==(Consola c1, Consola c2)
         {

@@ -8,7 +8,7 @@ namespace Entidades
 {
     public interface IJSON<T>
     {
-        bool Serializar(T dato, string ruta);
+        string Serializar(T dato, string ruta);
         T Deserializar(string ruta);
     }
 }

@@ -127,11 +127,10 @@ namespace Entidades
         /// Serializa la instancia actual de la consola PlayStation a formato JSON.
         /// </summary>
         /// <returns>Una cadena en formato JSON que representa la instancia actual.</returns>
-        public override string Serializar()
+        public override string Serializar(string ruta)
         {
-            JsonSerializerOptions opciones = new JsonSerializerOptions();
-            opciones.WriteIndented = true;
-            return JsonSerializer.Serialize(this, opciones);
+            Serializadora<PlayStation> serializadora = new Serializadora<PlayStation>();
+            return serializadora.Serializar(this, ruta);
         }
 
         public override bool Equals(object? obj)

@@ -242,7 +242,7 @@ namespace FrmGamingStore
         private void AbrirArchivoConsolas()
         {
             ofdConsolas.Title = "Elige un archivo de consolas para abrir";
-            ofdConsolas.InitialDirectory = @"C:\Users\soyfe\source\repos\Parache.Felipe.PrimerParcial\Colecciones\Archivos\";
+            ofdConsolas.InitialDirectory = @"Parache.Felipe.PrimerParcial\Colecciones\Archivos\";
             ofdConsolas.FileName = "CONSOLAS_DATA.json";
             ofdConsolas.Filter = "JSON-File | *.json";
 

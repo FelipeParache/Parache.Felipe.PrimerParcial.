@@ -56,7 +56,7 @@ namespace Entidades
                 List<string> consolasSerializadas = new List<string>();
                 foreach (Consola consola in consolas)
                 {
-                    string consolaSerializada = consola.Serializar();
+                    string consolaSerializada = consola.Serializar(ruta);
                     consolasSerializadas.Add(consolaSerializada);
                 }
 
