@@ -29,18 +29,9 @@ namespace Entidades
             return JsonSerializer.Serialize(dato, opciones);
         }
 
-        public T Deserializar(string dato)
+        public T? Deserializar(string jsonElement, JsonSerializerOptions opciones)
         {
-            if (!File.Exists(ruta))
-            {
-                throw new FileNotFoundException("El archivo no existe.", ruta);
-            }
-
-            string obj_json = File.ReadAllText(ruta);
-            JsonSerializerOptions opciones = new JsonSerializerOptions();
-            opciones.PropertyNameCaseInsensitive = true;
-  
-            return JsonSerializer.Deserialize<T>(obj_json, opciones); 
+            return JsonSerializer.Deserialize<T>(jsonElement, opciones); 
         }
     }
 }

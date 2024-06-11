@@ -102,19 +102,22 @@ namespace Entidades
                                 case "PS3":
                                 case "PS4":
                                 case "PS5":
-                                    consola = JsonSerializer.Deserialize<PlayStation>(jsonConsola.GetRawText(), opciones);
+                                    Serializadora<PlayStation> serializadoraPlayStation = new Serializadora<PlayStation>();
+                                    consola = serializadoraPlayStation.Deserializar(jsonConsola.GetRawText(), opciones);
                                     break;
                                 case "NintendoNes":
                                 case "SuperNintendo":
                                 case "WiiU":
                                 case "NintendoSwitch":
-                                    consola = JsonSerializer.Deserialize<Nintendo>(jsonConsola.GetRawText(), opciones);
+                                    Serializadora<Nintendo> serializadoraNintendo = new Serializadora<Nintendo>();
+                                    consola = serializadoraNintendo.Deserializar(jsonConsola.GetRawText(), opciones);
                                     break;
                                 case "Xbox":
                                 case "Xbox360":
                                 case "XboxOne":
                                 case "XboxSeriesX":
-                                    consola = JsonSerializer.Deserialize<Xbox>(jsonConsola.GetRawText(), opciones);
+                                    Serializadora<Xbox> serializadoraXbox = new Serializadora<Xbox>();
+                                    consola = serializadoraXbox.Deserializar(jsonConsola.GetRawText(), opciones);
                                     break;
                                 default:
                                     consola = null;
