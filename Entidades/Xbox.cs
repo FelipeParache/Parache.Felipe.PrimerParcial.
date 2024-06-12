@@ -60,7 +60,7 @@ namespace Entidades
             this.Videojuego = Videojuego;
         }
 
-        public override string MostrarInformacionResumida()
+        public override string MostrarInformacion()
         {
             string almacenamientoNube = "";
             string xboxLiveGold = "";
@@ -74,13 +74,13 @@ namespace Entidades
                 almacenamientoNube = $" - {this.AlmacenamientoNube} GB Nube";
             }
 
-            return $"{base.MostrarInformacionResumida()}{xboxLiveGold}{almacenamientoNube}";
+            return $"{base.MostrarInformacion()}{xboxLiveGold}{almacenamientoNube}";
         }
 
-        public override string MostrarInformacion()
+        public override string MostrarInformacion(bool enDetalle)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(base.MostrarInformacion());
+            sb.Append(base.MostrarInformacion(enDetalle: true));
             
             if (this.XboxLiveGold)
             {

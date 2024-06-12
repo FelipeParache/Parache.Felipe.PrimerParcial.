@@ -74,7 +74,7 @@ namespace Entidades
             }
         }
 
-        public override string MostrarInformacionResumida()
+        public override string MostrarInformacion()
         {
             string portable = "";
             string periferico = "";
@@ -88,13 +88,13 @@ namespace Entidades
                 periferico = $" - Incluye {this.Periferico}";
             }
 
-            return $"{base.MostrarInformacionResumida()}{periferico}{portable}";
+            return $"{base.MostrarInformacion()}{periferico}{portable}";
         }
 
-        public override string MostrarInformacion()
+        public override string MostrarInformacion(bool enDetalle)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(base.MostrarInformacion());
+            sb.Append(base.MostrarInformacion(enDetalle: true));
 
             if (this.Portable)
             {

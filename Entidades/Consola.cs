@@ -49,7 +49,7 @@ namespace Entidades
         /// Muestra información resumida de la consola.
         /// </summary>
         /// <returns>Una cadena con el modelo y el almacenamiento de la consola.</returns>
-        public virtual string MostrarInformacionResumida()
+        public virtual string MostrarInformacion()
         {
             return $"- Consola {this.Modelo} - {this.Almacenamiento} GB";
         }
@@ -58,7 +58,7 @@ namespace Entidades
         /// Muestra información detallada de la consola.
         /// </summary>
         /// <returns>Una cadena con todos los detalles de la consola.</returns>
-        public virtual string MostrarInformacion()
+        public virtual string MostrarInformacion(bool enDetalle)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"** {this.MostrarEslogan()} **");
@@ -122,7 +122,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return this.MostrarInformacion();
+            return this.MostrarInformacion(enDetalle: true);
         }
     }
 }

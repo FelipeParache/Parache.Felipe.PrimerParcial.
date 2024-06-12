@@ -61,7 +61,7 @@ namespace Entidades
             this.Videojuego = Videojuego;
         }
 
-        public override string MostrarInformacionResumida()
+        public override string MostrarInformacion()
         {
             string psPlus = "";
             string cantidadControles = "";
@@ -79,13 +79,13 @@ namespace Entidades
                 cantidadControles = $" - {this.Controles} control";
             }
 
-            return $"{base.MostrarInformacionResumida()}{psPlus}{cantidadControles}";
+            return $"{base.MostrarInformacion()}{psPlus}{cantidadControles}";
         }
 
-        public override string MostrarInformacion()
+        public override string MostrarInformacion(bool enDetalle)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(base.MostrarInformacion());
+            sb.Append(base.MostrarInformacion(enDetalle: true)) ;
 
             if (this.PsPlus)
             {

@@ -232,7 +232,7 @@ namespace FrmGamingStore
             this.lstConsolas.Items.Clear();
             foreach (Consola consola in this.gamingStore.listaConsolas)
             {
-                this.lstConsolas.Items.Add(consola.MostrarInformacionResumida());
+                this.lstConsolas.Items.Add(consola.MostrarInformacion());
             }
         }
 
