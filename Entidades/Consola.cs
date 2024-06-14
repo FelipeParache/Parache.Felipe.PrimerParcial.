@@ -8,7 +8,7 @@ namespace Entidades
     /// <summary>
     /// Clase abstracta que representa una consola de videojuegos.
     /// </summary>
-    public abstract class Consola
+    public abstract class Consola : IConsola
     {
         public bool ConectividadOnline { get; set; }
         public int Almacenamiento { get; set; }

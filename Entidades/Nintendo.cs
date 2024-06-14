@@ -11,7 +11,7 @@ namespace Entidades
     /// <summary>
     /// Representa una consola Nintendo.
     /// </summary>
-    public class Nintendo : Consola
+    public class Nintendo : Consola, IConsola
     {
         public bool Portable { get; set; }
         public int DuracionBateria { get; set; }

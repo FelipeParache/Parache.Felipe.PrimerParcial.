@@ -12,7 +12,7 @@ namespace Entidades
     /// <summary>
     /// Representa una consola PlayStation.
     /// </summary>
-    public class PlayStation : Consola
+    public class PlayStation : Consola, IConsola
     {
         public bool PsPlus { get; set; }
         public int Controles { get; set; }

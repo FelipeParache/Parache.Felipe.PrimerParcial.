@@ -11,7 +11,7 @@ namespace Entidades
     /// <summary>
     /// Representa una consola Xbox.
     /// </summary>
-    public class Xbox : Consola
+    public class Xbox : Consola, IConsola
     {
         public int AlmacenamientoNube { get; set; }
         public bool XboxLiveGold { get; set; }
