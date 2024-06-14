@@ -1,4 +1,6 @@
 using Entidades;
+using static System.Formats.Asn1.AsnWriter;
+using System;
 
 namespace Tests
 {
@@ -23,6 +25,68 @@ namespace Tests
             Assert.AreEqual("- Consola NintendoNes - 1000 GB - Incluye Pistola", infoResumidaB);
             Assert.AreEqual("- Consola PS5 - 2000 GB - Incluye PsPlus - 4 controles", infoResumidaC);
 
+        }
+
+        [TestMethod]
+        public void Equals_ConsolasIguales_DeberiaRetornarTrue()
+        {
+            // Arrange
+            Consola consolaA = new Xbox("Xbox360", 500, "Halo", 500, true);
+            Consola consolaB = new Xbox("Xbox360", 500, "Halo", 500, true);
+
+            // Act
+            bool sonIguales = consolaA.Equals(consolaB);
+
+            // Assert
+            Assert.IsTrue(sonIguales);
+        }
+
+        [TestMethod]
+        public void Equals_ConsolasDiferentes_DeberiaRetornarFalse()
+        {
+            // Arrange
+            Consola consolaA = new Xbox("Xbox360", 500, "Halo", 500, true);
+            Consola consolaB = new Xbox("Xbox360", 500, "Minecraft", 1000, false);
+
+            // Act
+            bool sonIguales = consolaA == consolaB;
+
+            // Assert
+            Assert.IsFalse(sonIguales);
+        }
+
+        [TestMethod]
+        public void AgregarConsola_DeberiaAgregarConsola()
+        {
+            // Arrange
+            GamingStore gamingStore = new GamingStore();
+            Consola consola = new Nintendo("NintendoSwitch", 2000, "Pokemon", "GafasVR");
+
+            // Act
+            gamingStore += consola;
+
+            // Assert
+            Assert.AreEqual(1, gamingStore.listaConsolas.Count);
+            Assert.IsTrue(gamingStore == consola);
+        }
+
+        [TestMethod]
+        public void EliminarConsola_DeberiaEiminarConsola()
+        {
+            // Arrange
+            GamingStore gamingStore = new GamingStore();
+            Consola consolaA = new PlayStation("PS4", 1000, "GranTurismo", 2);
+            Consola consolaB = new Xbox("XboxSeriesX", 2000, "Minecraft");
+            gamingStore += consolaA;
+            gamingStore += consolaB;
+
+            // Act
+            int indice = gamingStore.listaConsolas.IndexOf(consolaA);
+            gamingStore -= indice;
+
+            // Assert
+            Assert.AreEqual(1, gamingStore.listaConsolas.Count);
+            Assert.IsTrue(gamingStore == consolaB);
         }
     }
 }
