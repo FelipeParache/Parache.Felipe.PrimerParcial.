@@ -61,7 +61,7 @@ namespace FrmGamingStore
             string clave = txtClave.Text;
 
             List<Usuario> usuarios = ManejadorArchivos.DeserializarUsuarios(this.rutaDataUsuarios);
-            
+
             if (usuarios is not null)
             {
                 Usuario? usuario = Usuario.BuscarUsuario(usuarios, correo, clave);

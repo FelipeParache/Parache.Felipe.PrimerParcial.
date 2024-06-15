@@ -41,17 +41,6 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Constructor que inicializa el apellido, nombre, legajo, correo, clave y perfil.
-        /// </summary>
-        public Usuario(string apellido, string nombre, int legajo, string correo, string clave, string perfil) : this(correo, clave)
-        {
-            Apellido = apellido;
-            Nombre = nombre;
-            Legajo = legajo;
-            Perfil = perfil;
-        }
-
-        /// <summary>
         /// Compara dos objetos de tipo Usuario según sus atributos correo y clave.
         /// </summary>
         /// <returns>true si son iguales, false si son diferentes.</returns>
@@ -89,6 +78,10 @@ namespace Entidades
             {
                 if (u == usuario)
                 {
+                    usuario.Apellido = u.Apellido;
+                    usuario.Nombre = u.Nombre;
+                    usuario.Legajo = u.Legajo;
+                    usuario.Perfil = u.Perfil;
                     return u;
                 }
             }

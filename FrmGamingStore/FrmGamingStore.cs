@@ -33,6 +33,21 @@ namespace FrmGamingStore
         private void FrmGamingStore_Load(object sender, EventArgs e)
         {
             this.lblUsuarioFecha.Text = $"{DateTime.Now.ToString().Substring(0, 9)} Usuario: {usuario}";
+
+            if (usuario.Perfil == "vendedor")
+            {
+                lblMarca.Text = "ELIJA UN ARCHIVO";
+                btnPlayStation.Visible = false;
+                btnNintendo.Visible = false;
+                btnXbox.Visible = false;
+                btnGuardar.Visible = false;
+                btnModificar.Visible = false;
+                btnEliminar.Visible = false;
+            }
+            else if (usuario.Perfil == "supervisor")
+            {
+                btnEliminar.Visible = false;
+            }
         }
 
         /// <summary>
