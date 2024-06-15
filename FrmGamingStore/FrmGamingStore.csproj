@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Archivos\**" />
+    <EmbeddedResource Remove="Archivos\**" />
+    <None Remove="Archivos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj" />
     <ProjectReference Include="..\Excepciones\Excepciones.csproj" />
   </ItemGroup>

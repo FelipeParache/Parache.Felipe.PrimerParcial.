@@ -17,10 +17,20 @@ namespace FrmGamingStore
     /// </summary>
     public partial class FrmLogin : Form
     {
+        private string rutaLogsUsuarios;
+        private string rutaDataUsuarios;
+
         public FrmLogin()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            string archivoLogs = @"\Colecciones\Archivos\usuarios.log";
+            this.rutaLogsUsuarios = ManejadorArchivos.ObtenerRuta(Environment.CurrentDirectory, archivoLogs);
+
+            string archivoData = @"\Colecciones\Archivos\MOCK_DATA.json";
+            this.rutaDataUsuarios = ManejadorArchivos.ObtenerRuta(Environment.CurrentDirectory, archivoData);
+
         }
 
         /// <summary>
@@ -32,9 +42,7 @@ namespace FrmGamingStore
         {
             if (usuario is not null)
             {
-                string rutaUsuario = @"C:\Users\soyfe\source\repos\Parache.Felipe.PrimerParcial\Colecciones\Archivos\usuarios.log";
-
-                usuario.CrearLogUsuario(rutaUsuario);
+                usuario.CrearLogUsuario(rutaLogsUsuarios);
                 return true;
             }
             else
@@ -52,9 +60,7 @@ namespace FrmGamingStore
             string correo = txtCorreo.Text;
             string clave = txtClave.Text;
 
-            string ruta = @"C:\Users\soyfe\source\repos\Parache.Felipe.PrimerParcial\Colecciones\Archivos\MOCK_DATA.json";
-
-            List<Usuario> usuarios = ManejadorArchivos.DeserializarUsuarios(ruta);
+            List<Usuario> usuarios = ManejadorArchivos.DeserializarUsuarios(this.rutaDataUsuarios);
             
             if (usuarios is not null)
             {

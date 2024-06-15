@@ -9,12 +9,16 @@ namespace FrmGamingStore
     {
         private GamingStore gamingStore;
         private Usuario? usuario;
+        private string rutaDataConsolas;
 
         public FrmGamingStore()
         {
             InitializeComponent();
             this.gamingStore = new GamingStore();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            string archivoData = @"\Archivos";
+            this.rutaDataConsolas = ManejadorArchivos.ObtenerRuta(Environment.CurrentDirectory, archivoData);
         }
 
         /// <summary>
@@ -242,7 +246,7 @@ namespace FrmGamingStore
         private void AbrirArchivoConsolas()
         {
             ofdConsolas.Title = "Elige un archivo de consolas para abrir";
-            ofdConsolas.InitialDirectory = @"Parache.Felipe.PrimerParcial\Colecciones\Archivos\";
+            ofdConsolas.InitialDirectory = rutaDataConsolas;
             ofdConsolas.FileName = "CONSOLAS_DATA.json";
             ofdConsolas.Filter = "JSON-File | *.json";
 

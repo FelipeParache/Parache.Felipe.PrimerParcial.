@@ -16,6 +16,22 @@ namespace Entidades
     public static class ManejadorArchivos 
     {
         /// <summary>
+        /// Obtiene la ruta de acceso completa del archivo que recibe por parametro 
+        /// </summary>
+        /// <param name="dirActual">Directorio del archivo actual</param>
+        /// <param name="archivo">Archivo del cual se obtiene la ruta</param>
+        /// <returns>La ruta de acceso completa del archivo</returns>
+        public static string ObtenerRuta(string? dirActual, string archivo)
+        {
+            string a = Directory.GetParent(dirActual).Parent.FullName;
+            string b = Directory.GetParent(a).Parent.FullName;
+
+            string ruta = b + archivo;
+
+            return ruta;
+        }
+
+        /// <summary>
         /// Deserializa la lista de usuarios hallada en el archivo tipo JSON recibido por parámetro.
         /// </summary>
         /// <param name="ruta">Ruta del archivo JSON.</param>

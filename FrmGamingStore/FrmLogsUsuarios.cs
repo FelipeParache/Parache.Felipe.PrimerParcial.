@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace FrmGamingStore
@@ -24,8 +25,10 @@ namespace FrmGamingStore
 
         private void FormLogsUsuarios_Load(object sender, EventArgs e)
         {
-            string ruta = @"C:\Users\soyfe\source\repos\Parache.Felipe.PrimerParcial\Colecciones\Archivos\usuarios.log";
-            string[] lineas = ManejadorArchivos.LeerArchivoLogs(ruta);
+            string archivo = @"\Colecciones\Archivos\usuarios.log";
+            string rutaArchivo = ManejadorArchivos.ObtenerRuta(Environment.CurrentDirectory, archivo);
+            
+            string[] lineas = ManejadorArchivos.LeerArchivoLogs(rutaArchivo);
 
             lstUsuarios.Items.Clear();
 
