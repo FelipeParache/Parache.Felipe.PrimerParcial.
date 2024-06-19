@@ -1,5 +1,6 @@
 using FrmGamingStore;
 using Entidades;
+using ADO;
 namespace FrmGamingStore
 {
     /// <summary>
@@ -7,6 +8,7 @@ namespace FrmGamingStore
     /// </summary>
     public partial class FrmGamingStore : Form
     {
+        private AccesoDatos ado;
         private GamingStore gamingStore;
         private Usuario? usuario;
         private string rutaDataConsolas;
@@ -14,6 +16,7 @@ namespace FrmGamingStore
         public FrmGamingStore()
         {
             InitializeComponent();
+            this.ado = new AccesoDatos();
             this.gamingStore = new GamingStore();
             this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -320,6 +323,18 @@ namespace FrmGamingStore
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             this.GuardarArchivoConsolas();
+        }
+
+        private void btnConexion_Click(object sender, EventArgs e)
+        {          
+            if (ado.ProbarConexion())
+            {
+                MessageBox.Show("Conexión establecida con la base de datos");
+            }
+            else
+            {
+                MessageBox.Show("Falló la conexión con la base de datos");
+            }
         }
     }
 }

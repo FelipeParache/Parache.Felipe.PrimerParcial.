@@ -52,6 +52,7 @@ namespace FrmGamingStore
             sfdConsolas = new SaveFileDialog();
             btnGuardar = new Button();
             btnAbrir = new Button();
+            btnConexion = new Button();
             grpOrdenarPorAño.SuspendLayout();
             grpOrdenarPorMarca.SuspendLayout();
             SuspendLayout();
@@ -253,12 +254,23 @@ namespace FrmGamingStore
             btnAbrir.UseVisualStyleBackColor = true;
             btnAbrir.Click += btnAbrir_Click;
             // 
+            // btnConexion
+            // 
+            btnConexion.Location = new Point(12, 59);
+            btnConexion.Name = "btnConexion";
+            btnConexion.Size = new Size(65, 29);
+            btnConexion.TabIndex = 15;
+            btnConexion.Text = "BDD";
+            btnConexion.UseVisualStyleBackColor = true;
+            btnConexion.Click += btnConexion_Click;
+            // 
             // FrmGamingStore
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Resources.frmGamingStoreBackgroundImage;
             ClientSize = new Size(510, 711);
+            Controls.Add(btnConexion);
             Controls.Add(btnAbrir);
             Controls.Add(btnGuardar);
             Controls.Add(lblUsuarioFecha);
@@ -305,5 +317,6 @@ namespace FrmGamingStore
         private SaveFileDialog sfdConsolas;
         private Button btnGuardar;
         private Button btnAbrir;
+        private Button btnConexion;
     }
 }
