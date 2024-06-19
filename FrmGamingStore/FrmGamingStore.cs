@@ -63,11 +63,11 @@ namespace FrmGamingStore
             if (frmPlayStation.ShowDialog() == DialogResult.OK)
             {
                 Consola playStation = frmPlayStation.ConsolaDelFormulario;
-                int filasAfectadas = this.ado.AgregarConsola((PlayStation)playStation);
 
                 if (this.gamingStore != playStation)
                 {
                     this.gamingStore += playStation;
+                    int filasAfectadas = this.ado.AgregarConsola((PlayStation)playStation);
                     this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
@@ -88,11 +88,11 @@ namespace FrmGamingStore
             if (frmNintendo.ShowDialog() == DialogResult.OK)
             {
                 Consola nintendo = frmNintendo.ConsolaDelFormulario;
-                int filasAfectadas = this.ado.AgregarConsola((Nintendo)nintendo);
 
                 if (this.gamingStore != nintendo)
                 {
                     this.gamingStore += nintendo;
+                    int filasAfectadas = this.ado.AgregarConsola((Nintendo)nintendo);
                     this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
@@ -113,11 +113,11 @@ namespace FrmGamingStore
             if (frmXbox.ShowDialog() == DialogResult.OK)
             {
                 Consola xbox = frmXbox.ConsolaDelFormulario;
-                int filasAfectadas = this.ado.AgregarConsola((Xbox)xbox);
 
                 if (this.gamingStore != xbox)
                 {
                     this.gamingStore += xbox;
+                    int filasAfectadas = this.ado.AgregarConsola((Xbox)xbox);
                     this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
@@ -333,13 +333,31 @@ namespace FrmGamingStore
 
         private void btnConexion_Click(object sender, EventArgs e)
         {
-            if (ado.ProbarConexion())
+            if (this.ado.ProbarConexion())
             {
                 MessageBox.Show("Conexión establecida con la base de datos");
             }
             else
             {
                 MessageBox.Show("Falló la conexión con la base de datos");
+            }
+
+            List<PlayStation> consolasPS = this.ado.ObtenerPlayStation();
+            foreach (PlayStation ps in consolasPS)
+            {
+                MessageBox.Show(ps.ToString());
+            }
+
+            List<Nintendo> consolasNN = this.ado.ObtenerNintendo();
+            foreach (Nintendo nn in consolasNN)
+            {
+                MessageBox.Show(nn.ToString());
+            }
+
+            List<Xbox> consolasXB = this.ado.ObtenerXbox();
+            foreach (Xbox xb in consolasXB)
+            {
+                MessageBox.Show(xb.ToString());
             }
         }
 
