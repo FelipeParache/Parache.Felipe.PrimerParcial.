@@ -63,10 +63,12 @@ namespace FrmGamingStore
             if (frmPlayStation.ShowDialog() == DialogResult.OK)
             {
                 Consola playStation = frmPlayStation.ConsolaDelFormulario;
+                int filasAfectadas = this.ado.AgregarConsola((PlayStation)playStation);
 
                 if (this.gamingStore != playStation)
                 {
                     this.gamingStore += playStation;
+                    this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
                 {
@@ -86,10 +88,12 @@ namespace FrmGamingStore
             if (frmNintendo.ShowDialog() == DialogResult.OK)
             {
                 Consola nintendo = frmNintendo.ConsolaDelFormulario;
+                int filasAfectadas = this.ado.AgregarConsola((Nintendo)nintendo);
 
                 if (this.gamingStore != nintendo)
                 {
                     this.gamingStore += nintendo;
+                    this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
                 {
@@ -109,10 +113,12 @@ namespace FrmGamingStore
             if (frmXbox.ShowDialog() == DialogResult.OK)
             {
                 Consola xbox = frmXbox.ConsolaDelFormulario;
+                int filasAfectadas = this.ado.AgregarConsola((Xbox)xbox);
 
                 if (this.gamingStore != xbox)
                 {
                     this.gamingStore += xbox;
+                    this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
                 {
@@ -326,7 +332,7 @@ namespace FrmGamingStore
         }
 
         private void btnConexion_Click(object sender, EventArgs e)
-        {          
+        {
             if (ado.ProbarConexion())
             {
                 MessageBox.Show("Conexión establecida con la base de datos");
@@ -334,6 +340,18 @@ namespace FrmGamingStore
             else
             {
                 MessageBox.Show("Falló la conexión con la base de datos");
+            }
+        }
+
+        private void MostrarMensajeFilasAfectadas(int filasAfectadas)
+        {
+            if (filasAfectadas > 0)
+            {
+                MessageBox.Show("Éxito al guardar la consola en la base de datos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error al guardar la consola en la bdd", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
