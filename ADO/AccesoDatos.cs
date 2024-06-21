@@ -48,20 +48,13 @@ namespace ADO
         public List<PlayStation> ObtenerPlayStation()
         {
             List<PlayStation> listaPlayStation = new List<PlayStation>();
-
+            string sqlQuery = "SELECT modelo, almacenamiento, videojuego, conectividad_online, ps_plus, controles FROM playstation";
+            
             try
             {
-                this.comando = new SqlCommand();
-
-                this.comando.CommandText = "SELECT modelo, almacenamiento, videojuego, conectividad_online, ps_plus, controles FROM playstation";
-                this.comando.CommandType = CommandType.Text;
-                this.comando.Connection = this.conexion;
-
-                this.conexion.Open();
-
-                this.lector = comando.ExecuteReader();
-
-                while (lector.Read()) // Este metodo lee cada fila de la tabla y luego la elimina
+                this.lector = EjecutarQuery(sqlQuery);
+                
+                while (lector.Read())
                 {
                     PlayStation playStation = new PlayStation();
 
@@ -79,7 +72,7 @@ namespace ADO
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine("Error: " + ex.Message);
             }
             finally
             {
@@ -95,20 +88,13 @@ namespace ADO
         public List<Nintendo> ObtenerNintendo()
         {
             List<Nintendo> listaNintendo = new List<Nintendo>();
+            string sqlQuery = "SELECT modelo, almacenamiento, videojuego, conectividad_online, portable, duracion_bateria, periferico FROM nintendo";
 
             try
             {
-                this.comando = new SqlCommand();
+                this.lector = EjecutarQuery(sqlQuery);
 
-                this.comando.CommandText = "SELECT modelo, almacenamiento, videojuego, conectividad_online, portable, duracion_bateria, periferico FROM nintendo";
-                this.comando.CommandType = CommandType.Text;
-                this.comando.Connection = this.conexion;
-
-                this.conexion.Open();
-
-                this.lector = comando.ExecuteReader();
-
-                while (lector.Read()) // Este metodo lee cada fila de la tabla y luego la elimina
+                while (lector.Read())
                 {
                     Nintendo nintendo = new Nintendo();
 
@@ -127,7 +113,7 @@ namespace ADO
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine("Error: " + ex.Message);
             }
             finally
             {
@@ -143,20 +129,13 @@ namespace ADO
         public List<Xbox> ObtenerXbox()
         {
             List<Xbox> listaXbox = new List<Xbox>();
+            string sqlQuery = "SELECT modelo, almacenamiento, videojuego, conectividad_online, almacenamiento_nube, xbox_live_gold FROM xbox";
 
             try
             {
-                this.comando = new SqlCommand();
+                this.lector = EjecutarQuery(sqlQuery);
 
-                this.comando.CommandText = "SELECT modelo, almacenamiento, videojuego, conectividad_online, almacenamiento_nube, xbox_live_gold FROM xbox";
-                this.comando.CommandType = CommandType.Text;
-                this.comando.Connection = this.conexion;
-
-                this.conexion.Open();
-
-                this.lector = comando.ExecuteReader();
-
-                while (lector.Read()) // Este metodo lee cada fila de la tabla y luego la elimina
+                while (lector.Read())
                 {
                     Xbox xbox = new Xbox();
 
@@ -191,14 +170,11 @@ namespace ADO
         {
             try
             {
-                string sqlQuery = "INSERT INTO playstation (modelo, almacenamiento, videojuego, conectividad_online, ps_plus, controles) VALUES(";
-                sqlQuery = sqlQuery + "'" + playStation.Modelo + "'," + playStation.Almacenamiento.ToString() + ",'" + playStation.Videojuego + "'," + playStation.ConectividadOnline.GetHashCode() + "," + playStation.PsPlus.GetHashCode() + "," + playStation.Controles.ToString() + ")";
-                
-                this.comando = new SqlCommand();
-                
-                this.comando.CommandType = CommandType.Text;
-                this.comando.CommandText = sqlQuery;
-                this.comando.Connection = this.conexion;
+                string sqlQuery = $"INSERT INTO playstation (modelo, almacenamiento, videojuego, conectividad_online, ps_plus, controles) " +
+                                  $"VALUES ('{playStation.Modelo}', {playStation.Almacenamiento}, '{playStation.Videojuego}', " +
+                                  $"{playStation.ConectividadOnline.GetHashCode()}, {playStation.PsPlus.GetHashCode()}, {playStation.Controles})";
+
+                this.comando = new SqlCommand(sqlQuery, this.conexion);
 
                 this.conexion.Open();
 
@@ -223,14 +199,11 @@ namespace ADO
         {
             try
             {
-                string sqlQuery = "INSERT INTO nintendo (modelo, almacenamiento, videojuego, conectividad_online, portable, duracion_bateria, periferico) VALUES(";
-                sqlQuery = sqlQuery + "'" + nintendo.Modelo + "'," + nintendo.Almacenamiento.ToString() + ",'" + nintendo.Videojuego + "'," + nintendo.ConectividadOnline.GetHashCode() + "," + nintendo.Portable.GetHashCode() + "," + nintendo.DuracionBateria.ToString() + ",'" + nintendo.Periferico + "'" + ")";
+                string sqlQuery = $"INSERT INTO nintendo (modelo, almacenamiento, videojuego, conectividad_online, portable, duracion_bateria, periferico) " +
+                                  $"VALUES ('{nintendo.Modelo}', {nintendo.Almacenamiento}, '{nintendo.Videojuego}', " +
+                                  $"{nintendo.ConectividadOnline.GetHashCode()}, {nintendo.Portable.GetHashCode()}, {nintendo.DuracionBateria}, '{nintendo.Periferico}')";
 
-                this.comando = new SqlCommand();
-
-                this.comando.CommandType = CommandType.Text;
-                this.comando.CommandText = sqlQuery;
-                this.comando.Connection = this.conexion;
+                this.comando = new SqlCommand(sqlQuery, this.conexion);
 
                 this.conexion.Open();
 
@@ -255,14 +228,11 @@ namespace ADO
         {
             try
             {
-                string sqlQuery = "INSERT INTO xbox (modelo, almacenamiento, videojuego, conectividad_online, almacenamiento_nube, xbox_live_gold) VALUES(";
-                sqlQuery = sqlQuery + "'" + xbox.Modelo + "'," + xbox.Almacenamiento.ToString() + ",'" + xbox.Videojuego + "'," + xbox.ConectividadOnline.GetHashCode() + "," + xbox.AlmacenamientoNube.ToString() + "," + xbox.XboxLiveGold.GetHashCode() + ")";
+                string sqlQuery = $"INSERT INTO xbox (modelo, almacenamiento, videojuego, conectividad_online, almacenamiento_nube, xbox_live_gold) " +
+                                  $"VALUES ('{xbox.Modelo}', {xbox.Almacenamiento}, '{xbox.Videojuego}', " +
+                                  $"{xbox.ConectividadOnline.GetHashCode()}, {xbox.AlmacenamientoNube}, {xbox.XboxLiveGold.GetHashCode()})";
 
-                this.comando = new SqlCommand();
-
-                this.comando.CommandType = CommandType.Text;
-                this.comando.CommandText = sqlQuery;
-                this.comando.Connection = this.conexion;
+                this.comando = new SqlCommand(sqlQuery, this.conexion);
 
                 this.conexion.Open();
 
@@ -281,6 +251,24 @@ namespace ADO
                     this.conexion.Close();
                 }
             }
+        }
+
+        private SqlDataReader EjecutarQuery(string sqlQuery)
+        {
+            SqlDataReader? lector = null;
+
+            try
+            {
+                this.comando = new SqlCommand(sqlQuery, this.conexion);
+                this.conexion.Open();
+                lector = this.comando.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return lector;
         }
     }
 }
