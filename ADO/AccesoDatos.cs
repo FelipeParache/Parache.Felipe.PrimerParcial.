@@ -45,6 +45,8 @@ namespace ADO
             return respuesta;
         }
 
+        #region Select
+
         public List<PlayStation> ObtenerPlayStation()
         {
             List<PlayStation> listaPlayStation = new List<PlayStation>();
@@ -166,6 +168,10 @@ namespace ADO
             return listaXbox;
         }
 
+        #endregion
+
+        #region Insert
+
         public int AgregarConsola(PlayStation playStation)
         {
             try
@@ -252,6 +258,8 @@ namespace ADO
                 }
             }
         }
+
+        #endregion
 
         private SqlDataReader EjecutarQuery(string sqlQuery)
         {

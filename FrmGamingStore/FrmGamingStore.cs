@@ -51,6 +51,15 @@ namespace FrmGamingStore
             {
                 btnEliminar.Visible = false;
             }
+
+            if (this.ado.ProbarConexion())
+            {
+                MessageBox.Show("Conexión establecida con la base de datos");
+            }
+            else
+            {
+                MessageBox.Show("Falló la conexión con la base de datos");
+            }
         }
 
         /// <summary>
@@ -269,30 +278,84 @@ namespace FrmGamingStore
         /// </summary>
         private void AbrirArchivoConsolas()
         {
-            ofdConsolas.Title = "Elige un archivo de consolas para abrir";
-            ofdConsolas.InitialDirectory = rutaDataConsolas;
-            ofdConsolas.FileName = "CONSOLAS_DATA.json";
-            ofdConsolas.Filter = "JSON-File | *.json";
+            #region Abrir desde JSON
+            //ofdConsolas.Title = "Elige un archivo de consolas para abrir";
+            //ofdConsolas.InitialDirectory = rutaDataConsolas;
+            //ofdConsolas.FileName = "CONSOLAS_DATA.json";
+            //ofdConsolas.Filter = "JSON-File | *.json";
 
-            if (ofdConsolas.ShowDialog() == DialogResult.OK)
+            //if (ofdConsolas.ShowDialog() == DialogResult.OK)
+            //{
+            //    if (File.Exists(ofdConsolas.FileName))
+            //    {
+            //        List<Consola>? consolas = ManejadorArchivos.DeserializarConsolasJSON(ofdConsolas.FileName);
+            //        if (consolas is not null)
+            //        {
+            //            if (this.gamingStore != null)
+            //            {
+            //                this.gamingStore.listaConsolas = consolas;
+            //                this.ActualizarVisor();
+            //            }
+            //            else
+            //            {
+            //                MessageBox.Show("Error: gamingStore no está inicializado.");
+            //            }
+            //        }
+            //    }
+            //}
+
+            #endregion
+
+            #region Abrir desde SQL
+            
+            try
             {
-                if (File.Exists(ofdConsolas.FileName))
+
+                List<Consola> consolas = new List<Consola>();
+
+                List<PlayStation> consolasPS;
+                List<Nintendo> consolasNN;
+                List<Xbox> consolasXB;
+
+                try
                 {
-                    List<Consola>? consolas = ManejadorArchivos.DeserializarConsolasJSON(ofdConsolas.FileName);
-                    if (consolas is not null)
-                    {
-                        if (this.gamingStore != null)
-                        {
-                            this.gamingStore.listaConsolas = consolas;
-                            this.ActualizarVisor();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error: gamingStore no está inicializado.");
-                        }
-                    }
+                    consolasPS = this.ado.ObtenerPlayStation();
+                    consolasNN = this.ado.ObtenerNintendo();
+                    consolasXB = this.ado.ObtenerXbox();
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al obtener consolas desde la base de datos: {ex.Message}");
+                    return;
+                }
+
+                consolas.AddRange(consolasPS);
+                consolas.AddRange(consolasNN);
+                consolas.AddRange(consolasXB);
+
+                if (consolas == null || consolas.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron consolas para cargar.");
+                    return;
+                }
+
+                if (this.gamingStore != null)
+                {
+                    this.gamingStore.listaConsolas = consolas;
+                    this.ActualizarVisor();
+                }
+                else
+                {
+                    MessageBox.Show("Error: gamingStore no está inicializado.");
+                }
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Se produjo un error al abrir el archivo de consolas: {ex.Message}");
+            }
+            
+            #endregion
         }
 
         /// <summary>
@@ -331,45 +394,15 @@ namespace FrmGamingStore
             this.GuardarArchivoConsolas();
         }
 
-        private void btnConexion_Click(object sender, EventArgs e)
-        {
-            if (this.ado.ProbarConexion())
-            {
-                MessageBox.Show("Conexión establecida con la base de datos");
-            }
-            else
-            {
-                MessageBox.Show("Falló la conexión con la base de datos");
-            }
-
-            List<PlayStation> consolasPS = this.ado.ObtenerPlayStation();
-            foreach (PlayStation ps in consolasPS)
-            {
-                MessageBox.Show(ps.ToString());
-            }
-
-            List<Nintendo> consolasNN = this.ado.ObtenerNintendo();
-            foreach (Nintendo nn in consolasNN)
-            {
-                MessageBox.Show(nn.ToString());
-            }
-
-            List<Xbox> consolasXB = this.ado.ObtenerXbox();
-            foreach (Xbox xb in consolasXB)
-            {
-                MessageBox.Show(xb.ToString());
-            }
-        }
-
         private void MostrarMensajeFilasAfectadas(int filasAfectadas)
         {
             if (filasAfectadas > 0)
             {
-                MessageBox.Show("Éxito al guardar la consola en la base de datos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Consola agregada correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Error al guardar la consola en la bdd", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al agregar la consola", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
