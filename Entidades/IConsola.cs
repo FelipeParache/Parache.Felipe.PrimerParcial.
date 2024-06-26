@@ -11,6 +11,7 @@ namespace Entidades
     /// </summary>
     public interface IConsola 
     {
+        int Id { get; set; }
         bool ConectividadOnline { get; set; }
         int Almacenamiento { get; set; }
         string? Modelo { get; set; }

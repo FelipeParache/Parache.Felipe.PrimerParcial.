@@ -133,6 +133,8 @@ namespace Entidades
             return serializadora.Serializar(this, ruta);
         }
 
+        public override string ObtenerTipo() => "PlayStation";
+
         public override bool Equals(object? obj)
         {
             if (obj is PlayStation playStation)

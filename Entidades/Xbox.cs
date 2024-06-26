@@ -120,6 +120,8 @@ namespace Entidades
             return serializadora.Serializar(this, ruta);
         }
 
+        public override string ObtenerTipo() => "Xbox";
+
         public override bool Equals(object? obj)
         {
             if (obj is Xbox xbox)

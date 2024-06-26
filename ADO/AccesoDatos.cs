@@ -50,7 +50,7 @@ namespace ADO
         public List<PlayStation> ObtenerPlayStation()
         {
             List<PlayStation> listaPlayStation = new List<PlayStation>();
-            string sqlQuery = "SELECT modelo, almacenamiento, videojuego, conectividad_online, ps_plus, controles FROM playstation";
+            string sqlQuery = "SELECT id, modelo, almacenamiento, videojuego, conectividad_online, ps_plus, controles FROM playstation";
             
             try
             {
@@ -60,12 +60,13 @@ namespace ADO
                 {
                     PlayStation playStation = new PlayStation();
 
-                    playStation.Modelo = lector.GetString(0);   
-                    playStation.Almacenamiento = lector.GetInt32(1);
-                    playStation.Videojuego = lector.GetString(2);
-                    playStation.ConectividadOnline = lector.GetBoolean(3);
-                    playStation.PsPlus = lector.GetBoolean(4);
-                    playStation.Controles = lector.GetInt32(5);
+                    playStation.Id = lector.GetInt32(0);
+                    playStation.Modelo = lector.GetString(1);   
+                    playStation.Almacenamiento = lector.GetInt32(2);
+                    playStation.Videojuego = lector.GetString(3);
+                    playStation.ConectividadOnline = lector.GetBoolean(4);
+                    playStation.PsPlus = lector.GetBoolean(5);
+                    playStation.Controles = lector.GetInt32(6);
 
                     listaPlayStation.Add(playStation);
                 }
@@ -90,7 +91,7 @@ namespace ADO
         public List<Nintendo> ObtenerNintendo()
         {
             List<Nintendo> listaNintendo = new List<Nintendo>();
-            string sqlQuery = "SELECT modelo, almacenamiento, videojuego, conectividad_online, portable, duracion_bateria, periferico FROM nintendo";
+            string sqlQuery = "SELECT id, modelo, almacenamiento, videojuego, conectividad_online, portable, duracion_bateria, periferico FROM nintendo";
 
             try
             {
@@ -100,13 +101,14 @@ namespace ADO
                 {
                     Nintendo nintendo = new Nintendo();
 
-                    nintendo.Modelo = lector.GetString(0);
-                    nintendo.Almacenamiento = lector.GetInt32(1);
-                    nintendo.Videojuego = lector.GetString(2);
-                    nintendo.ConectividadOnline = lector.GetBoolean(3);
-                    nintendo.Portable = lector.GetBoolean(4);
-                    nintendo.DuracionBateria = lector.GetInt32(5);
-                    nintendo.Periferico = lector.GetString(6);
+                    nintendo.Id = lector.GetInt32(0);
+                    nintendo.Modelo = lector.GetString(1);
+                    nintendo.Almacenamiento = lector.GetInt32(2);
+                    nintendo.Videojuego = lector.GetString(3);
+                    nintendo.ConectividadOnline = lector.GetBoolean(4);
+                    nintendo.Portable = lector.GetBoolean(5);
+                    nintendo.DuracionBateria = lector.GetInt32(6);
+                    nintendo.Periferico = lector.GetString(7);
 
                     listaNintendo.Add(nintendo);
                 }
@@ -131,7 +133,7 @@ namespace ADO
         public List<Xbox> ObtenerXbox()
         {
             List<Xbox> listaXbox = new List<Xbox>();
-            string sqlQuery = "SELECT modelo, almacenamiento, videojuego, conectividad_online, almacenamiento_nube, xbox_live_gold FROM xbox";
+            string sqlQuery = "SELECT id, modelo, almacenamiento, videojuego, conectividad_online, almacenamiento_nube, xbox_live_gold FROM xbox";
 
             try
             {
@@ -141,12 +143,13 @@ namespace ADO
                 {
                     Xbox xbox = new Xbox();
 
-                    xbox.Modelo = lector.GetString(0);
-                    xbox.Almacenamiento = lector.GetInt32(1);
-                    xbox.Videojuego = lector.GetString(2);
-                    xbox.ConectividadOnline = lector.GetBoolean(3);
-                    xbox.AlmacenamientoNube = lector.GetInt32(4);
-                    xbox.XboxLiveGold = lector.GetBoolean(5);
+                    xbox.Id = lector.GetInt32(0);
+                    xbox.Modelo = lector.GetString(1);
+                    xbox.Almacenamiento = lector.GetInt32(2);
+                    xbox.Videojuego = lector.GetString(3);
+                    xbox.ConectividadOnline = lector.GetBoolean(4);
+                    xbox.AlmacenamientoNube = lector.GetInt32(5);
+                    xbox.XboxLiveGold = lector.GetBoolean(6);
 
                     listaXbox.Add(xbox);
                 }
@@ -172,14 +175,35 @@ namespace ADO
 
         #region Insert
 
-        public int AgregarConsola(PlayStation playStation)
+        public int AgregarConsola(Consola consola, string tipoConsola)
         {
+            string sqlQuery;
+
+            if (tipoConsola == "PlayStation" && consola is PlayStation playStation)
+            {
+                sqlQuery = $"INSERT INTO playstation (modelo, almacenamiento, videojuego, conectividad_online, ps_plus, controles) " +
+                           $"VALUES ('{playStation.Modelo}', {playStation.Almacenamiento}, '{playStation.Videojuego}', " +
+                           $"{playStation.ConectividadOnline.GetHashCode()}, {playStation.PsPlus.GetHashCode()}, {playStation.Controles})";
+            }
+            else if (tipoConsola == "Xbox" && consola is Xbox xbox)
+            {
+                sqlQuery = $"INSERT INTO xbox (modelo, almacenamiento, videojuego, conectividad_online, almacenamiento_nube, xbox_live_gold) " +
+                           $"VALUES ('{xbox.Modelo}', {xbox.Almacenamiento}, '{xbox.Videojuego}', " +
+                           $"{xbox.ConectividadOnline.GetHashCode()}, {xbox.AlmacenamientoNube}, {xbox.XboxLiveGold.GetHashCode()})";
+            }
+            else if (tipoConsola == "Nintendo" && consola is Nintendo nintendo)
+            {
+                sqlQuery = $"INSERT INTO nintendo (modelo, almacenamiento, videojuego, conectividad_online, portable, duracion_bateria, periferico) " +
+                           $"VALUES ('{nintendo.Modelo}', {nintendo.Almacenamiento}, '{nintendo.Videojuego}', " +
+                           $"{nintendo.ConectividadOnline.GetHashCode()}, {nintendo.Portable.GetHashCode()}, {nintendo.DuracionBateria}, '{nintendo.Periferico}')";
+            }
+            else
+            {
+                throw new ArgumentException("Tipo de consola desconocido o consola no compatible.");
+            }
+
             try
             {
-                string sqlQuery = $"INSERT INTO playstation (modelo, almacenamiento, videojuego, conectividad_online, ps_plus, controles) " +
-                                  $"VALUES ('{playStation.Modelo}', {playStation.Almacenamiento}, '{playStation.Videojuego}', " +
-                                  $"{playStation.ConectividadOnline.GetHashCode()}, {playStation.PsPlus.GetHashCode()}, {playStation.Controles})";
-
                 this.comando = new SqlCommand(sqlQuery, this.conexion);
 
                 this.conexion.Open();
@@ -188,8 +212,9 @@ namespace ADO
 
                 return filasAfectadas;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Error al agregar la consola: " + ex.Message);
                 return -1;
             }
             finally
@@ -201,53 +226,42 @@ namespace ADO
             }
         }
 
-        public int AgregarConsola(Nintendo nintendo)
+        #endregion
+
+        #region Delete
+
+        public int EliminarConsola(int id, string tipoConsola)
         {
+            string sqlQuery;
+
+            switch (tipoConsola)
+            {
+                case "PlayStation":
+                    sqlQuery = "DELETE FROM playstation WHERE id = @id";
+                    break;
+                case "Xbox":
+                    sqlQuery = "DELETE FROM xbox WHERE id = @id";
+                    break;
+                case "Nintendo":
+                    sqlQuery = "DELETE FROM nintendo WHERE id = @id";
+                    break;
+                default:
+                    throw new ArgumentException("Tipo de consola desconocido");
+            }
+
             try
             {
-                string sqlQuery = $"INSERT INTO nintendo (modelo, almacenamiento, videojuego, conectividad_online, portable, duracion_bateria, periferico) " +
-                                  $"VALUES ('{nintendo.Modelo}', {nintendo.Almacenamiento}, '{nintendo.Videojuego}', " +
-                                  $"{nintendo.ConectividadOnline.GetHashCode()}, {nintendo.Portable.GetHashCode()}, {nintendo.DuracionBateria}, '{nintendo.Periferico}')";
-
                 this.comando = new SqlCommand(sqlQuery, this.conexion);
+                this.comando.Parameters.AddWithValue("@id", id);
 
                 this.conexion.Open();
-
                 int filasAfectadas = this.comando.ExecuteNonQuery();
 
                 return filasAfectadas;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return -1;
-            }
-            finally
-            {
-                if (this.conexion.State == ConnectionState.Open)
-                {
-                    this.conexion.Close();
-                }
-            }
-        }
-
-        public int AgregarConsola(Xbox xbox)
-        {
-            try
-            {
-                string sqlQuery = $"INSERT INTO xbox (modelo, almacenamiento, videojuego, conectividad_online, almacenamiento_nube, xbox_live_gold) " +
-                                  $"VALUES ('{xbox.Modelo}', {xbox.Almacenamiento}, '{xbox.Videojuego}', " +
-                                  $"{xbox.ConectividadOnline.GetHashCode()}, {xbox.AlmacenamientoNube}, {xbox.XboxLiveGold.GetHashCode()})";
-
-                this.comando = new SqlCommand(sqlQuery, this.conexion);
-
-                this.conexion.Open();
-
-                int filasAfectadas = this.comando.ExecuteNonQuery();
-
-                return filasAfectadas;
-            }
-            catch (Exception)
-            {
+                Console.WriteLine("Error al eliminar la consola: " + ex.Message);
                 return -1;
             }
             finally

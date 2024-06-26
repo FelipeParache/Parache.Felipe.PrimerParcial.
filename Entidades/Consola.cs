@@ -10,6 +10,7 @@ namespace Entidades
     /// </summary>
     public abstract class Consola : IConsola
     {
+        public int Id { get; set; }
         public bool ConectividadOnline { get; set; }
         public int Almacenamiento { get; set; }
         public string? Modelo { get; set; }
@@ -85,6 +86,7 @@ namespace Entidades
 
         public abstract string MostrarEslogan();
         public abstract string Serializar(string ruta);
+        public abstract string ObtenerTipo();
 
         public static bool operator ==(Consola c1, Consola c2)
         {

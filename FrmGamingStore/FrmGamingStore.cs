@@ -76,7 +76,7 @@ namespace FrmGamingStore
                 if (this.gamingStore != playStation)
                 {
                     this.gamingStore += playStation;
-                    int filasAfectadas = this.ado.AgregarConsola((PlayStation)playStation);
+                    int filasAfectadas = this.ado.AgregarConsola(playStation, playStation.ObtenerTipo());
                     this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
@@ -101,7 +101,7 @@ namespace FrmGamingStore
                 if (this.gamingStore != nintendo)
                 {
                     this.gamingStore += nintendo;
-                    int filasAfectadas = this.ado.AgregarConsola((Nintendo)nintendo);
+                    int filasAfectadas = this.ado.AgregarConsola(nintendo, nintendo.ObtenerTipo());
                     this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
@@ -126,7 +126,7 @@ namespace FrmGamingStore
                 if (this.gamingStore != xbox)
                 {
                     this.gamingStore += xbox;
-                    int filasAfectadas = this.ado.AgregarConsola((Xbox)xbox);
+                    int filasAfectadas = this.ado.AgregarConsola(xbox, xbox.ObtenerTipo());
                     this.MostrarMensajeFilasAfectadas(filasAfectadas);
                 }
                 else
@@ -207,8 +207,23 @@ namespace FrmGamingStore
             int indiceSeleccionado = lstConsolas.SelectedIndex;
             if (indiceSeleccionado >= 0 && indiceSeleccionado < gamingStore.listaConsolas.Count)
             {
-                this.gamingStore -= indiceSeleccionado;
-                this.ActualizarVisor();
+                Consola consolaSeleccionada = this.gamingStore.listaConsolas[indiceSeleccionado];
+                int idConsola = consolaSeleccionada.Id;
+                string tipoConsola = consolaSeleccionada.ObtenerTipo();
+
+                int filasAfectadas = this.ado.EliminarConsola(idConsola, tipoConsola);
+                
+                if (filasAfectadas > 0)
+                {
+                    this.gamingStore -= indiceSeleccionado;
+                    this.ActualizarVisor();
+
+                    MessageBox.Show("Consola eliminada correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar la consola", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -325,7 +340,7 @@ namespace FrmGamingStore
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al obtener consolas desde la base de datos: {ex.Message}");
+                    MessageBox.Show($"Error al obtener consolas desde la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -335,7 +350,7 @@ namespace FrmGamingStore
 
                 if (consolas == null || consolas.Count == 0)
                 {
-                    MessageBox.Show("No se encontraron consolas para cargar.");
+                    MessageBox.Show("No se encontraron consolas para cargar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
