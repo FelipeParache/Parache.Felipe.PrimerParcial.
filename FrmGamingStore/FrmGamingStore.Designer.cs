@@ -51,7 +51,8 @@ namespace FrmGamingStore
             ofdConsolas = new OpenFileDialog();
             sfdConsolas = new SaveFileDialog();
             btnGuardar = new Button();
-            btnAbrir = new Button();
+            btnAbrirJson = new Button();
+            btnAbrirSql = new Button();
             grpOrdenarPorAño.SuspendLayout();
             grpOrdenarPorMarca.SuspendLayout();
             SuspendLayout();
@@ -59,7 +60,7 @@ namespace FrmGamingStore
             // btnPlayStation
             // 
             btnPlayStation.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPlayStation.Location = new Point(12, 112);
+            btnPlayStation.Location = new Point(12, 158);
             btnPlayStation.Name = "btnPlayStation";
             btnPlayStation.Size = new Size(135, 54);
             btnPlayStation.TabIndex = 0;
@@ -70,7 +71,7 @@ namespace FrmGamingStore
             // btnNintendo
             // 
             btnNintendo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnNintendo.Location = new Point(188, 112);
+            btnNintendo.Location = new Point(188, 158);
             btnNintendo.Name = "btnNintendo";
             btnNintendo.Size = new Size(135, 54);
             btnNintendo.TabIndex = 1;
@@ -81,7 +82,7 @@ namespace FrmGamingStore
             // btnXbox
             // 
             btnXbox.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnXbox.Location = new Point(363, 112);
+            btnXbox.Location = new Point(363, 158);
             btnXbox.Name = "btnXbox";
             btnXbox.Size = new Size(135, 54);
             btnXbox.TabIndex = 2;
@@ -95,7 +96,7 @@ namespace FrmGamingStore
             lblMarca.BackColor = Color.Transparent;
             lblMarca.Font = new Font("Franklin Gothic Medium", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblMarca.ForeColor = Color.White;
-            lblMarca.Location = new Point(83, 59);
+            lblMarca.Location = new Point(86, 101);
             lblMarca.Name = "lblMarca";
             lblMarca.Size = new Size(348, 36);
             lblMarca.TabIndex = 3;
@@ -105,7 +106,7 @@ namespace FrmGamingStore
             // 
             lstConsolas.FormattingEnabled = true;
             lstConsolas.ItemHeight = 20;
-            lstConsolas.Location = new Point(12, 183);
+            lstConsolas.Location = new Point(12, 218);
             lstConsolas.Name = "lstConsolas";
             lstConsolas.Size = new Size(486, 324);
             lstConsolas.TabIndex = 4;
@@ -113,7 +114,7 @@ namespace FrmGamingStore
             // btnModificar
             // 
             btnModificar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.Location = new Point(12, 513);
+            btnModificar.Location = new Point(12, 548);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(135, 54);
             btnModificar.TabIndex = 5;
@@ -124,7 +125,7 @@ namespace FrmGamingStore
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminar.Location = new Point(363, 513);
+            btnEliminar.Location = new Point(363, 548);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(135, 54);
             btnEliminar.TabIndex = 6;
@@ -135,7 +136,7 @@ namespace FrmGamingStore
             // btnVerEnDetalle
             // 
             btnVerEnDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnVerEnDetalle.Location = new Point(188, 513);
+            btnVerEnDetalle.Location = new Point(188, 548);
             btnVerEnDetalle.Name = "btnVerEnDetalle";
             btnVerEnDetalle.Size = new Size(135, 54);
             btnVerEnDetalle.TabIndex = 7;
@@ -149,9 +150,9 @@ namespace FrmGamingStore
             grpOrdenarPorAño.Controls.Add(rbtnDescendenteAño);
             grpOrdenarPorAño.Controls.Add(rbtnAscendenteAño);
             grpOrdenarPorAño.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            grpOrdenarPorAño.Location = new Point(12, 582);
+            grpOrdenarPorAño.Location = new Point(12, 608);
             grpOrdenarPorAño.Name = "grpOrdenarPorAño";
-            grpOrdenarPorAño.Size = new Size(240, 117);
+            grpOrdenarPorAño.Size = new Size(240, 91);
             grpOrdenarPorAño.TabIndex = 10;
             grpOrdenarPorAño.TabStop = false;
             grpOrdenarPorAño.Text = "Ordenar por año de fabricación";
@@ -160,7 +161,7 @@ namespace FrmGamingStore
             // 
             rbtnDescendenteAño.AutoSize = true;
             rbtnDescendenteAño.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            rbtnDescendenteAño.Location = new Point(6, 70);
+            rbtnDescendenteAño.Location = new Point(6, 58);
             rbtnDescendenteAño.Name = "rbtnDescendenteAño";
             rbtnDescendenteAño.Size = new Size(130, 27);
             rbtnDescendenteAño.TabIndex = 1;
@@ -172,7 +173,7 @@ namespace FrmGamingStore
             // 
             rbtnAscendenteAño.AutoSize = true;
             rbtnAscendenteAño.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            rbtnAscendenteAño.Location = new Point(6, 37);
+            rbtnAscendenteAño.Location = new Point(6, 26);
             rbtnAscendenteAño.Name = "rbtnAscendenteAño";
             rbtnAscendenteAño.Size = new Size(120, 27);
             rbtnAscendenteAño.TabIndex = 0;
@@ -189,9 +190,9 @@ namespace FrmGamingStore
             grpOrdenarPorMarca.Controls.Add(rbtnAscendenteMarca);
             grpOrdenarPorMarca.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             grpOrdenarPorMarca.ForeColor = Color.Black;
-            grpOrdenarPorMarca.Location = new Point(258, 582);
+            grpOrdenarPorMarca.Location = new Point(258, 608);
             grpOrdenarPorMarca.Name = "grpOrdenarPorMarca";
-            grpOrdenarPorMarca.Size = new Size(240, 117);
+            grpOrdenarPorMarca.Size = new Size(240, 91);
             grpOrdenarPorMarca.TabIndex = 11;
             grpOrdenarPorMarca.TabStop = false;
             grpOrdenarPorMarca.Text = "Ordenar por marca";
@@ -200,7 +201,7 @@ namespace FrmGamingStore
             // 
             rbtnDescendenteMarca.AutoSize = true;
             rbtnDescendenteMarca.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            rbtnDescendenteMarca.Location = new Point(6, 70);
+            rbtnDescendenteMarca.Location = new Point(6, 58);
             rbtnDescendenteMarca.Name = "rbtnDescendenteMarca";
             rbtnDescendenteMarca.Size = new Size(130, 27);
             rbtnDescendenteMarca.TabIndex = 2;
@@ -212,7 +213,7 @@ namespace FrmGamingStore
             // 
             rbtnAscendenteMarca.AutoSize = true;
             rbtnAscendenteMarca.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            rbtnAscendenteMarca.Location = new Point(7, 37);
+            rbtnAscendenteMarca.Location = new Point(6, 26);
             rbtnAscendenteMarca.Name = "rbtnAscendenteMarca";
             rbtnAscendenteMarca.Size = new Size(120, 27);
             rbtnAscendenteMarca.TabIndex = 1;
@@ -235,23 +236,33 @@ namespace FrmGamingStore
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(404, 9);
+            btnGuardar.Location = new Point(304, 44);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(94, 29);
+            btnGuardar.Size = new Size(194, 29);
             btnGuardar.TabIndex = 13;
-            btnGuardar.Text = "Guardar";
+            btnGuardar.Text = "Guardar archivo JSON";
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // btnAbrir
+            // btnAbrirJson
             // 
-            btnAbrir.Location = new Point(304, 9);
-            btnAbrir.Name = "btnAbrir";
-            btnAbrir.Size = new Size(94, 29);
-            btnAbrir.TabIndex = 14;
-            btnAbrir.Text = "Abrir";
-            btnAbrir.UseVisualStyleBackColor = true;
-            btnAbrir.Click += btnAbrir_Click;
+            btnAbrirJson.Location = new Point(304, 9);
+            btnAbrirJson.Name = "btnAbrirJson";
+            btnAbrirJson.Size = new Size(94, 29);
+            btnAbrirJson.TabIndex = 14;
+            btnAbrirJson.Text = "Abrir JSON";
+            btnAbrirJson.UseVisualStyleBackColor = true;
+            btnAbrirJson.Click += btnAbrir_Click;
+            // 
+            // btnAbrirSql
+            // 
+            btnAbrirSql.Location = new Point(404, 9);
+            btnAbrirSql.Name = "btnAbrirSql";
+            btnAbrirSql.Size = new Size(94, 29);
+            btnAbrirSql.TabIndex = 15;
+            btnAbrirSql.Text = " Abrir SQL";
+            btnAbrirSql.UseVisualStyleBackColor = true;
+            btnAbrirSql.Click += btnAbrirSql_Click;
             // 
             // FrmGamingStore
             // 
@@ -259,7 +270,8 @@ namespace FrmGamingStore
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Resources.frmGamingStoreBackgroundImage;
             ClientSize = new Size(510, 711);
-            Controls.Add(btnAbrir);
+            Controls.Add(btnAbrirSql);
+            Controls.Add(btnAbrirJson);
             Controls.Add(btnGuardar);
             Controls.Add(lblUsuarioFecha);
             Controls.Add(grpOrdenarPorMarca);
@@ -304,6 +316,7 @@ namespace FrmGamingStore
         private OpenFileDialog ofdConsolas;
         private SaveFileDialog sfdConsolas;
         private Button btnGuardar;
-        private Button btnAbrir;
+        private Button btnAbrirJson;
+        private Button btnAbrirSql;
     }
 }

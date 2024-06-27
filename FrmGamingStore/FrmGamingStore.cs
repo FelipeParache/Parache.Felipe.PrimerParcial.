@@ -212,7 +212,7 @@ namespace FrmGamingStore
                 string tipoConsola = consolaSeleccionada.ObtenerTipo();
 
                 int filasAfectadas = this.ado.EliminarConsola(idConsola, tipoConsola);
-                
+
                 if (filasAfectadas > 0)
                 {
                     this.gamingStore -= indiceSeleccionado;
@@ -277,52 +277,61 @@ namespace FrmGamingStore
         }
 
         /// <summary>
-        /// Actualiza el visor de consolas en el formulario.
+        /// Abre un archivo JSON de consolas y carga los datos en la tienda de juegos.
         /// </summary>
-        private void ActualizarVisor()
+        private void btnAbrir_Click(object sender, EventArgs e)
         {
-            this.lstConsolas.Items.Clear();
-            foreach (Consola consola in this.gamingStore.listaConsolas)
+            ofdConsolas.Title = "Elige un archivo de consolas para abrir";
+            ofdConsolas.InitialDirectory = rutaDataConsolas;
+            ofdConsolas.FileName = "CONSOLAS_DATA.json";
+            ofdConsolas.Filter = "JSON-File | *.json";
+
+            if (ofdConsolas.ShowDialog() == DialogResult.OK)
             {
-                this.lstConsolas.Items.Add(consola.MostrarInformacion());
+                if (File.Exists(ofdConsolas.FileName))
+                {
+                    List<Consola>? consolas = ManejadorArchivos.DeserializarConsolasJSON(ofdConsolas.FileName);
+                    if (consolas is not null)
+                    {
+                        if (this.gamingStore != null)
+                        {
+                            this.gamingStore.listaConsolas = consolas;
+                            this.ActualizarVisor();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error: gamingStore no está inicializado.");
+                        }
+                    }
+                }
             }
         }
 
         /// <summary>
-        /// Abre un archivo de consolas y carga los datos en la tienda de juegos.
+        /// Guarda los datos de las consolas en un archivo JSON.
         /// </summary>
-        private void AbrirArchivoConsolas()
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
-            #region Abrir desde JSON
-            //ofdConsolas.Title = "Elige un archivo de consolas para abrir";
-            //ofdConsolas.InitialDirectory = rutaDataConsolas;
-            //ofdConsolas.FileName = "CONSOLAS_DATA.json";
-            //ofdConsolas.Filter = "JSON-File | *.json";
+            try
+            {
+                sfdConsolas.Filter = "Archivo JSON (*.json) | *.json";
+                if (sfdConsolas.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = sfdConsolas.FileName;
+                    ManejadorArchivos.SerializarConsolasJSON(rutaArchivo, this.gamingStore.listaConsolas);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar el archivo: {ex.Message}");
+            }
+        }
 
-            //if (ofdConsolas.ShowDialog() == DialogResult.OK)
-            //{
-            //    if (File.Exists(ofdConsolas.FileName))
-            //    {
-            //        List<Consola>? consolas = ManejadorArchivos.DeserializarConsolasJSON(ofdConsolas.FileName);
-            //        if (consolas is not null)
-            //        {
-            //            if (this.gamingStore != null)
-            //            {
-            //                this.gamingStore.listaConsolas = consolas;
-            //                this.ActualizarVisor();
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("Error: gamingStore no está inicializado.");
-            //            }
-            //        }
-            //    }
-            //}
-
-            #endregion
-
-            #region Abrir desde SQL
-            
+        /// <summary>
+        /// Abre la base de datos y carga las consolas en la tienda de juegos.
+        /// </summary>
+        private void btnAbrirSql_Click(object sender, EventArgs e)
+        {
             try
             {
 
@@ -369,44 +378,18 @@ namespace FrmGamingStore
             {
                 MessageBox.Show($"Se produjo un error al abrir el archivo de consolas: {ex.Message}");
             }
-            
-            #endregion
         }
-
+        
         /// <summary>
-        /// Guarda los datos de las consolas en un archivo JSON.
+        /// Actualiza el visor de consolas en el formulario.
         /// </summary>
-        private void GuardarArchivoConsolas()
+        private void ActualizarVisor()
         {
-            try
+            this.lstConsolas.Items.Clear();
+            foreach (Consola consola in this.gamingStore.listaConsolas)
             {
-                sfdConsolas.Filter = "Archivo JSON (*.json) | *.json";
-                if (sfdConsolas.ShowDialog() == DialogResult.OK)
-                {
-                    string rutaArchivo = sfdConsolas.FileName;
-                    ManejadorArchivos.SerializarConsolasJSON(rutaArchivo, this.gamingStore.listaConsolas);
-                }
+                this.lstConsolas.Items.Add(consola.MostrarInformacion());
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al guardar el archivo: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Maneja el evento de click en el botón para abrir un archivo de consolas.
-        /// </summary>
-        private void btnAbrir_Click(object sender, EventArgs e)
-        {
-            this.AbrirArchivoConsolas();
-        }
-
-        /// <summary>
-        /// Maneja el evento de clic en el botón para guardar los datos de las consolas en un archivo JSON.
-        /// </summary>
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            this.GuardarArchivoConsolas();
         }
 
         private void MostrarMensajeFilasAfectadas(int filasAfectadas)
