@@ -220,9 +220,15 @@ namespace FrmGamingStore
 
                     MessageBox.Show("Consola eliminada correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
+                else if (filasAfectadas != 0)
                 {
                     MessageBox.Show("Error al eliminar la consola", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                if (filasAfectadas == 0)
+                {
+                    this.gamingStore -= indiceSeleccionado;
+                    this.ActualizarVisor();
                 }
             }
             else
