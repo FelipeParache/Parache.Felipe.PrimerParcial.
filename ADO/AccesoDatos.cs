@@ -275,6 +275,81 @@ namespace ADO
 
         #endregion
 
+        #region Update
+
+        public int ModificarConsola(Consola consola, string tipoConsola)
+        {
+            string sqlQuery;
+
+            switch (tipoConsola)
+            {
+                case "PlayStation":
+                    PlayStation? ps = consola as PlayStation;
+                    sqlQuery = $"UPDATE playstation SET " +
+                               $"modelo = '{ps.Modelo}', " +
+                               $"almacenamiento = {ps.Almacenamiento.ToString()}, " +
+                               $"videojuego = '{ps.Videojuego}', " +
+                               $"conectividad_online = {ps.ConectividadOnline.GetHashCode()}, " +
+                               $"ps_plus = {ps.PsPlus.GetHashCode()}, " +
+                               $"controles = {ps.Controles.ToString()} " +
+                               $"WHERE id = {ps.Id.ToString()}";
+                    break;
+
+                case "Xbox":
+                    Xbox? xb = consola as Xbox;
+                    sqlQuery = $"UPDATE xbox SET " +
+                               $"modelo = '{xb.Modelo}', " +
+                               $"almacenamiento = {xb.Almacenamiento.ToString()}, " +
+                               $"videojuego = '{xb.Videojuego}', " +
+                               $"conectividad_online = {xb.ConectividadOnline.GetHashCode()}, " +
+                               $"almacenamiento_nube = {xb.AlmacenamientoNube.ToString()}, " +
+                               $"xbox_live_gold = {xb.XboxLiveGold.GetHashCode()} " +
+                               $"WHERE id = {xb.Id.ToString()}";
+                    break;
+
+                case "Nintendo":
+                    Nintendo? nn = consola as Nintendo;
+                    sqlQuery = $"UPDATE nintendo SET " +
+                               $"modelo = '{nn.Modelo}', " +
+                               $"almacenamiento = {nn.Almacenamiento.ToString()}, " +
+                               $"videojuego = '{nn.Videojuego}', " +
+                               $"conectividad_online = {nn.ConectividadOnline.GetHashCode()}, " +
+                               $"portable = {nn.Portable.GetHashCode()}, " +
+                               $"duracion_bateria = {nn.DuracionBateria.ToString()}, " +
+                               $"periferico = '{nn.Periferico}' " +
+                               $"WHERE id = {nn.Id.ToString()}";
+                    break;
+
+                default:
+                    throw new ArgumentException("Tipo de consola desconocido");
+            }
+
+            try
+            {
+                this.comando = new SqlCommand(sqlQuery, this.conexion);
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                return filasAfectadas;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar la consola: " + ex.Message);
+                return -1;
+            }
+            finally
+            {
+                if (this.conexion.State == ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+        }
+
+        #endregion
+
         private SqlDataReader EjecutarQuery(string sqlQuery)
         {
             SqlDataReader? lector = null;

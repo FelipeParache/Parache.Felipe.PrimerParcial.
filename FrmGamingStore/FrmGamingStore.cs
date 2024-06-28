@@ -143,6 +143,7 @@ namespace FrmGamingStore
         private void btnModificar_Click(object sender, EventArgs e)
         {
             int indiceSeleccionado = lstConsolas.SelectedIndex;
+
             if (indiceSeleccionado >= 0 && indiceSeleccionado < gamingStore.listaConsolas.Count)
             {
                 Consola consolaSeleccionada = gamingStore.listaConsolas[indiceSeleccionado];
@@ -165,10 +166,30 @@ namespace FrmGamingStore
                 DialogResult resultado = frmConsola.ShowDialog();
                 if (resultado == DialogResult.OK)
                 {
-                    if (this.gamingStore != frmConsola.ConsolaDelFormulario)
+                    Consola consolaModificada = frmConsola.ConsolaDelFormulario;
+                    consolaModificada.Id = consolaSeleccionada.Id;
+
+                    if (this.gamingStore != consolaModificada)
                     {
-                        this.gamingStore.listaConsolas[indiceSeleccionado] = frmConsola.ConsolaDelFormulario;
-                        this.ActualizarVisor();
+                        int filasAfectadas = ado.ModificarConsola(consolaModificada, consolaModificada.ObtenerTipo());
+
+                        if (filasAfectadas > 0)
+                        {
+                            this.gamingStore.listaConsolas[indiceSeleccionado] = consolaModificada;
+                            this.ActualizarVisor();
+
+                            MessageBox.Show("Consola modificada correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else if (filasAfectadas != 0)
+                        {
+                            MessageBox.Show("Error al modificar la consola en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        if (filasAfectadas == 0)
+                        {
+                            this.gamingStore.listaConsolas[indiceSeleccionado] = consolaModificada;
+                            this.ActualizarVisor();
+                        }
                     }
                     else
                     {
