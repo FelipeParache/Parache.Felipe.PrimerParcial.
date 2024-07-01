@@ -12,12 +12,14 @@ namespace FrmGamingStore
         private GamingStore gamingStore;
         private Usuario? usuario;
         private string rutaDataConsolas;
+        private Action actualizarVisorDelegate;
 
         public FrmGamingStore()
         {
             InitializeComponent();
             this.ado = new AccesoDatos();
             this.gamingStore = new GamingStore();
+            this.actualizarVisorDelegate = new Action(this.ActualizarVisor);
             this.StartPosition = FormStartPosition.CenterScreen;
 
             string archivoData = @"\Archivos";
@@ -83,7 +85,7 @@ namespace FrmGamingStore
                 {
                     MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                this.ActualizarVisor();
+                this.actualizarVisorDelegate.Invoke();
             }
         }
 
@@ -108,7 +110,7 @@ namespace FrmGamingStore
                 {
                     MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                this.ActualizarVisor();
+                this.actualizarVisorDelegate.Invoke();
             }
         }
 
@@ -133,7 +135,7 @@ namespace FrmGamingStore
                 {
                     MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                this.ActualizarVisor();
+                this.actualizarVisorDelegate.Invoke();
             }
         }
 
@@ -176,7 +178,7 @@ namespace FrmGamingStore
                         if (filasAfectadas > 0)
                         {
                             this.gamingStore.listaConsolas[indiceSeleccionado] = consolaModificada;
-                            this.ActualizarVisor();
+                            this.actualizarVisorDelegate.Invoke();
 
                             MessageBox.Show("Consola modificada correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -188,7 +190,7 @@ namespace FrmGamingStore
                         if (filasAfectadas == 0)
                         {
                             this.gamingStore.listaConsolas[indiceSeleccionado] = consolaModificada;
-                            this.ActualizarVisor();
+                            this.actualizarVisorDelegate.Invoke();
                         }
                     }
                     else
@@ -237,7 +239,7 @@ namespace FrmGamingStore
                 if (filasAfectadas > 0)
                 {
                     this.gamingStore -= indiceSeleccionado;
-                    this.ActualizarVisor();
+                    this.actualizarVisorDelegate.Invoke();
 
                     MessageBox.Show("Consola eliminada correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -249,7 +251,7 @@ namespace FrmGamingStore
                 if (filasAfectadas == 0)
                 {
                     this.gamingStore -= indiceSeleccionado;
-                    this.ActualizarVisor();
+                    this.actualizarVisorDelegate.Invoke();
                 }
             }
             else
@@ -272,7 +274,7 @@ namespace FrmGamingStore
                 this.gamingStore.OrdenarPorAñoModelo(false);
             }
 
-            this.ActualizarVisor();
+            this.actualizarVisorDelegate.Invoke();
         }
 
         /// <summary>
@@ -289,7 +291,7 @@ namespace FrmGamingStore
                 this.gamingStore.OrdenarPorClase(false);
             }
 
-            this.ActualizarVisor();
+            this.actualizarVisorDelegate.Invoke();
         }
 
         /// <summary>
@@ -323,7 +325,7 @@ namespace FrmGamingStore
                         if (this.gamingStore != null)
                         {
                             this.gamingStore.listaConsolas = consolas;
-                            this.ActualizarVisor();
+                            this.actualizarVisorDelegate.Invoke();
                         }
                         else
                         {
@@ -393,7 +395,7 @@ namespace FrmGamingStore
                 if (this.gamingStore != null)
                 {
                     this.gamingStore.listaConsolas = consolas;
-                    this.ActualizarVisor();
+                    this.actualizarVisorDelegate.Invoke();
                 }
                 else
                 {
