@@ -19,11 +19,19 @@ namespace FrmGamingStore
             InitializeComponent();
             this.ado = new AccesoDatos();
             this.gamingStore = new GamingStore();
-            this.actualizarVisorDelegate = new Action(this.ActualizarVisor);
             this.StartPosition = FormStartPosition.CenterScreen;
 
             string archivoData = @"\Archivos";
             this.rutaDataConsolas = ManejadorArchivos.ObtenerRuta(Environment.CurrentDirectory, archivoData);
+
+            this.actualizarVisorDelegate = () =>
+            {
+                this.lstConsolas.Items.Clear();
+                foreach (Consola consola in this.gamingStore.listaConsolas)
+                {
+                    this.lstConsolas.Items.Add(consola.MostrarInformacion());
+                }
+            };
         }
 
         /// <summary>
@@ -409,18 +417,6 @@ namespace FrmGamingStore
             }
         }
         
-        /// <summary>
-        /// Actualiza el visor de consolas en el formulario.
-        /// </summary>
-        private void ActualizarVisor()
-        {
-            this.lstConsolas.Items.Clear();
-            foreach (Consola consola in this.gamingStore.listaConsolas)
-            {
-                this.lstConsolas.Items.Add(consola.MostrarInformacion());
-            }
-        }
-
         private void MostrarMensajeFilasAfectadas(int filasAfectadas)
         {
             if (filasAfectadas > 0)
