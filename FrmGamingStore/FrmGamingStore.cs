@@ -14,6 +14,7 @@ namespace FrmGamingStore
         private string rutaDataConsolas;
         private Action actualizarVisorDelegate;
         private Task establecerConexionBdd;
+        public event Action consolaYaAgregadaHandler;
 
         public FrmGamingStore()
         {
@@ -48,6 +49,7 @@ namespace FrmGamingStore
         private void FrmGamingStore_Load(object sender, EventArgs e)
         {
             this.lblUsuarioFecha.Text = $"{DateTime.Now.ToString().Substring(0, 9)} Usuario: {usuario}";
+            this.consolaYaAgregadaHandler += this.OnConsolaYaAgregada;
 
             if (usuario.Perfil == "vendedor")
             {
@@ -84,7 +86,7 @@ namespace FrmGamingStore
                 }
                 else
                 {
-                    MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.consolaYaAgregadaHandler.Invoke();
                 }
                 this.actualizarVisorDelegate.Invoke();
             }
@@ -109,7 +111,7 @@ namespace FrmGamingStore
                 }
                 else
                 {
-                    MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.consolaYaAgregadaHandler.Invoke();
                 }
                 this.actualizarVisorDelegate.Invoke();
             }
@@ -134,7 +136,7 @@ namespace FrmGamingStore
                 }
                 else
                 {
-                    MessageBox.Show("La consola ya se encuentra en la lista.", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.consolaYaAgregadaHandler.Invoke();
                 }
                 this.actualizarVisorDelegate.Invoke();
             }
@@ -431,6 +433,11 @@ namespace FrmGamingStore
             {
                 MessageBox.Show("Error al agregar la consola", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void OnConsolaYaAgregada()
+        {
+            MessageBox.Show("La consola ya se encuentra en la lista", "Error al agregar consola", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
