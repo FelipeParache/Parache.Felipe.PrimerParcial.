@@ -236,9 +236,9 @@ namespace FrmGamingStore
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(304, 44);
+            btnGuardar.Location = new Point(328, 53);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(194, 29);
+            btnGuardar.Size = new Size(170, 29);
             btnGuardar.TabIndex = 13;
             btnGuardar.Text = "Guardar archivo JSON";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -246,17 +246,17 @@ namespace FrmGamingStore
             // 
             // btnAbrirJson
             // 
-            btnAbrirJson.Location = new Point(304, 9);
+            btnAbrirJson.Location = new Point(152, 53);
             btnAbrirJson.Name = "btnAbrirJson";
-            btnAbrirJson.Size = new Size(94, 29);
+            btnAbrirJson.Size = new Size(170, 29);
             btnAbrirJson.TabIndex = 14;
-            btnAbrirJson.Text = "Abrir JSON";
+            btnAbrirJson.Text = "Abrir archivo JSON";
             btnAbrirJson.UseVisualStyleBackColor = true;
             btnAbrirJson.Click += btnAbrir_Click;
             // 
             // btnAbrirSql
             // 
-            btnAbrirSql.Location = new Point(404, 9);
+            btnAbrirSql.Location = new Point(12, 53);
             btnAbrirSql.Name = "btnAbrirSql";
             btnAbrirSql.Size = new Size(94, 29);
             btnAbrirSql.TabIndex = 15;

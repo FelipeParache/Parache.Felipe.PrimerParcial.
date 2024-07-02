@@ -23,16 +23,15 @@ namespace ADO
             this.conexion = new SqlConnection(AccesoDatos.cadenaConexion);
         }
 
-        public bool ProbarConexion()
+        public void EstablecerConexion()
         {
-            bool respuesta = true;
             try
             {
                 this.conexion.Open();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                respuesta = false;
+                Console.WriteLine("Error al intentar conectarse a la base de datos: " + ex.Message);
             }
             finally
             {
@@ -42,7 +41,6 @@ namespace ADO
                 }
             }
 
-            return respuesta;
         }
 
         #region Select

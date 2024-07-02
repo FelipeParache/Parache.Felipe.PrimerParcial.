@@ -13,11 +13,13 @@ namespace FrmGamingStore
         private Usuario? usuario;
         private string rutaDataConsolas;
         private Action actualizarVisorDelegate;
+        private Task establecerConexionBdd;
 
         public FrmGamingStore()
         {
             InitializeComponent();
             this.ado = new AccesoDatos();
+            this.establecerConexionBdd = new Task(this.ado.EstablecerConexion);
             this.gamingStore = new GamingStore();
             this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -60,15 +62,6 @@ namespace FrmGamingStore
             else if (usuario.Perfil == "supervisor")
             {
                 btnEliminar.Visible = false;
-            }
-
-            if (this.ado.ProbarConexion())
-            {
-                MessageBox.Show("Conexión establecida con la base de datos");
-            }
-            else
-            {
-                MessageBox.Show("Falló la conexión con la base de datos");
             }
         }
 
@@ -356,19 +349,30 @@ namespace FrmGamingStore
                 {
                     string rutaArchivo = sfdConsolas.FileName;
                     ManejadorArchivos.SerializarConsolasJSON(rutaArchivo, this.gamingStore.listaConsolas);
+                    MessageBox.Show("Archivo guardado correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al guardar el archivo: {ex.Message}");
+                MessageBox.Show($"Error al guardar el archivo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /// <summary>
         /// Abre la base de datos y carga las consolas en la tienda de juegos.
         /// </summary>
-        private void btnAbrirSql_Click(object sender, EventArgs e)
+        private async void btnAbrirSql_Click(object sender, EventArgs e)
         {
+            try
+            {
+                this.establecerConexionBdd.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al conectarse con la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
 
