@@ -1,53 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Entidades.Consola">
-    <Position X="11.75" Y="0.75" Width="5.75" />
+    <Position X="11.25" Y="3.25" Width="5.75" />
     <TypeIdentifier>
-      <HashCode>EAAAQAAAAAAAACAEgAAAAAAAAggAEEAAAAgAAAAAAiA=</HashCode>
+      <HashCode>EAACYAAAAACAACAEgAAAAAAAAggAAEAAAAgAAAAAAiA=</HashCode>
       <FileName>Consola.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.GamingStore">
-    <Position X="33" Y="8.25" Width="4.75" />
+    <Position X="19.25" Y="4.5" Width="4.75" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAACAAAAAQAEAAAAIAAAAAAAAAAAAAAAAAiA=</HashCode>
       <FileName>GamingStore.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.ManejadorArchivos">
-    <Position X="38" Y="8.25" Width="5.5" />
+    <Position X="27.5" Y="2.25" Width="4.5" />
     <TypeIdentifier>
-      <HashCode>ABAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>ABAAhAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>ManejadorArchivos.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Nintendo">
-    <Position X="10.25" Y="6" Width="8.75" />
+    <Position X="0.5" Y="8.75" Width="8.75" />
     <TypeIdentifier>
-      <HashCode>EAAIAAAAAAAAACAEgAAQABAAAhAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAIAAAAAACAACAEgAAQABAAAhAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Nintendo.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.PlayStation">
-    <Position X="19.25" Y="6" Width="8.75" />
+    <Position X="19.25" Y="8.75" Width="8.75" />
     <TypeIdentifier>
-      <HashCode>EAACAAAAAAAAACAEgAAAAQAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAACAAAAAACAACAEgAAAAQAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PlayStation.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.Serializadora&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="6" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Serializadora.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.Usuario">
-    <Position X="35" Y="4" Width="5.75" />
+    <Position X="19.25" Y="0.5" Width="4.75" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAAEgYAAhAAAAIAAAAAAAAAAAAAAEiA=</HashCode>
       <FileName>Usuario.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Xbox">
-    <Position X="0.5" Y="6" Width="9.5" />
+    <Position X="9.5" Y="8.75" Width="9.5" />
     <TypeIdentifier>
-      <HashCode>EEAAAAAAAAAAACAEgAAAAEAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EEAAAAAAAACAACAEgAAAAEAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Xbox.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
+  <Interface Name="Entidades.IConsola">
+    <Position X="24.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EAACQAAAAAAAACAAAAAAAAAAAggAAEAAAAgAAAAAAAA=</HashCode>
+      <FileName>IConsola.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Entidades.IJSON&lt;T&gt;">
+    <Position X="24.25" Y="4.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>IJSON.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
