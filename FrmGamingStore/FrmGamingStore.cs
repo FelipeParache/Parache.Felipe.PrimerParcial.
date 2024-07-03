@@ -367,7 +367,17 @@ namespace FrmGamingStore
         {
             try
             {
-                this.establecerConexionBdd.Start();
+                if (this.establecerConexionBdd.Status == TaskStatus.Created)
+                {
+                    MessageBox.Show("Conectando con la base de datos, espere unos segundos...", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.establecerConexionBdd.Start();
+                    Thread.Sleep(1000);
+                    MessageBox.Show("¡Conexión establecida!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("¡Conexión establecida!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
