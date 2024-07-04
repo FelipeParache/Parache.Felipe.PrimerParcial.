@@ -61,7 +61,7 @@ namespace ADO.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Data Source=localhost\SQLEXPRESS;Initial Catalog=gaming_store;Integrated Security=True;Trust Server Certificate=True.
+        ///   Busca una cadena traducida similar a Data Source=.\SQLEXPRESS;Initial Catalog=gaming_store;Integrated Security=True;Trust Server Certificate=True.
         /// </summary>
         internal static string miConexion {
             get {
