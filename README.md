@@ -12,7 +12,7 @@ Dentro podrá elegir qué consola agregar presionando uno de los botones "PlaySt
 Además, si el usuario agrega varias consolas, podrá ordenarlas por año de fabricación y por marca, seleccionando el radio button correspondiente.
 Es posible guardar la selección de consolas en el lugar que se desee de la computadora, como también abrir un archivo que contenga una seleccion creada anteriormente. Asimismo, si el usuario ya había agregado consolas en la base de datos, es posible recuperarlas al hacer click en el botón "Abrir SQL" y poder trabajar con ellas.  
 
-## El script de la base de datos se encuentra dentro del archivo ADO, dentro de la carpeta ScriptBDD
+## [Script de la base de datos](https://github.com/FelipeParache/Parache.Felipe.PrimerParcial./blob/segundoParcial/ADO/ScriptBDD/gamingStoreSqlScript.sql)
 
 ## Diagramas de clases
 
